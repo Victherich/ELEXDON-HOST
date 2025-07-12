@@ -179,13 +179,15 @@ fetch('https://www.elexdonhost.com.ng/api_elexdonhost/check_user.php', {
       text: 'You already have an account. Kindly go back and check the "i have an account box" and then proceed',
     });
     }else{
-      payWithPaystack();
+      // payWithPaystack();
+      handleSubmit('by elexdon host');
     }
    
   } else {
 
     if(checkoutType===false){
-      payWithPaystack();
+      // payWithPaystack();
+      handleSubmit('by elexdon host');
     } else{
   Swal.fire({
       icon: 'warning',
@@ -274,7 +276,7 @@ fetch('https://www.elexdonhost.com.ng/api_elexdonhost/check_user.php', {
       if (result.success) {
         handleSubmit(reference);
         Swal.fire({
-          title: 'Success verified!',
+          title: 'Success verified, Please wait...!',
           text: result.message,
           icon: 'success',
           confirmButtonText: 'OK'
