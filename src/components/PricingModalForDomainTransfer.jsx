@@ -42,15 +42,15 @@ fetch('https://www.elexdonhost.com.ng/api_elexdonhost/check_user.php', {
       text: 'You already have an account. Kindly go back and check the "i have an account box" and then proceed',
     });
     }else{
-      // payWithPaystack();
-      handleSubmit('by elexdon host');
+      payWithPaystack();
+      // handleSubmit('by elexdon host');
     }
    
   } else {
 
     if(checkoutType===false){
-      // payWithPaystack();
-      handleSubmit('by elexdon host');
+      payWithPaystack();
+      // handleSubmit('by elexdon host');
     } else{
   Swal.fire({
       icon: 'warning',
@@ -111,10 +111,8 @@ fetch('https://www.elexdonhost.com.ng/api_elexdonhost/check_user.php', {
 
 
 
-   const handleVerify = async (reference) => {
-  
-  
-      const loading = Swal.fire({
+   const handleVerify = async (reference) => {  
+     const loading = Swal.fire({
         title: 'Verifying Payment...',
         allowOutsideClick: false,
         didOpen: () => {
