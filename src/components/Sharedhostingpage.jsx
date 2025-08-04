@@ -173,6 +173,8 @@ const WebhostingPage = () => {
       .then(data => {
         Swal.close(); // Always close loading modal
 
+        console.log(data);
+
         if (data.products?.product && data.products.product.length > 0) {
           setProducts(data.products.product);
           console.log("Shared hosting products:", data);
