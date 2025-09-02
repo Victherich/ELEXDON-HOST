@@ -265,7 +265,7 @@ const e = useAnimateOnScroll('animate__fadeInDown animate__slower');
       {/* Main Content */}
       <Container>
         <Section>
-          <h2 style={{textAlign:"center"}}>The use of services from Elexdonhost.com.ng (Elexdon Digital Technologies Ltd), constitutes agreement to these terms.
+          <h2 style={{textAlign:"center"}}>The use of services from elexdonhost.com (Elexdon Digital Technologies Ltd), constitutes agreement to these terms.
           </h2>
           <SectionTitle>1.) Account Setup / Email on file</SectionTitle>
           <SectionText>
@@ -286,9 +286,9 @@ const e = useAnimateOnScroll('animate__fadeInDown animate__slower');
           <SectionText>
            All services provided by Qservers.net may only be used for lawful purposes. The laws of the State where Our Company is Headquartered, and the Federal Republic of Nigeria apply.
 <br/>
-The customer agrees to indemnify and hold harmless Elexdonhost.com.ng from any claims resulting from the use of our services.</SectionText>
+The customer agrees to indemnify and hold harmless elexdonhost.com from any claims resulting from the use of our services.</SectionText>
         <SectionText>
-          Use of our services to infringe upon any copyright or trademark is prohibited. This includes but is not limited to unauthorized copying of music, books, photographs, or any other copyrighted work. The offer of sale of any counterfeit merchandise of a trademark holder will result in the immediate termination of your account. If you believe that your copyright or trademark is being infringed upon, please email support@elexdonhost.com.ng with the information required. A list of required information may be found here. If the request is of a licensing issue, we may require further documentation.
+          Use of our services to infringe upon any copyright or trademark is prohibited. This includes but is not limited to unauthorized copying of music, books, photographs, or any other copyrighted work. The offer of sale of any counterfeit merchandise of a trademark holder will result in the immediate termination of your account. If you believe that your copyright or trademark is being infringed upon, please email support@elexdonhost.com with the information required. A list of required information may be found here. If the request is of a licensing issue, we may require further documentation.
         </SectionText>
         <SectionText>
           <strong>Examples of unacceptable material on all Shared and Reseller servers include:</strong>
@@ -303,13 +303,13 @@ Using a shared account as a backup/storage device is not permitted, with the exc
 <br/>
 Pirated Software / Warez, Escrow, High-Yield Interest Programs (HYIP) or related sites, Investment sites (FOREX, egold exchange), sale of any controlled substance without prior proof of appropriate permit(s), AutoSurf sites, Bank Debentures, Bank Debenture Trading Programs, Prime Banks Programs, lottery sites, hate sites, hacker focused sites/archives/programs, or sites promoting illegal activities, IP Scanners, Brute Force Programs, Mail Bombers and Spam Scripts. Forums and or websites that distribute or link to warez content are prohibited.
 <br/><br/>
-Elexdonhost.com.ng services, including all related equipment, networks and network devices are provided only for authorized customer use. Elexdonhost.com.ng systems may be monitored for all lawful purposes, including to ensure that use is authorized, for management of the system, to facilitate protection against unauthorized access, and to verify security procedures, survivability and operational security. During monitoring, information may be examined, recorded, copied and used for authorized purposes. Use of Elexdonhost.com.ng system(s) constitutes consent to monitoring for these purposes.
+elexdonhost.com services, including all related equipment, networks and network devices are provided only for authorized customer use. elexdonhost.com systems may be monitored for all lawful purposes, including to ensure that use is authorized, for management of the system, to facilitate protection against unauthorized access, and to verify security procedures, survivability and operational security. During monitoring, information may be examined, recorded, copied and used for authorized purposes. Use of elexdonhost.com system(s) constitutes consent to monitoring for these purposes.
 <br/><br/>
 We reserve the right to refuse service to anyone. Any material that, in our judgment, is obscene, threatening, illegal, or violates our terms of service in any manner may be removed from our servers (or otherwise disabled), with or without notice.
 <br/><br/>
 Failure to respond to email from our abuse department within 48 hours may result in the suspension or termination of your services. All abuse issues must be dealt with via troubleticket/email and will have a response within 48 hours.
 <br/><br/>
-If in doubt regarding the acceptability of your site or service, please contact us at support@elexdonhost.com.ng and we will be happy to assist you.
+If in doubt regarding the acceptability of your site or service, please contact us at support@elexdonhost.com and we will be happy to assist you.
 <br/><br/>
 Potential harm to minors is strictly forbidden, including but not limited to child pornography or content perceived to be child pornography (Lolita):
 <br/><br/>
@@ -330,11 +330,11 @@ Click Here to generate passwords.
           <SectionTitle>3a.) Zero Tolerance Spam Policy</SectionTitle>
           <SectionText>
            We take a zero tolerance stance against sending of unsolicited e-mail, bulk emailing, and spam. “Safe lists” and “double opt-in” will be treated as spam. Any user who sends out spam will have their account terminated with or without notice.
-Please read https://elexdonhost.com.ng/privacy-policy/ for our generalized policy.
+Please read https://elexdonhost.com/privacy-policy/ for our generalized policy.
 <br/><br/>
 Sites advertised via SPAM (Spamvertised) may not be hosted on our servers. This provision includes, but is not limited to SPAM sent via fax, email, instant messaging, or usenet/newsgroups. No organization or entity listed in the ROKSO may be hosted on our servers. Any account which results in our IP space being blacklisted will be immediately suspended and/or terminated.
 <br/><br/>
-Elexdonhost.com.ng reserves the right to require changes or disable as necessary any web site, account, database, or other component that does not comply with its established policies, or to make any such modifications in an emergency at its sole discretion.
+elexdonhost.com reserves the right to require changes or disable as necessary any web site, account, database, or other component that does not comply with its established policies, or to make any such modifications in an emergency at its sole discretion.
 <br/><br/>
 Elexdohost.com.ng reserves the right to charge the holder of the account used to send any unsolicited e-mail a clean up fee. This cost of the clean up fee is entirely at the discretion of Qservers.net.</SectionText>
         </Section>
@@ -348,13 +348,13 @@ Elexdohost.com.ng reserves the right to charge the holder of the account used to
         <Section>
           <SectionTitle>4.) Payment Information</SectionTitle>
           <SectionText>
-           You agree to supply appropriate payment for the services received from Elexdonhost.com.ng, in advance of the time period during which such services are provided. You agree that until and unless you notify Elexdonhost.com.ng of your desire to cancel any or all services received, those services will be billed on a recurring basis.
+           You agree to supply appropriate payment for the services received from elexdonhost.com, in advance of the time period during which such services are provided. You agree that until and unless you notify elexdonhost.com of your desire to cancel any or all services received, those services will be billed on a recurring basis.
 <br/><br/>
 Cancellations must be done in writing via the cancellation form provided in your client area on our website. To cancel a VPS/Dedicated server service, the client must submit a cancellation request 10 days before the invoice due date, else the cancellation request will be void and the client will be billed for the next subscription month. Once we receive your cancellation and have confirmed all necessary information with you via e-mail, we will inform you in writing (typically email) that your account has been canceled. Your cancellation confirmation will contain a ticket/tracking number in the subject for your reference, and for verification purposes. You should immediately receive an automatic “Your request has been received…” email with a tracking number. An employee will confirm your request (and process your cancellation) shortly thereafter. If you do not hear back from us, or do not receive the automatic confirmation email within a few minutes after submitting your cancellation, please contact us immediately via phone. We require that cancellations of service are done through the online form to (a) confirm your identity, (b) confirm in writing you are prepared for all files/emails to be removed, and (c) document the request. This process reduces the likelihood of mistakes, fraudulent/malicious requests, and ensures you are aware that the files, emails, and account may be removed immediately after a cancellation request is processed.
 <br/><br/>
-As a client of Elexdonhost.com.ng, it is your responsibility to ensure that your payment information is up to date, and that all invoices are paid on time. Any invoice that is overdue and not paid will result in a late fee and/or an account suspension until account balance has been paid in full.
+As a client of elexdonhost.com, it is your responsibility to ensure that your payment information is up to date, and that all invoices are paid on time. Any invoice that is overdue and not paid will result in a late fee and/or an account suspension until account balance has been paid in full.
 <br/><br/>
-Invoices that have been paid more than once with multiple InterSwitch Subscriptions can only be added as credit towards the account and cannot be refunded via InterSwitch. If you require assistance with this provision, please contactsupport@elexdonhost.com.ng 
+Invoices that have been paid more than once with multiple InterSwitch Subscriptions can only be added as credit towards the account and cannot be refunded via InterSwitch. If you require assistance with this provision, please contactsupport@elexdonhost.com 
 <br/><br/>
 It is the clients responsibility to confirm that the domain name/hosting/services paid for during activation or renewal is successful by checking that your CPanel area is loading without any issues or checking your domains whois record to confirm domain registration or renewal within 24hrs after a payment confirmation or a service renewal confirmation, especially when using automated online payment options like Interswitch or Bank Transfers, to avoid loss of data from the termination of the hosting package/service or loss of the domain name due to expiration.
 <br/><br/>
@@ -364,7 +364,7 @@ Elexdongost.com.ng reserves the right to change the yearly payment amount and an
         <Section>
           <SectionTitle>5.) Backups and Data Loss</SectionTitle>
           <SectionText>
-           Your use of the service is at your sole risk. Elexdonhost.com.ng is not responsible for files and/or data residing on your account. You agree to take full responsibility for files and data transferred and to maintain all appropriate backup of files and data stored on Elexdonhost.com.ng servers. You may refer to our backup policy for more information about backups.
+           Your use of the service is at your sole risk. elexdonhost.com is not responsible for files and/or data residing on your account. You agree to take full responsibility for files and data transferred and to maintain all appropriate backup of files and data stored on elexdonhost.com servers. You may refer to our backup policy for more information about backups.
 <br/><br/>
 It is your sole responsibility as a customer to make backups of the information you store on our servers on a regular basis and save them in a separate location from your account. Using a shared account as a backup/storage device is not permitted. We recommend that you make use of reliable and offsite third-party backup services such as but not limited to CodeGuard, JetPack, etc to make backup copies of your website.
 <br/><br/>
@@ -374,7 +374,7 @@ Though we run periodic backups for some services, the availability of our backup
         <Section>
           <SectionTitle>6.) Cancellations and Refunds</SectionTitle>
           <SectionText>
-           Elexdonhost.com.ng reserves the right to cancel the account at any time with or without notice.
+           elexdonhost.com reserves the right to cancel the account at any time with or without notice.
 <br/><br/>
 Any abuse of our staff in any medium or format will result in the suspension or termination of your services.
 <br/><br/>
@@ -436,7 +436,7 @@ The primary cause of excessive inodes seems to be due to users leaving their cat
           <Section>
           <SectionTitle>9b.) Uptime Guarantee</SectionTitle>
           <SectionText>
-       If your shared / reseller server has a physical downtime that is not within the 99.9% uptime you may receive one month of credit on your account. Approval of the credit is at the discretion of Qservers.net dependant upon justification provided. Third party monitoring service reports may not be used for justification due to a variety of factors including the monitor’s network capacity/transit availability. The uptime of the server is defined as the reported uptime from the operating system and the Apache Web Server which may differ from the uptime reported by other individual services. To request a credit, please contact support@elexdonhost.com.ng with justification. All requests must be made in writing via email. Uptime guarantees only apply to shared / reseller solutions. Dedicated servers are covered by a network guarantee in which the credit is prorated for the amount of time the server is down which is not related to our uptime guarantee.
+       If your shared / reseller server has a physical downtime that is not within the 99.9% uptime you may receive one month of credit on your account. Approval of the credit is at the discretion of Qservers.net dependant upon justification provided. Third party monitoring service reports may not be used for justification due to a variety of factors including the monitor’s network capacity/transit availability. The uptime of the server is defined as the reported uptime from the operating system and the Apache Web Server which may differ from the uptime reported by other individual services. To request a credit, please contact support@elexdonhost.com with justification. All requests must be made in writing via email. Uptime guarantees only apply to shared / reseller solutions. Dedicated servers are covered by a network guarantee in which the credit is prorated for the amount of time the server is down which is not related to our uptime guarantee.
         </SectionText>
          </Section>
 
@@ -444,7 +444,7 @@ The primary cause of excessive inodes seems to be due to users leaving their cat
           <Section>
           <SectionTitle>10.) Reseller: Client Responsibility</SectionTitle>
           <SectionText>
-     Resellers are responsible for supporting their clients. Elexdonhost.com.ng does not provide support to our Reseller’s Clients. If a reseller’s client contacts us, we reserve the right to place the client account on hold until the reseller can assume their responsibility for their client. All support requests must be made by the reseller on their clients’ behalf for security purposes. Resellers are also responsible for all content stored or transmitted under their reseller account and the actions of their clients’. Qservers.net will hold any reseller responsible for any of their clients actions that violate the law or the terms of service.
+     Resellers are responsible for supporting their clients. elexdonhost.com does not provide support to our Reseller’s Clients. If a reseller’s client contacts us, we reserve the right to place the client account on hold until the reseller can assume their responsibility for their client. All support requests must be made by the reseller on their clients’ behalf for security purposes. Resellers are also responsible for all content stored or transmitted under their reseller account and the actions of their clients’. Qservers.net will hold any reseller responsible for any of their clients actions that violate the law or the terms of service.
       </SectionText>
          </Section>
 
@@ -461,7 +461,7 @@ The primary cause of excessive inodes seems to be due to users leaving their cat
          <Section>
           <SectionTitle>12.) Dedicated Servers</SectionTitle>
           <SectionText>
-   Elexdonhost.com.ng reserves the right to reset the password on a dedicated server if the password on file is not current so that we may do security audits as required by our datacenter. It is the responsibility of the client to ensure that there is a valid email address and current root password on file for their dedicated server on file to prevent downtime from forced password resets. Qservers.net reserves the right to audit servers as needed and to perform administrative actions at the request of our datacenter. Dedicated servers are NOT backed up by us and it is the responsibility of the client to maintain backups or have a solution for this. You may purchase an additional hard drive and maintain backups to it as the most simple solution. Please contact support@elexdonhost.com.ng if you wish to obtain a secondary hard drive. It is your responsibility to maintain backups.
+   elexdonhost.com reserves the right to reset the password on a dedicated server if the password on file is not current so that we may do security audits as required by our datacenter. It is the responsibility of the client to ensure that there is a valid email address and current root password on file for their dedicated server on file to prevent downtime from forced password resets. Qservers.net reserves the right to audit servers as needed and to perform administrative actions at the request of our datacenter. Dedicated servers are NOT backed up by us and it is the responsibility of the client to maintain backups or have a solution for this. You may purchase an additional hard drive and maintain backups to it as the most simple solution. Please contact support@elexdonhost.com if you wish to obtain a secondary hard drive. It is your responsibility to maintain backups.
       </SectionText>
          </Section>
 
@@ -493,7 +493,7 @@ The primary cause of excessive inodes seems to be due to users leaving their cat
           <Section>
           <SectionTitle>15a.) Indemnification</SectionTitle>
           <SectionText>
-Customer agrees that it shall defend, indemnify, save and hold Elexdonhost.com.ng harmless from any and all demands, liabilities, losses, costs and claims, including reasonable attorney’s fees asserted against Elexdonhost.com.ng, its agents, its customers, officers and employees, that may arise or result from any service provided or performed or agreed to be performed or any product sold by customer, its agents, employees or assigns. Customer agrees to defend, indemnify and hold harmless Elexdonhost.com.ng against liabilities arising out of; (1) any injury to person or property caused by any products sold or otherwise distributed in connection with Elexdonhost.com.ng (2) any material supplied by customer infringing or allegedly infringing on the proprietary rights of a third party; (3) copyright infringement and (4) any defective products sold to customers from Qservers.net’s server.
+Customer agrees that it shall defend, indemnify, save and hold elexdonhost.com harmless from any and all demands, liabilities, losses, costs and claims, including reasonable attorney’s fees asserted against elexdonhost.com, its agents, its customers, officers and employees, that may arise or result from any service provided or performed or agreed to be performed or any product sold by customer, its agents, employees or assigns. Customer agrees to defend, indemnify and hold harmless elexdonhost.com against liabilities arising out of; (1) any injury to person or property caused by any products sold or otherwise distributed in connection with elexdonhost.com (2) any material supplied by customer infringing or allegedly infringing on the proprietary rights of a third party; (3) copyright infringement and (4) any defective products sold to customers from Qservers.net’s server.
    </SectionText>
          </Section>
 
@@ -501,7 +501,7 @@ Customer agrees that it shall defend, indemnify, save and hold Elexdonhost.com.n
   <Section>
           <SectionTitle>15b.) Arbitration</SectionTitle>
           <SectionText>
-By using any Elexdonhost.com.ng services, you agree to submit to binding arbitration. If any disputes or claims arise against Elexdonhost.com.ng or its subsidiaries, such disputes will be handled by an arbitrator of Elexdonhost.com.ng’s choice. An arbitrator from the Nigerian Arbitration Association. Arbitrators shall be attorneys or retired judges and shall be selected pursuant to the applicable rules. All decisions rendered by the arbitrator will be binding and final. The arbitrator’s award is final and binding on all parties. The Federal Arbitration Act, and not any state arbitration law, governs all arbitration under this Arbitration Clause. You are also responsible for any and all costs related to such arbitration.
+By using any elexdonhost.com services, you agree to submit to binding arbitration. If any disputes or claims arise against elexdonhost.com or its subsidiaries, such disputes will be handled by an arbitrator of elexdonhost.com’s choice. An arbitrator from the Nigerian Arbitration Association. Arbitrators shall be attorneys or retired judges and shall be selected pursuant to the applicable rules. All decisions rendered by the arbitrator will be binding and final. The arbitrator’s award is final and binding on all parties. The Federal Arbitration Act, and not any state arbitration law, governs all arbitration under this Arbitration Clause. You are also responsible for any and all costs related to such arbitration.
    </SectionText>
          </Section>
 
@@ -509,14 +509,14 @@ By using any Elexdonhost.com.ng services, you agree to submit to binding arbitra
           <Section>
           <SectionTitle>16.) Disclaimer</SectionTitle>
           <SectionText>
-Elexdonhost.com.ng shall not be responsible for any damages your business may suffer. Elexdonhost>com.ng makes no warranties of any kind, expressed or implied for services we provide. Elexdonhost.com.ng disclaims any warranty or merchantability or fitness for a particular purpose. This includes loss of data resulting from delays, no deliveries, wrong delivery, and any and all service interruptions caused by Elexdonhost.com.ng and its employees. Elexdonhost.com.ng will not be held responsible for any damages, events that may occur resulting from the use of our services, downtimes, failure or refusal to register or renew your services with us
+elexdonhost.com shall not be responsible for any damages your business may suffer. Elexdonhost>com.ng makes no warranties of any kind, expressed or implied for services we provide. elexdonhost.com disclaims any warranty or merchantability or fitness for a particular purpose. This includes loss of data resulting from delays, no deliveries, wrong delivery, and any and all service interruptions caused by elexdonhost.com and its employees. elexdonhost.com will not be held responsible for any damages, events that may occur resulting from the use of our services, downtimes, failure or refusal to register or renew your services with us
   </SectionText>
          </Section>
 
           <Section>
           <SectionTitle>17.) Disclosure to law enforcement</SectionTitle>
           <SectionText>
-Elexdonhost.com.ng may disclose any subscriber information to law enforcement agencies without further consent or notification to the subscriber upon lawful request from such agencies.
+elexdonhost.com may disclose any subscriber information to law enforcement agencies without further consent or notification to the subscriber upon lawful request from such agencies.
 We will cooperate fully with law enforcement agencies.
  </SectionText>
          </Section>
@@ -541,7 +541,7 @@ By continuing to use ElexdonHost, you acknowledge and agree to abide by these gu
            <Section>
           <SectionTitle>19.) Changes to the TOS</SectionTitle>
           <SectionText>
-Elexdonhost.com.ng reserves the right to revise its policies at any time without notice. </SectionText>
+elexdonhost.com reserves the right to revise its policies at any time without notice. </SectionText>
          </Section>
 
 

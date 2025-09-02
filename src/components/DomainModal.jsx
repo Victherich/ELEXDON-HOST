@@ -69,7 +69,7 @@ const DomainModal = ({ open, onClose, services }) => {
             <DomainItem
               key={index}
               onClick={() => window.open(`https://${s.domain}/cpanel`, '_blank')}
-            //   onClick={() => window.open(`https://elexdonhost.com.ng/cpanel`, '_blank')}
+            //   onClick={() => window.open(`https://elexdonhost.com/cpanel`, '_blank')}
             >
               {s.domain}
             </DomainItem>

@@ -159,7 +159,7 @@ const UserProfile = ({handleMenuClick}) => {
 
     const user = JSON.parse(storedUser);
 
-    fetch(`https://www.elexdonhost.com.ng/api_elexdonhost/get_user_by_id.php?id=${user.id}`)
+    fetch(`https://www.elexdonhost.com/api_elexdonhost/get_user_by_id.php?id=${user.id}`)
       .then(res => res.json())
       .then(data => {
         if (data.success) {
@@ -188,7 +188,7 @@ const UserProfile = ({handleMenuClick}) => {
     }
     // setLoading(true)
 
-    fetch(`https://www.elexdonhost.com.ng/api_elexdonhost/get_invoices_by_user.php?id=${user.id}`)
+    fetch(`https://www.elexdonhost.com/api_elexdonhost/get_invoices_by_user.php?id=${user.id}`)
       .then(res => res.json())
       .then(data => {
         if (data.success) {
@@ -219,7 +219,7 @@ const UserProfile = ({handleMenuClick}) => {
     const fetchServices = async () => {
       try {
         const res = await fetch(
-          `https://www.elexdonhost.com.ng/api_elexdonhost/get_active_services_by_user.php?id=${user.id}`
+          `https://www.elexdonhost.com/api_elexdonhost/get_active_services_by_user.php?id=${user.id}`
         );
         const data = await res.json();
 
@@ -253,7 +253,7 @@ const UserProfile = ({handleMenuClick}) => {
       const fetchTickets = async () => {
         try {
           const res = await fetch(
-            `https://www.elexdonhost.com.ng/api_elexdonhost/get_tickets_by_user.php?id=${user.id}`
+            `https://www.elexdonhost.com/api_elexdonhost/get_tickets_by_user.php?id=${user.id}`
           );
           const data = await res.json();
   
@@ -287,7 +287,7 @@ const UserProfile = ({handleMenuClick}) => {
     const fetchDomains = async () => {
       try {
         const res = await fetch(
-          `https://www.elexdonhost.com.ng/api_elexdonhost/get_active_domains_by_user.php?id=${user.id}`
+          `https://www.elexdonhost.com/api_elexdonhost/get_active_domains_by_user.php?id=${user.id}`
         );
         const data = await res.json();
 

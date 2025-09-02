@@ -311,7 +311,7 @@ const AffiliatePageChildA = () => {
         >
           There are many people out there who are making millions of Naira from <strong>commissions</strong> by selling and promoting Elexdon hosting
           services It's easy to sell our high-speed hosting to your audience! You earn up to <strong>₦100,000</strong> for every new customer you send our way through your affiliate
-          link <a href="https://elexdonhost.com.ng/affiliate" target="_blank" rel="noopener noreferrer">https://elexdonhost.com.ng/affiliate</a>.
+          link <a href="https://elexdonhost.com/affiliate" target="_blank" rel="noopener noreferrer">https://elexdonhost.com/affiliate</a>.
           Just tell your friends, family, website visitors and social media followers about Elexdon Hosting. Your
           earnings can pile up fast. We paid over <strong>₦2,500,000</strong> to our top affiliate last year. Yes, you heard me right, over Two Million five hundred thousand Naira.
         </Paragraph>

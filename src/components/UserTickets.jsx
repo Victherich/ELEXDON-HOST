@@ -121,7 +121,7 @@ const UserTickets = () => {
     const fetchTickets = async () => {
       try {
         const res = await fetch(
-          `https://www.elexdonhost.com.ng/api_elexdonhost/get_tickets_by_user.php?id=${user.id}`
+          `https://www.elexdonhost.com/api_elexdonhost/get_tickets_by_user.php?id=${user.id}`
         );
         const data = await res.json();
 

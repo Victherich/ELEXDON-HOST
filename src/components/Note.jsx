@@ -14,7 +14,7 @@
 // header('Content-Type: application/json');
 
 // // WHMCS API credentials
-// $apiUrl = "https://portal.elexdonhost.com.ng/includes/api.php";
+// $apiUrl = "https://portal.elexdonhost.com/includes/api.php";
 // $username = "1ZDawYiHgSrWtcNHxMMnrxNOXWrVuhf5";
 // $password = "oaqCUTnic0Z4TIKMOgN1eODGeWwnjDaS";
 
@@ -85,7 +85,7 @@
 // // Step 3: Redirect to WHMCS invoice/payment
 // $invoiceId = $orderResponse['invoiceid'] ?? null;
 // if ($invoiceId) {
-//     $redirectUrl = "https://portal.elexdonhost.com.ng/viewinvoice.php?id={$invoiceId}";
+//     $redirectUrl = "https://portal.elexdonhost.com/viewinvoice.php?id={$invoiceId}";
 //     echo json_encode(['success' => true, 'redirect_url' => $redirectUrl, 'invoiceId' => $invoiceId]);
 // } else {
 //     echo json_encode(['success' => false, 'message' => 'Order placed but no invoice generated']);

@@ -177,8 +177,8 @@ const [form, setForm] = useState({
     });
 
     const endpoint = checkoutType
-      ? "https://www.elexdonhost.com.ng/api_elexdonhost/domain_transfer_checkout2.php"
-      : "https://www.elexdonhost.com.ng/api_elexdonhost/domain_transfer_checkout.php";
+      ? "https://www.elexdonhost.com/api_elexdonhost/domain_transfer_checkout2.php"
+      : "https://www.elexdonhost.com/api_elexdonhost/domain_transfer_checkout.php";
 
     const payload = checkoutType
       ? {
@@ -234,7 +234,7 @@ const [form, setForm] = useState({
 
 
   const markInvoiceAsPaid = async (invoiceId, reference, amount = null) => {
-    const endpoint = 'https://www.elexdonhost.com.ng/api_elexdonhost/mark_invoice_paid.php'; // Change this to your actual PHP script path
+    const endpoint = 'https://www.elexdonhost.com/api_elexdonhost/mark_invoice_paid.php'; // Change this to your actual PHP script path
   
     const payload = {
       invoiceid: invoiceId,

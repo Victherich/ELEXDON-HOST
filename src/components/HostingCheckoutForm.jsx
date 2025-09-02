@@ -270,7 +270,7 @@ console.log(form)
     });
 
     try {
-      const res = await fetch("https://www.elexdonhost.com.ng/api_elexdonhost/check_domain.php", {
+      const res = await fetch("https://www.elexdonhost.com/api_elexdonhost/check_domain.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ domain: fullDomain, type: "register" }),
@@ -368,7 +368,7 @@ console.log(form)
 // //   console.log(submitForm)
 
 //   try {
-//     const res = await fetch("https://www.elexdonhost.com.ng/api_elexdonhost/checkout.php", {
+//     const res = await fetch("https://www.elexdonhost.com/api_elexdonhost/checkout.php", {
 //       method: "POST",
 //       headers: { "Content-Type": "application/json" },
 //       body: JSON.stringify(submitForm),
@@ -449,8 +449,8 @@ const handleSubmit = async (reference ) => {
 
   // Determine endpoint and payload
   const endpoint = checkoutType
-    ? "https://www.elexdonhost.com.ng/api_elexdonhost/checkout2.php" // Has account
-    : "https://www.elexdonhost.com.ng/api_elexdonhost/checkout.php"; // New user
+    ? "https://www.elexdonhost.com/api_elexdonhost/checkout2.php" // Has account
+    : "https://www.elexdonhost.com/api_elexdonhost/checkout.php"; // New user
 
   // Construct payload
   const payload = checkoutType
@@ -519,7 +519,7 @@ const handleSubmit = async (reference ) => {
 
 
 const markInvoiceAsPaid = async (invoiceId, reference, amount = null) => {
-  const endpoint = 'https://www.elexdonhost.com.ng/api_elexdonhost/mark_invoice_paid.php'; // Change this to your actual PHP script path
+  const endpoint = 'https://www.elexdonhost.com/api_elexdonhost/mark_invoice_paid.php'; // Change this to your actual PHP script path
 
   const payload = {
     invoiceid: invoiceId,

@@ -198,7 +198,7 @@
 //     });
 
 //     try {
-//       const response = await fetch('https://www.elexdonhost.com.ng/api_elexdonhost/verify_payment.php', {
+//       const response = await fetch('https://www.elexdonhost.com/api_elexdonhost/verify_payment.php', {
 //         method: 'POST',
 //         headers: {
 //           'Content-Type': 'application/json'

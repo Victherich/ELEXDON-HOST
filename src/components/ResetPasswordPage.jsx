@@ -104,7 +104,7 @@ const ResetPasswordPage = () => {
       Swal.fire({ title: 'Resetting...', allowOutsideClick: false });
       Swal.showLoading();
 
-      const res = await fetch('https://elexdonhost.com.ng/api_elexdonhost/update_password.php', {
+      const res = await fetch('https://elexdonhost.com/api_elexdonhost/update_password.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token, new_password: password })

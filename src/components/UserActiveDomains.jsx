@@ -138,7 +138,7 @@ const handleRenewDomain = async (domain, clientid) => {
   });
 
   try {
-    const res = await fetch('https://www.elexdonhost.com.ng/api_elexdonhost/renew_domain.php', {
+    const res = await fetch('https://www.elexdonhost.com/api_elexdonhost/renew_domain.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -219,7 +219,7 @@ const UserActiveDomains = () => {
     const fetchDomains = async () => {
       try {
         const res = await fetch(
-          `https://www.elexdonhost.com.ng/api_elexdonhost/get_active_domains_by_user.php?id=${user.id}`
+          `https://www.elexdonhost.com/api_elexdonhost/get_active_domains_by_user.php?id=${user.id}`
         );
         const data = await res.json();
 

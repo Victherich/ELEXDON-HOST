@@ -428,10 +428,10 @@ const FooterContent = styled.div`
   flex-wrap:wrap;
   justify-content:center;
   align-items:flex-start;
-  gap:100px;
+  gap:20px;
   
 
-  border-radius:500px 0px 500px 0px;
+  border-radius:400px 0px 500px 0px;
 //   background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
 // background:#E6E6FF;
 // background:rgba(255,255,255,1);
@@ -451,6 +451,11 @@ background:#E4E9F1;
 const Section = styled.div`
 img{
 width:100px;
+}
+width:150px;
+
+p{
+font-size:0.9rem;
 }
 `;
 
@@ -496,7 +501,7 @@ const Link = styled.a`
   color: #333;
   margin: 8px 0;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 0.9rem;
   transition: 0.3s;
   font-weight:400;
   cursor:pointer;
@@ -620,7 +625,7 @@ const Footer = () => {
       {/* <CurvedTop /> */}
       <TopBorder></TopBorder>
       <FooterContent>
-        <Section>
+        <Section style={{width:"250px"}}>
             {/* <img src={logo}/> */}
           {/* <Title1>ELEXDON HOST</Title1> */}<br/>
           <img src={logo2} alt='logo' style={{width:"200px", borderRadius:"5px", marginTop:"10px"}}/>
@@ -628,13 +633,24 @@ const Footer = () => {
           <p><strong style={{
   color: "#2B32B2",
   textShadow: "-1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff"
-}}>Email:</strong> support@elexdonhost.com.ng</p>
+}}>Email:</strong> support@elexdonhost.com</p>
         <p>
-          <strong style={{color:" #2B32B2"}}>Phone:</strong> +234 818 560 9702
+          <strong style={{color:" #2B32B2", 
+             textShadow: "-1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff"
+          }}>Phone (NIG):</strong> +234 818 560 9702
+        </p>
+          <p>
+          <strong style={{color:" #2B32B2", 
+             textShadow: "-1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff"
+          }}>Phone (UK):</strong> +44(0)7479305003
         </p>
         <p>
-          <strong style={{color:" #2B32B2"}}>Address:</strong> Elexdon Digital Technologies Limited.<br/>
+          <strong style={{color:" #2B32B2"}}>Address (NIG):</strong> Elexdon Digital Technologies Limited.<br/>
           Plot SP 795 First-Gate Mechanic Estate, Apo Fct-Abuja.
+        </p>
+
+         <p>
+          <strong style={{color:" #2B32B2"}}>Address (UK):</strong> The Old Vicarage building,<br/> Trinity Road Old Market Avon, Bristol – United Kingdom.
         </p>
           <SocialIcons>
             <a href="#"><FaFacebookF /></a>
@@ -650,15 +666,21 @@ const Footer = () => {
           <Link onClick={()=>navigate('/blogs')}>Blogs</Link>
           <Link onClick={()=>navigate('/affiliate')}>Affiliate</Link>
           <Link onClick={()=>navigate('/announcement')}>Announcement</Link>
+          <Link onClick={()=>navigate('/becomeareseller')}>Become a Reseller</Link>
+          <Link onClick={()=>navigate('/workwithus')}>Work With Us</Link>
           {/* <Link href="#">Partners</Link> */}
         </Section>
 
         <Section>
-          <Title>Hosting</Title>
+          <Title>Website Hosting</Title>
           <Link onClick={()=>navigate('/sharedhosting')}>Shared Hosting</Link>
-          <Link onClick={()=>navigate('/vps')}>VPS Hosting</Link>
+        
           <Link onClick={()=>navigate('/dedicatedhosting')}>Dedicated Servers</Link>
+          <Link onClick={()=>navigate('/wordpresshosting')}>WordPress Hosting</Link>
           <Link onClick={()=>navigate('/resellerhosting')}>Reseller Hosting</Link>
+            <Link onClick={()=>navigate('/vps')}>VPS Hosting</Link>
+           
+            <Link onClick={()=>navigate('/emailhosting')}>Email Hosting</Link>
         </Section>
 
         <Section>
@@ -666,6 +688,7 @@ const Footer = () => {
           <Link onClick={()=>navigate('/domainspage')}>Register Domain</Link>
           <Link onClick={()=>navigate('/domaintransfer')}>Transfer Domain</Link>
           <Link onClick={()=>navigate('/freessl')}>Free SSL</Link>
+          <Link onClick={()=>navigate('/whoislookup')}>WHOIS Lookup</Link>
         </Section>
 
         <Section>
@@ -674,6 +697,10 @@ const Footer = () => {
           <Link  onClick={()=>navigate('/support')}>Tickets</Link>
           <Link  onClick={()=>navigate('/knowledgebase')}>Knowledgebase</Link>
           
+        </Section>
+
+          <Section>
+          <Title>Legal</Title>
           <Link  onClick={()=>navigate('/privacypolicy')}>Privacy Policy</Link>
           <Link  onClick={()=>navigate('/refundpolicy')}>Refund Policy</Link>
           <Link  onClick={()=>navigate('/termsandconditions')}>Terms of Service</Link>

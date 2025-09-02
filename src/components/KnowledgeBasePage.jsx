@@ -150,7 +150,7 @@ const categories = [
 const faqs = [
   {
     question: 'How do I point my domain to Elexdon Host?',
-    answer: 'You can point your domain by updating its DNS records to our nameservers: ns1.elexdonhost.com.ng and ns2.elexdonhost.com.ng'
+    answer: 'You can point your domain by updating its DNS records to our nameservers: ns1.elexdonhost.com and ns2.elexdonhost.com'
   },
   {
     question: 'How can I upgrade my hosting plan?',

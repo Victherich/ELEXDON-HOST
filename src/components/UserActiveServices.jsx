@@ -137,7 +137,7 @@ const user = JSON.parse(localStorage.getItem('user'));
 //   Swal.fire({ title: 'Processing...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
 //   try {
-//     const resp = await fetch('https://www.elexdonhost.com.ng/api_elexdonhost/renew_hosting.php', {
+//     const resp = await fetch('https://www.elexdonhost.com/api_elexdonhost/renew_hosting.php', {
 //       method: 'POST',
 //       headers: { 'Content-Type': 'application/json' },
 //       body: JSON.stringify({ clientid: clientId, serviceid: serviceId, paymentmethod })
@@ -171,7 +171,7 @@ const user = JSON.parse(localStorage.getItem('user'));
 
 //   Swal.fire({ title: 'Creating Invoice...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
-//   const resp = await fetch('https://www.elexdonhost.com.ng/api_elexdonhost/renew_hosting2.php', {
+//   const resp = await fetch('https://www.elexdonhost.com/api_elexdonhost/renew_hosting2.php', {
 //     method: 'POST',
 //     headers: { 'Content-Type': 'application/json' },
 //     body: JSON.stringify({ clientid: clientId, serviceid: serviceId, amount })
@@ -198,7 +198,7 @@ async function renewHosting2(clientId, serviceId, amount) {
 
   Swal.fire({ title: 'Creating Invoice...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 try {
-  const resp = await fetch('https://www.elexdonhost.com.ng/api_elexdonhost/renew_hosting2.php', {
+  const resp = await fetch('https://www.elexdonhost.com/api_elexdonhost/renew_hosting2.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ clientid: clientId, serviceid: serviceId, amount })
@@ -281,7 +281,7 @@ const UserActiveServices = () => {
     const fetchServices = async () => {
       try {
         const res = await fetch(
-          `https://www.elexdonhost.com.ng/api_elexdonhost/get_active_services_by_user.php?id=${user.id}`
+          `https://www.elexdonhost.com/api_elexdonhost/get_active_services_by_user.php?id=${user.id}`
         );
         const data = await res.json();
 

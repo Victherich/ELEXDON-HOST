@@ -482,7 +482,7 @@ const navigate = useNavigate();
           <StepTitle as={motion.h2} variants={itemVariants}>Step 1: Log In to cPanel</StepTitle>
           <StepList>
             <StepListItem as={motion.li} variants={listItemVariants} number="1">
-              Go to the Elexdon Hosting Customer Portal: <a href="https://client.elexdonhost.com.ng/login" target="_blank" rel="noopener noreferrer">https://client.elexdonhost.com.ng/login</a>
+              Go to the Elexdon Hosting Customer Portal: <a href="https://elexdonhost.com/login" target="_blank" rel="noopener noreferrer">https://elexdonhost.com/login</a>
             </StepListItem>
             <StepListItem as={motion.li} variants={listItemVariants} number="2">
               Log in with your email and password.
@@ -673,8 +673,8 @@ const navigate = useNavigate();
           variants={itemVariants}
         >
           <HelpText>
-            Need Help? Visit <a href="https://elexdonhost.com.ng/support" target="_blank" rel="noopener noreferrer">Elexdon Hosting Support</a> or
-            email <a href="mailto:support@elexdonhost.com.ng">support@elexdonhost.com.ng</a> for assistance.
+            Need Help? Visit <a href="https://elexdonhost.com/support" target="_blank" rel="noopener noreferrer">Elexdon Hosting Support</a> or
+            email <a href="mailto:support@elexdonhost.com">support@elexdonhost.com</a> for assistance.
           </HelpText>
         </HelpSection>
       </ContentWrapper>

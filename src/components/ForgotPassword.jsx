@@ -141,7 +141,7 @@ const ForgotPasswordPage = () => {
         didOpen: () => Swal.showLoading()
       });
 
-      const res = await fetch('https://elexdonhost.com.ng/api_elexdonhost/reset_password.php', {
+      const res = await fetch('https://elexdonhost.com/api_elexdonhost/reset_password.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email })

@@ -24,7 +24,7 @@ Swal.fire({
   }
 });
 
-fetch('https://www.elexdonhost.com.ng/api_elexdonhost/check_user.php', {
+fetch('https://www.elexdonhost.com/api_elexdonhost/check_user.php', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
@@ -85,7 +85,7 @@ fetch('https://www.elexdonhost.com.ng/api_elexdonhost/check_user.php', {
     paystack.newTransaction({
     //   key: "pk_test_60e1f53bba7c80b60029bf611a26a66a9a22d4e4",
       key: "pk_live_3626fe7772aaca28a10724ebb1f9727dfcc5d6cb", // LIVE KEY
-      amount: amount * 100, // in kobo
+      amount: amount * 100 * 1.075, // in kobo
       email: email,
     //   firstname: user.fullname,
   
@@ -121,7 +121,7 @@ fetch('https://www.elexdonhost.com.ng/api_elexdonhost/check_user.php', {
       });
   
       try {
-        const response = await fetch('https://www.elexdonhost.com.ng/api_elexdonhost/verify_payment.php', {
+        const response = await fetch('https://www.elexdonhost.com/api_elexdonhost/verify_payment.php', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

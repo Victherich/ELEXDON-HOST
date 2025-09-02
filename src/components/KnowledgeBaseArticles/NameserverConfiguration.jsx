@@ -472,8 +472,8 @@ const NameserverConfigurationPage = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
         >
-            <NameserverText>ns1.elexdonhost.com.ng</NameserverText>
-            <NameserverText>ns2.elexdonhost.com.ng</NameserverText>
+            <NameserverText>ns1.elexdonhost.com</NameserverText>
+            <NameserverText>ns2.elexdonhost.com</NameserverText>
         </NameserverBlock>
 
         <StepContainer
@@ -542,10 +542,10 @@ const NameserverConfigurationPage = () => {
               Enter the following name servers provided by Elexdon Hosting:
               <SubStepList>
                 <SubStepListItem as={motion.li} variants={subListItemVariants}>
-                  <strong>Name Server 1:</strong> <strong>ns1.elexdonhost.com.ng</strong>
+                  <strong>Name Server 1:</strong> <strong>ns1.elexdonhost.com</strong>
                 </SubStepListItem>
                 <SubStepListItem as={motion.li} variants={subListItemVariants}>
-                  <strong>Name Server 2:</strong> <strong>ns2.elexdonhost.com.ng</strong>
+                  <strong>Name Server 2:</strong> <strong>ns2.elexdonhost.com</strong>
                 </SubStepListItem>
               </SubStepList>
             </StepListItem>

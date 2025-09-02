@@ -182,7 +182,7 @@ const SupportPage = () => {
     Swal.fire({ title: 'Submitting...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
     try {
-      const res = await fetch('https://www.elexdonhost.com.ng/api_elexdonhost/open_ticket.php', {
+      const res = await fetch('https://www.elexdonhost.com/api_elexdonhost/open_ticket.php', {
         method: 'POST',
         body: formData,
       });
@@ -212,7 +212,7 @@ const SupportPage = () => {
 async function fetchDepartments() {
   try {
     const response = await fetch(
-      'https://www.elexdonhost.com.ng/api_elexdonhost/get_support_departments.php'
+      'https://www.elexdonhost.com/api_elexdonhost/get_support_departments.php'
     );
     const data = await response.json();
 

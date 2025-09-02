@@ -10,7 +10,7 @@ console.log(appVersion)
 // Fetch app version from the backend
 const fetchAppVersion = async () => {
     try {
-      const response = await fetch('https://elexdonhost.com.ng/api_elexdonhost/get_app_version.php'); // URL to the PHP backend
+      const response = await fetch('https://elexdonhost.com/api_elexdonhost/get_app_version.php'); // URL to the PHP backend
       const data = await response.json();
   
       if (!data.success || !data.app_versions || data.app_versions.length === 0) {
@@ -74,3 +74,91 @@ const fetchAppVersion = async () => {
 };
 
 export default AppUpdate;
+
+
+
+
+
+// import React, { useState, useEffect } from "react";
+// import Swal from "sweetalert2";
+
+// const currentAppId = 1;
+
+// const AppUpdate = () => {
+//   const [appVersion, setAppVersion] = useState(null);
+
+//   // Fetch app version from the backend
+//   const fetchAppVersion = async () => {
+//     try {
+//       const response = await fetch(
+//         "https://elexdonhost.com/api_elexdonhost/get_app_version.php"
+//       );
+
+//       if (!response.ok) {
+//         throw new Error(`Server returned ${response.status}`);
+//       }
+
+//       let data;
+//       try {
+//         data = await response.json();
+//       } catch (e) {
+//         const text = await response.text();
+//         console.error("Backend did not return valid JSON:", text);
+//         throw e;
+//       }
+
+//       if (!data.success || !data.app_versions || data.app_versions.length === 0) {
+//         console.error("Invalid response from backend:", data);
+//         return;
+//       }
+
+//       const latestVersion = data.app_versions[0].version;
+//       const appId = data.app_versions[0].appId;
+
+//       console.log("Fetched version:", latestVersion);
+//       setAppVersion(latestVersion);
+
+//       // Retrieve stored versions
+//       const stored = localStorage.getItem("app_versions");
+//       const storedVersions = stored ? JSON.parse(stored) : {};
+
+//       const prevVersion = storedVersions[appId];
+
+//       // If version changed, alert the user
+//       if (prevVersion && prevVersion !== latestVersion) {
+//         Swal.fire({
+//           title: "Update Available!",
+//           text: "This site has a new update by the Developer. Click 'UPDATE' to catch up.",
+//           icon: "info",
+//           showCancelButton: true,
+//           confirmButtonText: "Update",
+//           cancelButtonText: "Remind me later",
+//         }).then((result) => {
+//           if (result.isConfirmed) {
+//             // Save new version and reload
+//             storedVersions[appId] = latestVersion;
+//             localStorage.setItem("app_versions", JSON.stringify(storedVersions));
+//             window.location.reload();
+//           }
+//         });
+//       } else {
+//         // No previous version or it's the same — just save it
+//         storedVersions[appId] = latestVersion;
+//         localStorage.setItem("app_versions", JSON.stringify(storedVersions));
+//       }
+//     } catch (error) {
+//       console.error("Error fetching app version:", error);
+//     }
+//   };
+
+//   useEffect(() => {
+//     fetchAppVersion(); // Fetch on load
+//     const interval = setInterval(() => fetchAppVersion(), 5 * 60 * 1000); // Poll every 5 min
+//     return () => clearInterval(interval);
+//   }, []);
+
+//   return <div>{appVersion && <p>Current Version: {appVersion}</p>}</div>;
+// };
+
+// export default AppUpdate;
+

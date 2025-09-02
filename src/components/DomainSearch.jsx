@@ -180,7 +180,7 @@
 //     });
 
 //     try {
-//       const res = await fetch("https://www.elexdonhost.com.ng/api_elexdonhost/check_domain.php", {
+//       const res = await fetch("https://www.elexdonhost.com/api_elexdonhost/check_domain.php", {
 //         method: "POST",
 //         headers: { "Content-Type": "application/json" },
 //         body: JSON.stringify({ domain: fullDomain, type: form.domaintype }),
@@ -466,7 +466,7 @@ const DomainSearch = () => {
     });
 
     try {
-      const res = await fetch("https://www.elexdonhost.com.ng/api_elexdonhost/check_domain.php", {
+      const res = await fetch("https://www.elexdonhost.com/api_elexdonhost/check_domain.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ domain: fullDomain, type: domaintype }),
@@ -518,7 +518,7 @@ const DomainSearch = () => {
   };
 
   return (
-    <DomainWrap>
+    <DomainWrap id="domainsearch">
       <Container>
         <Title ref={titleAnim.ref} className={titleAnim.className}>
           Search for Your Dream Domain

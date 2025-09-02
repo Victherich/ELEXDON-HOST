@@ -8,6 +8,7 @@ import styled, { keyframes } from 'styled-components';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import logo from '../Images/logo4.jpeg';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 // Animation for the lighting effect
 const shine = keyframes`
@@ -311,15 +312,22 @@ useEffect(()=>{
             <li onClick={handleDropdownToggle2}>
                    <li  style={{ color: '#fff', cursor: 'pointer' , fontWeight:"500",marginTop:"5px"}} onMouseEnter={()=>{setDropdownOpen2(true); setDropdownOpen(false); setDropdownOpen3(false); setDropdownOpen4(false)}}>DOMAINS ▾</li>
              {dropdownOpen2&& <Dropdown open={dropdownOpen2} ref={menuRef2}>
+                              {/* <li onClick={()=>setNavOpen(false)}><NavLink to="/domainsearch">Domain Search</NavLink></li> */}
+                 <li onClick={() => setNavOpen(false)}>
+  <HashLink smooth to="/#domainsearch">
+    Domain Search
+  </HashLink>
+</li>
                  <li onClick={()=>setNavOpen(false)}><NavLink to="/domainspage">Domain Registration</NavLink></li>
                  <li onClick={()=>setNavOpen(false)}><NavLink to="/domaintransfer">Domain Transfer</NavLink></li>
+                                 <li onClick={()=>setNavOpen(false)}><NavLink to="/whoislookup">WHOIS Look Up</NavLink></li>
              
                </Dropdown>}   
             </li>
           
 
             <li onClick={handleDropdownToggle}>
-            <li style={{ color: '#fff', cursor: 'pointer' , fontWeight:"500",marginTop:"5px"}} onMouseEnter={()=>{setDropdownOpen(true); setDropdownOpen2(false);setDropdownOpen3(false);setDropdownOpen4(false) }}>HOSTING ▾</li>
+            <li style={{ color: '#fff', cursor: 'pointer' , fontWeight:"500",marginTop:"5px"}} onMouseEnter={()=>{setDropdownOpen(true); setDropdownOpen2(false);setDropdownOpen3(false);setDropdownOpen4(false) }}>WEBSITE HOSTING ▾</li>
               {dropdownOpen&& <Dropdown open={dropdownOpen} ref={menuRef}>
                  <li onClick={()=>setNavOpen(false)}><NavLink to="/sharedhosting">Shared Hosting</NavLink></li>
                  <li onClick={()=>setNavOpen(false)}><NavLink to="/dedicatedhosting">Dedicated Hosting</NavLink></li>
@@ -328,6 +336,20 @@ useEffect(()=>{
                   <li onClick={()=>setNavOpen(false)}><NavLink to="/vps">VPS</NavLink></li>
                </Dropdown>}
              </li>
+
+                <li onClick={()=>setNavOpen(false)}><NavLink to="/emailhosting" end>EMAIL HOSTING</NavLink></li>
+
+
+              {/* <li onClick={handleDropdownToggle5}>
+            <li style={{ color: '#fff', cursor: 'pointer' , fontWeight:"500",marginTop:"5px"}} onMouseEnter={()=>{setDropdownOpen5(true); setDropdownOpen2(false);setDropdownOpen3(false);setDropdownOpen4(false);setDropdownOpen(false) }}>EMAIL HOSTING ▾</li>
+              {dropdownOpen&& <Dropdown open={dropdownOpen5} ref={menuRef5}>
+                 <li onClick={()=>setNavOpen(false)}><NavLink to="/sharedhosting">Email Plus Core</NavLink></li>
+                 <li onClick={()=>setNavOpen(false)}><NavLink to="/dedicatedhosting">Dedicated Hosting</NavLink></li>
+                 <li onClick={()=>setNavOpen(false)}><NavLink to="/wordpresshosting">WordPress Hosting</NavLink></li>
+                  <li onClick={()=>setNavOpen(false)}><NavLink to="/resellerhosting">Reseller Hosting</NavLink></li>
+                  <li onClick={()=>setNavOpen(false)}><NavLink to="/vps">VPS</NavLink></li>
+               </Dropdown>}
+             </li> */}
             
           
              <li onClick={handleDropdownToggle3} onMouseEnter={()=>{setDropdownOpen3(true);setDropdownOpen(false); setDropdownOpen2(false);setDropdownOpen4(false) }}>
@@ -363,9 +385,11 @@ useEffect(()=>{
 
  <li onClick={handleDropdownToggle4} onMouseEnter={()=>{setDropdownOpen4(true);setDropdownOpen(false); setDropdownOpen2(false); setDropdownOpen3(false);}}>
               <li style={{ color: '#fff', cursor: 'pointer' , fontWeight:"500",marginTop:"5px"}}>ACCOUNT ▾</li>
-              {dropdownOpen4&& <Dropdown open={dropdownOpen4} ref={menuRef4} style={{left:"70%"}}>
+              {dropdownOpen4&& <Dropdown open={dropdownOpen4} ref={menuRef4} style={{left:"50%"}}>
                  <li onClick={()=>setNavOpen(false)}><NavLink to="/signup">Register</NavLink></li>
                  <li onClick={()=>setNavOpen(false)}><NavLink to="/login">Login</NavLink></li>
+                   <li onClick={()=>setNavOpen(false)}><NavLink to="/login">View Cart</NavLink></li>
+                 <li onClick={()=>setNavOpen(false)}><NavLink to="/support">Submit Ticket</NavLink></li>
                </Dropdown>}
       </li>)}
 

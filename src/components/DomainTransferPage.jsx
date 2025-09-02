@@ -373,7 +373,7 @@ const DomainTransferPage = () => {
 //   });
 
 //   try {
-//     const res = await fetch("https://www.elexdonhost.com.ng/api_elexdonhost/check_domain.php", {
+//     const res = await fetch("https://www.elexdonhost.com/api_elexdonhost/check_domain.php", {
 //       method: "POST",
 //       headers: { "Content-Type": "application/json" },
 //       body: JSON.stringify({ domain, type: "transfer" }),
@@ -434,7 +434,7 @@ const DomainTransferPage = () => {
     });
 
     try {
-      const res = await fetch("https://www.elexdonhost.com.ng/api_elexdonhost/check_domain.php", {
+      const res = await fetch("https://www.elexdonhost.com/api_elexdonhost/check_domain.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ domain: fullDomain, type: domaintype }),
@@ -537,7 +537,7 @@ const DomainTransferPage = () => {
 //   });
 
 //   try {
-//     const response = await fetch("https://www.elexdonhost.com.ng/api_elexdonhost/check_domain.php", {
+//     const response = await fetch("https://www.elexdonhost.com/api_elexdonhost/check_domain.php", {
 //       method: "POST",
 //       headers: {
 //         "Content-Type": "application/json",

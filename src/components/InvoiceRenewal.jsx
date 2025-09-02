@@ -164,7 +164,7 @@ const navigate = useNavigate();
 const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch(`https://www.elexdonhost.com.ng/api_elexdonhost/get_invoice_by_id.php?id=${invoiceId}`)
+    fetch(`https://www.elexdonhost.com/api_elexdonhost/get_invoice_by_id.php?id=${invoiceId}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
@@ -188,7 +188,7 @@ const [user, setUser] = useState(null);
 
 
   const getUser = (clientId) => {
-  fetch(`https://www.elexdonhost.com.ng/api_elexdonhost/get_user_by_id.php?id=${clientId}`)
+  fetch(`https://www.elexdonhost.com/api_elexdonhost/get_user_by_id.php?id=${clientId}`)
     .then((res) => res.json())
     .then((data) => {
       if (data.success === true) {
@@ -221,7 +221,7 @@ const payWithPaystack = (totalAmount) => {
     onSuccess: (transaction) => {
       Swal.fire({ icon: "info", title: "Verifying payment...", showConfirmButton: false, allowOutsideClick: false });
 
-      fetch("https://www.elexdonhost.com.ng/api_elexdonhost/verify_and_mark_paid2.php", {
+      fetch("https://www.elexdonhost.com/api_elexdonhost/verify_and_mark_paid2.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

@@ -237,7 +237,7 @@ const e = useAnimateOnScroll('animate__fadeInDown animate__slower');
 
       <ContactInfo>
         <h4>Call Us: +234 818 560 9702</h4>
-        <h4>Email: support@elexdonhost.com.ng</h4>
+        <h4>Email: support@elexdonhost.com</h4>
       
       </ContactInfo>
     </div>

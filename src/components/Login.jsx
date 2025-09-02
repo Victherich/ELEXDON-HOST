@@ -134,7 +134,7 @@ const handleLogin = async () => {
       }
     });
 
-    const res = await fetch('https://www.elexdonhost.com.ng/api_elexdonhost/login.php', {
+    const res = await fetch('https://www.elexdonhost.com/api_elexdonhost/login.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })

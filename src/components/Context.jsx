@@ -106,7 +106,7 @@ export default ContextProvider
 // ];
 
 // // API call
-// $ch = curl_init('https://portal.elexdonhost.com.ng/includes/api.php');
+// $ch = curl_init('https://portal.elexdonhost.com/includes/api.php');
 // curl_setopt($ch, CURLOPT_POST, true);
 // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
 // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

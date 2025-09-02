@@ -176,7 +176,7 @@ const [dedicatedProducts, setDedicatedProducts]=useState([]);
 
 
 useEffect(() => {
-  fetch("https://www.elexdonhost.com.ng/api_elexdonhost/get_dedicated_hosting_products.php")
+  fetch("https://www.elexdonhost.com/api_elexdonhost/get_dedicated_hosting_products.php")
     .then(res => res.json())
     .then(data => {
       if (data.products && data.products.product) {

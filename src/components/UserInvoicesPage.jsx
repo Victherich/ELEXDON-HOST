@@ -111,7 +111,7 @@ const UserInvoicesPage = () => {
     }
     setLoading(true)
 
-    fetch(`https://www.elexdonhost.com.ng/api_elexdonhost/get_invoices_by_user.php?id=${user.id}`)
+    fetch(`https://www.elexdonhost.com/api_elexdonhost/get_invoices_by_user.php?id=${user.id}`)
       .then(res => res.json())
       .then(data => {
         if (data.success) {

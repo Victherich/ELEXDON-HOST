@@ -42,6 +42,10 @@ import NameserverConfigurationPage from './components/KnowledgeBaseArticles/Name
 import RegistryCodesPage from './components/KnowledgeBaseArticles/RegistryCodes';
 import ResetPasswordPage from './components/ResetPasswordPage';
 import InvoiceRenewal from './components/InvoiceRenewal';
+import EmailHostingPage from './components/EmailHostingPage';
+import WorkWithUs from './components/WorkWithUs';
+import BecomeReseller from './components/BecomeReseller';
+import WhoisLookup from './components/WhoisLookup';
 
 function App() {
   return (
@@ -79,6 +83,11 @@ function App() {
         <Route path='/dashboard' element={<UserDashboard/>}/>
         <Route path='/domainregistercheckout/:domainname/:domain/:tld' element={<DomainRegisterCheckout/>}/>
         <Route path='/domaintransfercheckout/:domainname/:eppcode/:domain/:tld' element={<DomainTransferCheckout/>}/>
+
+        <Route path='/emailhosting' element={<EmailHostingPage/>}/>
+        <Route path='/workwithus' element={<WorkWithUs/>}/>
+        <Route path='/becomeareseller' element={<BecomeReseller/>}/>
+        <Route path='/whoislookup' element={<WhoisLookup/>}/>
 
         {/* knowlegdbase articles */}
         <Route path='/cpanelunderstanding' element={<CPanelUnderstandingPage/>}/>

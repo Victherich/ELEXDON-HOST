@@ -212,7 +212,7 @@
 // //     });
 
 // //     try {
-// //       const res = await fetch("https://www.elexdonhost.com.ng/api_elexdonhost/check_domain.php", {
+// //       const res = await fetch("https://www.elexdonhost.com/api_elexdonhost/check_domain.php", {
 // //         method: "POST",
 // //         headers: { "Content-Type": "application/json" },
 // //         body: JSON.stringify({ domain: fullDomain, type: form.domaintype }),
@@ -327,8 +327,8 @@
 
 //   // Determine endpoint and payload
 //   const endpoint = checkoutType
-//     ? "https://www.elexdonhost.com.ng/api_elexdonhost/checkout2.php" // Has account
-//     : "https://www.elexdonhost.com.ng/api_elexdonhost/checkout.php"; // New user
+//     ? "https://www.elexdonhost.com/api_elexdonhost/checkout2.php" // Has account
+//     : "https://www.elexdonhost.com/api_elexdonhost/checkout.php"; // New user
 
 //   // Construct payload
 //   const payload = checkoutType
@@ -786,8 +786,8 @@ export default function DomainRegisterCheckout() {
     });
 
     const endpoint = checkoutType
-      ? "https://www.elexdonhost.com.ng/api_elexdonhost/domain_checkout2.php"
-      : "https://www.elexdonhost.com.ng/api_elexdonhost/domain_checkout.php";
+      ? "https://www.elexdonhost.com/api_elexdonhost/domain_checkout2.php"
+      : "https://www.elexdonhost.com/api_elexdonhost/domain_checkout.php";
 
     const payload = checkoutType
       ? {
@@ -845,7 +845,7 @@ export default function DomainRegisterCheckout() {
 
 
 const markInvoiceAsPaid = async (invoiceId, reference, amount = null) => {
-  const endpoint = 'https://www.elexdonhost.com.ng/api_elexdonhost/mark_invoice_paid.php'; // Change this to your actual PHP script path
+  const endpoint = 'https://www.elexdonhost.com/api_elexdonhost/mark_invoice_paid.php'; // Change this to your actual PHP script path
 
   const payload = {
     invoiceid: invoiceId,
