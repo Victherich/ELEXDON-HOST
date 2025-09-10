@@ -579,10 +579,68 @@ const markInvoiceAsPaid = async (invoiceId, reference, amount = null) => {
 
 
 
-const handleSubmit1 =(e)=>{
-  e.preventDefault();
-  setIsOpen(true);
-}
+// const handleSubmit1 =(e)=>{
+//   setIsOpen(true);
+// }
+
+
+
+
+ const checkUserRegistration = (e) => {
+ e.preventDefault();
+    Swal.fire({
+      title: 'Checking user...',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
+    fetch('https://www.elexdonhost.com/api_elexdonhost/check_user.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email: form.email })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        if (checkoutType === false) {
+          Swal.fire({
+            icon: 'warning',
+            title: 'User Found',
+            text: 'You already have an account. Kindly go back and check the "i have an account box" and then proceed',
+          });
+        } else {
+          // payWithPaystack();
+           setIsOpen(true);
+           Swal.close();
+        }
+      } else {
+        if (checkoutType === false) {
+          // payWithPaystack();
+           setIsOpen(true);
+           Swal.close();
+        } else {
+          Swal.fire({
+            icon: 'warning',
+            title: 'You do not have an account. Kindly go back and uncheck the "i have an account box" and then proceed.',
+            text: data.message,
+          });
+        }
+      }
+    })
+    .catch(error => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'An error occurred while checking the user.',
+      });
+    });
+  };
+
+
 
 
 // const [countryOptions, setCountryOptions] = useState([]);
@@ -594,7 +652,7 @@ const handleSubmit1 =(e)=>{
 
   return (
     <PageWrapper>
-      <FormContainer onSubmit={handleSubmit1}>
+      <FormContainer onSubmit={checkUserRegistration}>
         <Logo src={logo} alt="Elexdon Host Logo" />
         <Title>Complete Your Hosting Order</Title>
 

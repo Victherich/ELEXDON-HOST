@@ -367,6 +367,7 @@ import ReactDOM from 'react-dom';
 import PaystackPop from "@paystack/inline-js";
 import Swal from 'sweetalert2';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
+import BitcoinPaymentModal from './BitcoinPaymentModal';
 
 const Overlay = styled.div`
   position: fixed;
@@ -461,11 +462,13 @@ const Button = styled.button`
 const PAYPAL_CLIENT_ID = 'AY3JP-UI68WChZpC_0f7oTadUrItrOcSwqL2E4GVFJHfo-4QPabv308FQRUTfmDS4jfNFYi9AbLZh9iV';
 
 const PricingModal = ({ isOpen, onClose, product, tld, domainName, domainType, billingCycle, email, handleSubmit, checkoutType, currency }) => {
-  const { domainPricings } = useContext(Context);
+  const { domainPricings, dollarRate } = useContext(Context);
   const domain = domainPricings.find((e) => e.domain === tld);
 
   const [domainPrice, setDomainPrice] = useState(0);
   const [hostingPrice, setHostingPrice] = useState(0);
+
+  const [btModalOpen, setBtModalOpen]=useState(false)
 
   useEffect(() => {
     const handleDomainPriceSetting = () => {
@@ -493,63 +496,69 @@ const PricingModal = ({ isOpen, onClose, product, tld, domainName, domainType, b
 
   if (!isOpen) return null;
 
-  const total = (parseFloat(domainPrice) || 0) + (parseFloat(hostingPrice) || 0);
+  const total1 = (parseFloat(domainPrice) || 0) + (parseFloat(hostingPrice) || 0);
 
-  // Paystack logic
-  const checkUserRegistration = () => {
-    Swal.fire({
-      title: 'Checking user...',
-      allowOutsideClick: false,
-      didOpen: () => {
-        Swal.showLoading();
-      }
-    });
+  // adding tax of 7.5%
+  const total = total1 * 1.075 
 
-    fetch('https://www.elexdonhost.com/api_elexdonhost/check_user.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ email: email })
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.success) {
-        if (checkoutType === false) {
-          Swal.fire({
-            icon: 'warning',
-            title: 'User Found',
-            text: 'You already have an account. Kindly go back and check the "i have an account box" and then proceed',
-          });
-        } else {
-          payWithPaystack();
-        }
-      } else {
-        if (checkoutType === false) {
-          payWithPaystack();
-        } else {
-          Swal.fire({
-            icon: 'warning',
-            title: 'You do not have an account. Kindly go back and uncheck the "i have an account box" and then proceed.',
-            text: data.message,
-          });
-        }
-      }
-    })
-    .catch(error => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'An error occurred while checking the user.',
-      });
-    });
-  };
+ const dollarAmount = Number((total / dollarRate).toFixed(2));
+console.log(dollarAmount)
+
+  // // Paystack logic
+  // const checkUserRegistration = () => {
+  //   Swal.fire({
+  //     title: 'Checking user...',
+  //     allowOutsideClick: false,
+  //     didOpen: () => {
+  //       Swal.showLoading();
+  //     }
+  //   });
+
+  //   fetch('https://www.elexdonhost.com/api_elexdonhost/check_user.php', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({ email: email })
+  //   })
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     if (data.success) {
+  //       if (checkoutType === false) {
+  //         Swal.fire({
+  //           icon: 'warning',
+  //           title: 'User Found',
+  //           text: 'You already have an account. Kindly go back and check the "i have an account box" and then proceed',
+  //         });
+  //       } else {
+  //         payWithPaystack();
+  //       }
+  //     } else {
+  //       if (checkoutType === false) {
+  //         payWithPaystack();
+  //       } else {
+  //         Swal.fire({
+  //           icon: 'warning',
+  //           title: 'You do not have an account. Kindly go back and uncheck the "i have an account box" and then proceed.',
+  //           text: data.message,
+  //         });
+  //       }
+  //     }
+  //   })
+  //   .catch(error => {
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Error',
+  //       text: 'An error occurred while checking the user.',
+  //     });
+  //   });
+  // };
 
   const payWithPaystack = () => {
     const paystack = new PaystackPop();
     paystack.newTransaction({
       key: "pk_live_3626fe7772aaca28a10724ebb1f9727dfcc5d6cb",
-      amount: Math.ceil(total * 1.075 * 100),
+      amount: Math.ceil(total * 100),
       email: email,
       onSuccess: (transaction) => {
         handleVerify(transaction.reference);
@@ -619,7 +628,7 @@ const PricingModal = ({ isOpen, onClose, product, tld, domainName, domainType, b
           description: product.name,
           amount: {
             currency_code: currency,
-            value: total,
+            value: dollarAmount,
           },
         },
       ],
@@ -688,11 +697,11 @@ const PricingModal = ({ isOpen, onClose, product, tld, domainName, domainType, b
               </Section>
             )}
 
-            <Total>Total: ₦{total.toLocaleString()}</Total>
+            <Total>Total Amount Plus Tax: ₦{total.toLocaleString()}</Total>
             
-            <Button onClick={checkUserRegistration}>Pay with Paystack</Button>
+            <Button onClick={payWithPaystack}>Pay with Paystack</Button>
 
-            {/* PayPal buttons will only render if the currency is 'USD' */}
+            
             
               <div style={{ marginTop: '10px' }}>
                 <PayPalScriptProvider options={{ clientId: PAYPAL_CLIENT_ID, currency: 'USD' }}>
@@ -705,10 +714,23 @@ const PricingModal = ({ isOpen, onClose, product, tld, domainName, domainType, b
                   />
                 </PayPalScriptProvider>
               </div>
-            
+            <Button style={{ background: "green" }} onClick={()=>setBtModalOpen(true)}>Bitcoin</Button>
             
             <Button style={{ background: "gray" }} onClick={onClose}>Cancel</Button>
           </ModalContainer>
+          {/* {btModalOpen&&<BitcoinPaymentModal 
+          onClose={()=>setBtModalOpen(false)}
+          handleSubmit={handleSubmit}
+          />} */}
+
+         {btModalOpen&& <BitcoinPaymentModal  
+  btcWallet="1EPvkK3ANxZNtR8Ky3FUnuBULvzrZDKpBL"
+  totalNgnAmount={total}
+  totalBtcAmount={total * 0.0000000089}
+  onClose={() => setBtModalOpen(false)}
+  handleSubmit={handleSubmit}
+/>}
+
         </Overlay>
       ),
       document.body

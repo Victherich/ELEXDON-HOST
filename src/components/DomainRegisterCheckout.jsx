@@ -642,6 +642,7 @@ const PageWrapper = styled.div`
   min-height: 100vh;
   position: relative;
   display: flex;
+  flex-direction:column;
   align-items: center;
   justify-content: center;
   padding: 2rem;
@@ -908,15 +909,82 @@ const markInvoiceAsPaid = async (invoiceId, reference, amount = null) => {
 
 
 
-const handleSubmit1=(e)=>{
+// const handleSubmit1=(e)=>{
+
+
+// }
+
+
+
+
+const checkUserRegistration =(e)=>{
 e.preventDefault();
-setIsOpen(true);
+// Show loading
+Swal.fire({
+  title: 'Checking user...',
+  allowOutsideClick: false,
+  didOpen: () => {
+    Swal.showLoading();
+  }
+});
+
+fetch('https://www.elexdonhost.com/api_elexdonhost/check_user.php', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ email: form.email })
+})
+.then(res => res.json())
+.then(data => {
+  if (data.success) {
+    // payWithPaystack();
+    if(checkoutType===false){
+ Swal.fire({
+      icon: 'warning',
+      title: 'User Found',
+      text: 'You already have an account. Kindly check the "i have an account box" and then proceed',
+    });
+    }else{
+      // payWithPaystack();
+      // handleSubmit('by elexdon host');
+      setIsOpen(true);
+      Swal.close();
+    }
+   
+  } else {
+
+    if(checkoutType===false){
+      // payWithPaystack();
+      // handleSubmit('by elexdon host');
+      setIsOpen(true);
+      Swal.close();
+    } else{
+  Swal.fire({
+      icon: 'warning',
+      title: 'You do not have not an account, kindy uncheck the "i have an account box" and then proceed.',
+      text: data.message,
+    });
+    }
+  
+  }
+})
+.catch(error => {
+  Swal.fire({
+    icon: 'error',
+    title: 'Error',
+    text: 'An error occurred while checking the user.',
+  });
+});
+
+
+  
 }
 
 
   return (
     <PageWrapper>
-      <FormContainer onSubmit={handleSubmit1}>
+      <FormContainer onSubmit={checkUserRegistration}>
         <Logo src={logo} alt="Elexdon Host Logo" />
         <Title>Complete Your Domain Registration</Title>
 <Title>Domain Name: <span style={{color:"purple", textDecoration:"underline"}}>{domainname}</span></Title>

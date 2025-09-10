@@ -8,7 +8,7 @@ const ContextProvider = ({children}) => {
 
 const yes ="true"
 
-
+const dollarRate = 1510;
 
 
 
@@ -31,7 +31,7 @@ const yes ="true"
 
 
   return (
-    <Context.Provider value={{yes,domainPricings}}>
+    <Context.Provider value={{yes,domainPricings, dollarRate}}>
       {children}
     </Context.Provider>
   )

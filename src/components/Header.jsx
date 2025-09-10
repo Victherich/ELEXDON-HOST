@@ -24,7 +24,7 @@ const HeaderWrapper = styled.header`
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 1000;
+  z-index: 9;
   transition: 0.3s ease-in-out;
 `;
 
