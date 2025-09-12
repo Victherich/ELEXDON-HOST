@@ -579,15 +579,25 @@ const markInvoiceAsPaid = async (invoiceId, reference, amount = null) => {
 
 
 
-// const handleSubmit1 =(e)=>{
-//   setIsOpen(true);
-// }
+const handleSubmit1 =(e)=>{
+  e.preventDefault();
+  if(checkoutType===false&&form.password!==confirmPassword){
+    Swal.fire({text:"Passwords do not match"});
+return;
+  }
+
+if  (checkoutType===false){
+  checkUserRegistration();
+}else{
+handleLogin();
+}
+}
 
 
 
 
- const checkUserRegistration = (e) => {
- e.preventDefault();
+ const checkUserRegistration = () => {
+ 
     Swal.fire({
       title: 'Checking user...',
       allowOutsideClick: false,
@@ -643,7 +653,49 @@ const markInvoiceAsPaid = async (invoiceId, reference, amount = null) => {
 
 
 
-// const [countryOptions, setCountryOptions] = useState([]);
+
+
+const handleLogin = async () => {
+  if (!form.email || !form.password) {
+    Swal.fire({ icon: 'warning', text: 'Please enter email and password.' });
+    return;
+  }
+
+  try {
+    Swal.fire({
+      title: 'Logging in...',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
+    const res = await fetch('https://www.elexdonhost.com/api_elexdonhost/login.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email:form.email, password: form.password })
+    });
+
+    const data = await res.json();
+    Swal.close(); // close loading
+
+    if (data.success) {
+      Swal.fire({ icon: 'success', text: 'Login successful!' });
+      localStorage.setItem('user', JSON.stringify(data.user));
+      setIsOpen(true);
+    } else {
+      console.log(data);
+      Swal.fire({ icon: 'error', text: data.message || 'Login failed' });
+    }
+  } catch (error) {
+    console.error(error);
+    Swal.close(); // close loading on error too
+    Swal.fire({ icon: 'error', text: 'Server error' });
+  }
+};
+
+
+
 
 
 
@@ -652,7 +704,7 @@ const markInvoiceAsPaid = async (invoiceId, reference, amount = null) => {
 
   return (
     <PageWrapper>
-      <FormContainer onSubmit={checkUserRegistration}>
+      <FormContainer onSubmit={handleSubmit1}>
         <Logo src={logo} alt="Elexdon Host Logo" />
         <Title>Complete Your Hosting Order</Title>
 
