@@ -335,8 +335,6 @@ console.log(form)
 
 
 
-
-
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     if (e.target.name === "domain" || e.target.name === "domaintype" || e.target.name ==='tld') {

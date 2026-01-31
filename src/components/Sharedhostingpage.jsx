@@ -485,7 +485,7 @@ const WebhostingPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://www.elexdonhost.com/api_elexdonhost/get_shared_hosting_products.php")
+    fetch("https://www.elexdonhost.com/api_elexdonhost/get_shared_hosting_products_test.php")
       .then(res => res.json())
       .then(data => {
         if (data.products?.product && data.products.product.length > 0) {
