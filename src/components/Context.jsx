@@ -29,9 +29,11 @@ const dollarRate = 1510;
   { domain: ".sch.ng", register: 3000, transfer: 3000, renewal: 3000 },
 ];
 
+const api_key = "MY_SUPER_SECRET_KEY"
+
 
   return (
-    <Context.Provider value={{yes,domainPricings, dollarRate}}>
+    <Context.Provider value={{yes,domainPricings, dollarRate, api_key}}>
       {children}
     </Context.Provider>
   )

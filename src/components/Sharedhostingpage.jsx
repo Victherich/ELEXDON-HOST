@@ -322,7 +322,7 @@
 
 
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import hostingHeroImg from '../Images/webhostingimg.jpeg';
 import Features from './Features';
@@ -334,6 +334,7 @@ import useAnimateOnScroll from './useAnimateOnScroll';
 import Features2 from './Features2';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { Context } from './Context';
 
 // === Styled Components ===
 const HeroSection = styled.section`
@@ -483,47 +484,140 @@ const WebhostingPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const {api_key} = useContext(Context);
 
-  useEffect(() => {
-    fetch("https://www.elexdonhost.com/api_elexdonhost/get_shared_hosting_products_test.php")
-      .then(res => res.json())
-      .then(data => {
-        if (data.products?.product && data.products.product.length > 0) {
-          setProducts(data.products.product);
-          Swal.fire({
-            toast: true,
-            position: 'top-end',
-            icon: 'success',
-            title: 'Plans loaded 🎉',
-            showConfirmButton: false,
-            timer: 2000,
-          });
-        } else {
-          setError("No shared hosting products were found.");
-          Swal.fire({
-            toast: true,
-            position: 'top-end',
-            icon: 'warning',
-            title: 'No plans available',
-            showConfirmButton: false,
-            timer: 2000,
-          });
-        }
-      })
-      .catch(err => {
-        console.error("Fetch error:", err);
-        setError("Failed to fetch shared hosting plans. Please try again later.");
+  // useEffect(() => {
+  //   fetch("https://www.elexdonhost.com/api_elexdonhost/get_shared_hosting_products.php")
+  //   // fetch("https://www.elexdonhost.com/api/get_shared_hosting_products.php?key=my_super_secret_key")
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       console.log(data);
+  //       if (data.products?.product && data.products.product.length > 0) {
+  //         setProducts(data.products.product);
+  //         Swal.fire({
+  //           toast: true,
+  //           position: 'top-end',
+  //           icon: 'success',
+  //           title: 'Plans loaded 🎉',
+  //           showConfirmButton: false,
+  //           timer: 2000,
+  //         });
+  //       } else {
+  //         setError("No shared hosting products were found.");
+  //         Swal.fire({
+  //           toast: true,
+  //           position: 'top-end',
+  //           icon: 'warning',
+  //           title: 'No plans available',
+  //           showConfirmButton: false,
+  //           timer: 2000,
+  //         });
+  //       }
+  //     })
+  //     .catch(err => {
+  //       console.error("Fetch error:", err);
+  //       setError("Failed to fetch shared hosting plans. Please try again later.");
+  //       Swal.fire({
+  //         toast: true,
+  //         position: 'top-end',
+  //         icon: 'error',
+  //         title: 'Error loading plans',
+  //         showConfirmButton: false,
+  //         timer: 2000,
+  //       });
+  //     })
+  //     .finally(() => setLoading(false));
+  // }, []);
+
+
+
+
+useEffect(() => {
+  fetch(`https://www.elexdonhost.com/api_elexdonhost/get_shared_hosting_products.php?key=${api_key}`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.success && data.products?.product?.length > 0) {
+        setProducts(data.products.product);
         Swal.fire({
           toast: true,
           position: 'top-end',
-          icon: 'error',
-          title: 'Error loading plans',
+          icon: 'success',
+          title: 'Plans loaded 🎉',
           showConfirmButton: false,
           timer: 2000,
         });
-      })
-      .finally(() => setLoading(false));
-  }, []);
+      } else {
+        setError(data.error || "No shared hosting products found.");
+        Swal.fire({
+          toast: true,
+          position: 'top-end',
+          icon: 'warning',
+          title: data.error || 'No plans available',
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+    })
+    .catch(err => {
+      console.error("Fetch error:", err);
+      setError("Failed to fetch shared hosting plans. Please try again later.");
+      Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: 'error',
+        title: 'Error loading plans',
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    })
+    .finally(() => setLoading(false));
+}, []);
+
+
+
+
+
+// useEffect(() => {
+//   fetch("https://www.elexdonhost.com/api_elexdonhost/get_shared_hosting_products_local.php")
+//     .then(res => res.json())
+//     .then(data => {
+//       if (data.success && data.products?.length > 0) {
+//         setProducts(data.products); // products is already an array
+//         Swal.fire({
+//           toast: true,
+//           position: 'top-end',
+//           icon: 'success',
+//           title: 'Plans loaded 🎉',
+//           showConfirmButton: false,
+//           timer: 2000,
+//         });
+//       } else {
+//         setError(data.message || "No shared hosting products were found.");
+//         Swal.fire({
+//           toast: true,
+//           position: 'top-end',
+//           icon: 'warning',
+//           title: data.message || 'No plans available',
+//           showConfirmButton: false,
+//           timer: 2000,
+//         });
+//       }
+//     })
+//     .catch(err => {
+//       console.error("Fetch error:", err);
+//       setError("Failed to fetch shared hosting plans. Please try again later.");
+//       Swal.fire({
+//         toast: true,
+//         position: 'top-end',
+//         icon: 'error',
+//         title: 'Error loading plans',
+//         showConfirmButton: false,
+//         timer: 2000,
+//       });
+//     })
+//     .finally(() => setLoading(false));
+// }, []);
+
 
   return (
     <div>

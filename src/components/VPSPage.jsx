@@ -403,7 +403,7 @@
 
 
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import heroBg from '../Images/vpsimg.jpg'; // Replace with your actual background image path
 import Partners from './Partners';
@@ -413,6 +413,7 @@ import 'animate.css';
 import useAnimateOnScroll from './useAnimateOnScroll';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { Context } from './Context';
 
 // === Styled Components ===
 const Hero = styled.section`
@@ -609,12 +610,13 @@ const VPSPage = () => {
   const heroTitleAnim = useAnimateOnScroll('animate__fadeInDown animate__slower');
   const heroSubtitleAnim = useAnimateOnScroll('animate__fadeInUp animate__slower');
   const navigate = useNavigate();
+  const {api_key}=useContext(Context);
 
   useEffect(() => {
     setLoading(true);
     setError('');
 
-    fetch('https://www.elexdonhost.com/api_elexdonhost/get_vps_hosting_products.php')
+    fetch(`https://www.elexdonhost.com/api_elexdonhost/get_vps_hosting_products.php?key=${api_key}`)
       .then(res => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);

@@ -508,7 +508,7 @@
 
 
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import CPanelShowcase from './CpanelShowCase';
 import SoftaculousShowcase from './SoftaculousShowcase';
@@ -519,6 +519,7 @@ import 'animate.css';
 import useAnimateOnScroll from './useAnimateOnScroll';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { Context } from './Context';
 
 // === Styled Components ===
 const PageWrapper = styled.div`
@@ -705,12 +706,13 @@ const ResellerHostingPage = () => {
   const heroTitleAnim = useAnimateOnScroll('animate__fadeInDown animate__slower');
   const heroSubtitleAnim = useAnimateOnScroll('animate__fadeInUp animate__slower');
   const navigate = useNavigate();
+  const {api_key}=useContext(Context);
 
   useEffect(() => {
     setLoading(true);
     setError('');
 
-    fetch('https://www.elexdonhost.com/api_elexdonhost/get_reseller_hosting_products.php')
+    fetch(`https://www.elexdonhost.com/api_elexdonhost/get_reseller_hosting_products.php?key=${api_key}`)
       .then(res => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);

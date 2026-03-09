@@ -358,7 +358,7 @@
 
 
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { FaCheckCircle } from 'react-icons/fa';
 import hostingHeroImg from '../Images/wpbg.png';
@@ -366,6 +366,7 @@ import 'animate.css';
 import useAnimateOnScroll from './useAnimateOnScroll';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { Context } from './Context';
 
 // === Styled Components ===
 const PageWrapper = styled.div`
@@ -519,13 +520,14 @@ const WordPressHosting = () => {
   const [error, setError] = useState('');
   const heroTitleAnim = useAnimateOnScroll('animate__fadeInDown animate__slower');
   const heroSubtitleAnim = useAnimateOnScroll('animate__fadeInUp animate__slower');
+  const {api_key}=useContext(Context)
   const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true); // Start loading state
     setError('');    // Clear any previous errors
 
-    fetch("https://www.elexdonhost.com/api_elexdonhost/get_wordpress_hosting_products.php")
+    fetch(`https://www.elexdonhost.com/api_elexdonhost/get_wordpress_hosting_products.php?key=${api_key}`)
       .then(res => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);

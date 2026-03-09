@@ -7,6 +7,7 @@ import support3 from '../Images/contact3.jpg';
 import support4 from '../Images/contact4.jpg';
 import useAnimateOnScroll from './useAnimateOnScroll';
 import 'animate.css'
+import { useState } from 'react';
 
 const Section = styled.section`
   padding: 80px 20px;
@@ -163,6 +164,50 @@ const d = useAnimateOnScroll('animate__fadeInUp animate__slower');
 const e = useAnimateOnScroll('animate__fadeInDown animate__slower');
 
 
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: ""
+  });
+
+
+   const [status, setStatus] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("https://elexdonhost.com/api_elexdonhost/contact_form_endpoint.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)  
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus("✅ Message sent successfully!");
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      } else {
+        setStatus("❌ " + data.error);
+      }
+    } catch (error) {
+      setStatus("❌ Failed to send message.");
+    }
+  };
+
+  
+
 
   return (
     <div>
@@ -209,12 +254,47 @@ const e = useAnimateOnScroll('animate__fadeInDown animate__slower');
 
       <Section>
         <h2 >Contact Our Support Team</h2>
-        <Form>
-          <input type="text" placeholder="Your Name" required />
-          <input type="email" placeholder="Your Email" required />
-          <textarea rows="6" placeholder="Your Message" required></textarea>
-          <button type="submit">Send Message</button>
-        </Form>
+         <Form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="name"
+        placeholder="Your Name"
+        value={formData.name}
+        onChange={handleChange}
+        required
+      />
+
+      <input
+        type="email"
+        name="email"
+        placeholder="Your Email"
+        value={formData.email}
+        onChange={handleChange}
+        required
+      />
+
+      <input
+        type="text"
+        name="phone"
+        placeholder="Your Phone"
+        value={formData.phone}
+        onChange={handleChange}
+        required
+      />
+
+      <textarea
+        name="message"
+        rows="6"
+        placeholder="Your Message"
+        value={formData.message}
+        onChange={handleChange}
+        required
+      ></textarea>
+
+      <button type="submit">Send Message</button>
+
+      {status && <p>{status}</p>}
+    </Form>
       </Section>
 
       <Section>
