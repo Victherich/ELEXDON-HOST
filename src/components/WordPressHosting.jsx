@@ -520,14 +520,14 @@ const WordPressHosting = () => {
   const [error, setError] = useState('');
   const heroTitleAnim = useAnimateOnScroll('animate__fadeInDown animate__slower');
   const heroSubtitleAnim = useAnimateOnScroll('animate__fadeInUp animate__slower');
-  const {api_key}=useContext(Context)
+  const {api_key,api_domain}=useContext(Context)
   const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true); // Start loading state
     setError('');    // Clear any previous errors
 
-    fetch(`https://www.elexdonhost.com/api_elexdonhost/get_wordpress_hosting_products.php?key=${api_key}`)
+    fetch(`${api_domain}/get_wordpress_hosting_products.php?key=${api_key}`)
       .then(res => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);

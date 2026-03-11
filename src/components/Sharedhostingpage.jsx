@@ -484,7 +484,7 @@ const WebhostingPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const {api_key} = useContext(Context);
+  const {api_key,api_domain} = useContext(Context);
 
   // useEffect(() => {
   //   fetch("https://www.elexdonhost.com/api_elexdonhost/get_shared_hosting_products.php")
@@ -533,7 +533,7 @@ const WebhostingPage = () => {
 
 
 useEffect(() => {
-  fetch(`https://www.elexdonhost.com/api_elexdonhost/get_shared_hosting_products.php?key=${api_key}`)
+  fetch(`${api_domain}/get_shared_hosting_products.php?key=${api_key}`)
     .then(res => res.json())
     .then(data => {
       if (data.success && data.products?.product?.length > 0) {

@@ -706,13 +706,13 @@ const ResellerHostingPage = () => {
   const heroTitleAnim = useAnimateOnScroll('animate__fadeInDown animate__slower');
   const heroSubtitleAnim = useAnimateOnScroll('animate__fadeInUp animate__slower');
   const navigate = useNavigate();
-  const {api_key}=useContext(Context);
+  const {api_key,api_domain}=useContext(Context);
 
   useEffect(() => {
     setLoading(true);
     setError('');
 
-    fetch(`https://www.elexdonhost.com/api_elexdonhost/get_reseller_hosting_products.php?key=${api_key}`)
+    fetch(`${api_domain}/get_reseller_hosting_products.php?key=${api_key}`)
       .then(res => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);

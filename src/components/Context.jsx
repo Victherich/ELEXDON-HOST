@@ -30,10 +30,11 @@ const dollarRate = 1510;
 ];
 
 const api_key = "MY_SUPER_SECRET_KEY"
+const api_domain = "https://www.elexdonhost.com/api_elexdonhost"
 
 
   return (
-    <Context.Provider value={{yes,domainPricings, dollarRate, api_key}}>
+    <Context.Provider value={{yes,domainPricings, dollarRate, api_key,api_domain}}>
       {children}
     </Context.Provider>
   )

@@ -232,6 +232,7 @@ console.log(form)
   const [domainStatus, setDomainStatus] = useState(null);
   const [checkingDomain, setCheckingDomain] = useState(false);
   const [checkoutType, setCheckoutType]=useState(false);
+  const {api_key, api_domain}=useContext(Context);
 
 
 
@@ -270,7 +271,7 @@ console.log(form)
     });
 
     try {
-      const res = await fetch("https://www.elexdonhost.com/api_elexdonhost/check_domain.php", {
+      const res = await fetch(`${api_domain}/check_domain.php?key=${api_key}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ domain: fullDomain, type: "register" }),
@@ -604,7 +605,7 @@ handleLogin();
       }
     });
 
-    fetch('https://www.elexdonhost.com/api_elexdonhost/check_user.php', {
+    fetch(`${api_domain}/check_user.php?key=${api_key}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
