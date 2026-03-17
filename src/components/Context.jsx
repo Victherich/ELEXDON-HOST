@@ -1,5 +1,5 @@
 
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState , useEffect} from 'react'
 
 
 export const Context = createContext();
@@ -9,9 +9,9 @@ const ContextProvider = ({children}) => {
 const yes ="true"
 
 const dollarRate = 1510;
-
-
-
+const [products, setProducts] = useState([]);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true);
 
  const domainPricings = [
   { domain: ".com", register: 27500, transfer: 27500, renewal: 27500 },
@@ -33,8 +33,102 @@ const api_key = "MY_SUPER_SECRET_KEY"
 const api_domain = "https://www.elexdonhost.com/api_elexdonhost"
 
 
+
+
+
+// useEffect(() => {
+//   fetch(`${api_domain}/get_shared_hosting_products.php?key=${api_key}`)
+//     .then(res => res.json())
+//     .then(data => {
+//       if (data.success && data.products?.product?.length > 0) {
+//         setProducts(data.products.product);
+//         // Swal.fire({
+//         //   toast: true,
+//         //   position: 'top-end',
+//         //   icon: 'success',
+//         //   title: 'Plans loaded 🎉',
+//         //   showConfirmButton: false,
+//         //   timer: 2000,
+//         // });
+//       } else {
+//         setError(data.error || "No shared hosting products found.");
+//         // Swal.fire({
+//         //   toast: true,
+//         //   position: 'top-end',
+//         //   icon: 'warning',
+//         //   title: data.error || 'No plans available',
+//         //   showConfirmButton: false,
+//         //   timer: 2000,
+//         // });
+//       }
+//     })
+//     .catch(err => {
+//       console.error("Fetch error:", err);
+//       setError("Failed to fetch shared hosting plans. Please try again later.");
+//       // Swal.fire({
+//       //   toast: true,
+//       //   position: 'top-end',
+//       //   icon: 'error',
+//       //   title: 'Error loading plans',
+//       //   showConfirmButton: false,
+//       //   timer: 2000,
+//       // });
+//     })
+//     .finally(() => setLoading(false));
+// }, []);
+
+
+useEffect(() => {
+  const STORAGE_KEY = "products1";
+
+  const fetchProducts = () => {
+    fetch(`${api_domain}/get_shared_hosting_products.php?key=${api_key}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.success && data.products?.product?.length > 0) {
+          const productsData = data.products.product;
+
+          setProducts(productsData);
+
+          // Save to localStorage
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(productsData));
+        } else {
+          setError(data.error || "No shared hosting products found.");
+        }
+      })
+      .catch(err => {
+        console.error("Fetch error:", err);
+        setError("Failed to fetch shared hosting plans. Please try again later.");
+      })
+      .finally(() => setLoading(false));
+  };
+
+  // 1. Load from localStorage immediately
+  const cached = localStorage.getItem(STORAGE_KEY);
+  if (cached) {
+    try {
+      setProducts(JSON.parse(cached));
+      setLoading(false); // show cached instantly
+    } catch (e) {
+      console.error("LocalStorage parse error:", e);
+    }
+  }
+
+  // 2. Fetch fresh data immediately
+  fetchProducts();
+
+  // 3. Fetch every 5 minutes (300000 ms)
+  const interval = setInterval(fetchProducts, 300000);
+
+  // Cleanup
+  return () => clearInterval(interval);
+}, []);
+
+
+
+
   return (
-    <Context.Provider value={{yes,domainPricings, dollarRate, api_key,api_domain}}>
+    <Context.Provider value={{yes,domainPricings, dollarRate, api_key,api_domain,products,error,loading}}>
       {children}
     </Context.Provider>
   )

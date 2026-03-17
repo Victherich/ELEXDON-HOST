@@ -32,21 +32,26 @@ const fetchAppVersion = async () => {
   
       // If version changed, alert the user
       if (prevVersion && prevVersion !== latestVersion) {
-        Swal.fire({
-          title: 'Update Available!',
-          text: `This site has a new update by the Developer, Kindly click the 'UPDATE" button to catch up`,
-          icon: 'info',
-          showCancelButton: true,
-          confirmButtonText: 'Update',
-          cancelButtonText: 'Remind me later',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            // Save new version and reload
+
+           // Save new version and reload
             storedVersions[appId] = latestVersion;
             localStorage.setItem('app_versions', JSON.stringify(storedVersions));
             window.location.reload();
-          }
-        });
+        // Swal.fire({
+        //   title: 'Update Available!',
+        //   text: `This site has a new update by the Developer, Kindly click the 'UPDATE" button to catch up`,
+        //   icon: 'info',
+        //   showCancelButton: true,
+        //   confirmButtonText: 'Update',
+        //   cancelButtonText: 'Remind me later',
+        // }).then((result) => {
+        //   if (result.isConfirmed) {
+        //     // Save new version and reload
+        //     storedVersions[appId] = latestVersion;
+        //     localStorage.setItem('app_versions', JSON.stringify(storedVersions));
+        //     window.location.reload();
+        //   }
+        // });
       } else {
         // No previous version or it's the same — just save it
         storedVersions[appId] = latestVersion;

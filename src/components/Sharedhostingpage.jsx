@@ -480,109 +480,21 @@ const SkeletonCard = styled.div`
 const WebhostingPage = () => {
   const heroTitleAnim = useAnimateOnScroll('animate__fadeInDown animate__slower');
   const heroSubtitleAnim = useAnimateOnScroll('animate__fadeIn animate__slower');
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+
+
   const navigate = useNavigate();
-  const {api_key,api_domain} = useContext(Context);
-
-  // useEffect(() => {
-  //   fetch("https://www.elexdonhost.com/api_elexdonhost/get_shared_hosting_products.php")
-  //   // fetch("https://www.elexdonhost.com/api/get_shared_hosting_products.php?key=my_super_secret_key")
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       console.log(data);
-  //       if (data.products?.product && data.products.product.length > 0) {
-  //         setProducts(data.products.product);
-  //         Swal.fire({
-  //           toast: true,
-  //           position: 'top-end',
-  //           icon: 'success',
-  //           title: 'Plans loaded 🎉',
-  //           showConfirmButton: false,
-  //           timer: 2000,
-  //         });
-  //       } else {
-  //         setError("No shared hosting products were found.");
-  //         Swal.fire({
-  //           toast: true,
-  //           position: 'top-end',
-  //           icon: 'warning',
-  //           title: 'No plans available',
-  //           showConfirmButton: false,
-  //           timer: 2000,
-  //         });
-  //       }
-  //     })
-  //     .catch(err => {
-  //       console.error("Fetch error:", err);
-  //       setError("Failed to fetch shared hosting plans. Please try again later.");
-  //       Swal.fire({
-  //         toast: true,
-  //         position: 'top-end',
-  //         icon: 'error',
-  //         title: 'Error loading plans',
-  //         showConfirmButton: false,
-  //         timer: 2000,
-  //       });
-  //     })
-  //     .finally(() => setLoading(false));
-  // }, []);
-
-
-
-
-useEffect(() => {
-  fetch(`${api_domain}/get_shared_hosting_products.php?key=${api_key}`)
-    .then(res => res.json())
-    .then(data => {
-      if (data.success && data.products?.product?.length > 0) {
-        setProducts(data.products.product);
-        Swal.fire({
-          toast: true,
-          position: 'top-end',
-          icon: 'success',
-          title: 'Plans loaded 🎉',
-          showConfirmButton: false,
-          timer: 2000,
-        });
-      } else {
-        setError(data.error || "No shared hosting products found.");
-        Swal.fire({
-          toast: true,
-          position: 'top-end',
-          icon: 'warning',
-          title: data.error || 'No plans available',
-          showConfirmButton: false,
-          timer: 2000,
-        });
-      }
-    })
-    .catch(err => {
-      console.error("Fetch error:", err);
-      setError("Failed to fetch shared hosting plans. Please try again later.");
-      Swal.fire({
-        toast: true,
-        position: 'top-end',
-        icon: 'error',
-        title: 'Error loading plans',
-        showConfirmButton: false,
-        timer: 2000,
-      });
-    })
-    .finally(() => setLoading(false));
-}, []);
+  const {api_key,api_domain, products,error,loading} = useContext(Context);
 
 
 
 
 
 // useEffect(() => {
-//   fetch("https://www.elexdonhost.com/api_elexdonhost/get_shared_hosting_products_local.php")
+//   fetch(`${api_domain}/get_shared_hosting_products.php?key=${api_key}`)
 //     .then(res => res.json())
 //     .then(data => {
-//       if (data.success && data.products?.length > 0) {
-//         setProducts(data.products); // products is already an array
+//       if (data.success && data.products?.product?.length > 0) {
+//         setProducts(data.products.product);
 //         Swal.fire({
 //           toast: true,
 //           position: 'top-end',
@@ -592,12 +504,12 @@ useEffect(() => {
 //           timer: 2000,
 //         });
 //       } else {
-//         setError(data.message || "No shared hosting products were found.");
+//         setError(data.error || "No shared hosting products found.");
 //         Swal.fire({
 //           toast: true,
 //           position: 'top-end',
 //           icon: 'warning',
-//           title: data.message || 'No plans available',
+//           title: data.error || 'No plans available',
 //           showConfirmButton: false,
 //           timer: 2000,
 //         });
@@ -617,6 +529,9 @@ useEffect(() => {
 //     })
 //     .finally(() => setLoading(false));
 // }, []);
+
+
+
 
 
   return (
