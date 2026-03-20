@@ -189,7 +189,9 @@ const SupportPage = () => {
 
       const result = await res.json();
       if (result.success) {
-        Swal.fire('Success', 'Your ticket has been submitted!', 'success');
+        // Swal.fire('Success', 'Your ticket has been submitted!', 'success');
+
+        handleSubmit2();
         setForm({
           name: '',
           email: '',
@@ -199,6 +201,42 @@ const SupportPage = () => {
           message: '',
           file: null,
         });
+      } else {
+        Swal.fire('Error', result.message || 'Failed to submit ticket.', 'error');
+      }
+    } catch (err) {
+      Swal.fire('Error', 'Failed to send ticket. Try again later.', 'error');
+    }
+  };
+
+
+
+
+
+    const handleSubmit2 = async () => {
+
+    const formData = new FormData();
+    formData.append('clientid', "");
+    formData.append('name', form.name);
+    formData.append('email', form.email);
+    formData.append('subject', form.subject);
+    formData.append('deptid', form.department);
+    formData.append('priority', form.priority);
+    formData.append('message', form.message);
+    if (form.file) formData.append('attachments[]', form.file);
+
+    Swal.fire({ title: 'Please wait...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+    try {
+      const res = await fetch('https://www.elexdonhost.com/api_elexdonhost/send_ticket_email.php', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const result = await res.json();
+      if (result.success) {
+        Swal.fire('Success', 'Your ticket has been submitted!', 'success');
+     
       } else {
         Swal.fire('Error', result.message || 'Failed to submit ticket.', 'error');
       }
