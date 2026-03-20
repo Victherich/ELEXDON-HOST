@@ -515,62 +515,72 @@ const SkeletonCard = styled.div`
 `;
 
 const WordPressHosting = () => {
-  const [wordpressProducts, setWordpressProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+ 
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState('');
   const heroTitleAnim = useAnimateOnScroll('animate__fadeInDown animate__slower');
   const heroSubtitleAnim = useAnimateOnScroll('animate__fadeInUp animate__slower');
-  const {api_key,api_domain}=useContext(Context)
+  const {api_key,api_domain,wordpressProducts,loading, error}=useContext(Context)
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setLoading(true); // Start loading state
-    setError('');    // Clear any previous errors
 
-    fetch(`${api_domain}/get_wordpress_hosting_products.php?key=${api_key}`)
-      .then(res => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then(data => {
-        if (data.products?.product && data.products.product.length > 0) {
-          setWordpressProducts(data.products.product);
-          Swal.fire({
-            toast: true,
-            position: 'top-end',
-            icon: 'success',
-            title: 'Plans loaded!',
-            showConfirmButton: false,
-            timer: 2000,
-          });
-        } else {
-          setError('No products found. Please try again later.');
-          Swal.fire({
-            toast: true,
-            position: 'top-end',
-            icon: 'warning',
-            title: 'No plans available',
-            showConfirmButton: false,
-            timer: 2000,
-          });
-        }
-      })
-      .catch(err => {
-        console.error("Fetch error:", err);
-        setError('Failed to fetch WordPress products. Please try again later.');
-        Swal.fire({
-          toast: true,
-          position: 'top-end',
-          icon: 'error',
-          title: 'Error loading plans',
-          showConfirmButton: false,
-          timer: 2000,
-        });
-      })
-      .finally(() => setLoading(false)); // End loading state
-  }, []);
+
+
+
+  // useEffect(() => {
+  //   setLoading(true); // Start loading state
+  //   setError('');    // Clear any previous errors
+
+  //   fetch(`${api_domain}/get_wordpress_hosting_products.php?key=${api_key}`)
+  //     .then(res => {
+  //       if (!res.ok) {
+  //         throw new Error(`HTTP error! status: ${res.status}`);
+  //       }
+  //       return res.json();
+  //     })
+  //     .then(data => {
+  //       if (data.products?.product && data.products.product.length > 0) {
+  //         setWordpressProducts(data.products.product);
+  //         Swal.fire({
+  //           toast: true,
+  //           position: 'top-end',
+  //           icon: 'success',
+  //           title: 'Plans loaded!',
+  //           showConfirmButton: false,
+  //           timer: 2000,
+  //         });
+  //       } else {
+  //         setError('No products found. Please try again later.');
+  //         Swal.fire({
+  //           toast: true,
+  //           position: 'top-end',
+  //           icon: 'warning',
+  //           title: 'No plans available',
+  //           showConfirmButton: false,
+  //           timer: 2000,
+  //         });
+  //       }
+  //     })
+  //     .catch(err => {
+  //       console.error("Fetch error:", err);
+  //       setError('Failed to fetch WordPress products. Please try again later.');
+  //       Swal.fire({
+  //         toast: true,
+  //         position: 'top-end',
+  //         icon: 'error',
+  //         title: 'Error loading plans',
+  //         showConfirmButton: false,
+  //         timer: 2000,
+  //       });
+  //     })
+  //     .finally(() => setLoading(false)); // End loading state
+  // }, []);
+
+
+
+
+
+  
 
   return (
     <PageWrapper>

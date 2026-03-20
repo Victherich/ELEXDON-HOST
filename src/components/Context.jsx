@@ -10,6 +10,10 @@ const yes ="true"
 
 const dollarRate = 1510;
 const [products, setProducts] = useState([]);
+
+ const [wordpressProducts, setWordpressProducts] = useState([]);
+   const [plans, setPlans] = useState([]);
+    const [vpsPlans, setVpsPlans] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
 
@@ -127,8 +131,200 @@ useEffect(() => {
 
 
 
+
+
+
+
+
+useEffect(() => {
+  const STORAGE_KEY = "product2";
+
+  const fetchProducts = () => {
+    fetch(`${api_domain}/get_wordpress_hosting_products.php?key=${api_key}`)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then(data => {
+        if (data.products?.product?.length > 0) {
+          const productsData = data.products.product;
+
+          setWordpressProducts(productsData);
+
+          // Save to localStorage
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(productsData));
+
+         
+        } else {
+          setError('No products found. Please try again later.');
+
+          
+        }
+      })
+      .catch(err => {
+        console.error("Fetch error:", err);
+        setError('Failed to fetch WordPress products. Please try again later.');
+
+       
+      })
+      .finally(() => setLoading(false));
+  };
+
+  // 1. Load from localStorage instantly
+  const cached = localStorage.getItem(STORAGE_KEY);
+  if (cached) {
+    try {
+      setWordpressProducts(JSON.parse(cached));
+      setLoading(false);
+    } catch (e) {
+      console.error("LocalStorage parse error:", e);
+    }
+  }
+
+  // 2. Fetch fresh data immediately
+  fetchProducts();
+
+  // 3. Refresh every 5 minutes
+  const interval = setInterval(fetchProducts, 300000);
+
+  // Cleanup
+  return () => clearInterval(interval);
+
+}, []);
+
+
+
+
+
+useEffect(() => {
+  const STORAGE_KEY = "product4";
+
+  const fetchProducts = () => {
+    fetch(`https://www.elexdonhost.com/api_elexdonhost/get_vps_hosting_products.php?key=${api_key}`)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then(data => {
+        if (data?.products?.product?.length > 0) {
+          const filtered = data.products.product.filter(
+            p =>
+              p.type === "server" ||
+              p.type === "hostingaccount" ||
+              p.type === "reselleraccount"
+          );
+
+          setVpsPlans(filtered);
+
+          // Save to localStorage
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
+
+   
+        } else {
+          setError('No VPS plans were found.');
+
+        }
+      })
+      .catch(err => {
+        console.error("Error fetching VPS plans:", err);
+        setError('Failed to fetch VPS plans. Please try again later.');
+
+      })
+      .finally(() => setLoading(false));
+  };
+
+  // 1. Load cached data instantly
+  const cached = localStorage.getItem(STORAGE_KEY);
+  if (cached) {
+    try {
+      setVpsPlans(JSON.parse(cached));
+      setLoading(false);
+    } catch (e) {
+      console.error("LocalStorage parse error:", e);
+    }
+  }
+
+  // 2. Fetch fresh data immediately
+  fetchProducts();
+
+  // 3. Auto-refresh every 5 minutes
+  const interval = setInterval(fetchProducts, 300000);
+
+  // Cleanup
+  return () => clearInterval(interval);
+
+}, []);
+
+
+
+
+useEffect(() => {
+  const STORAGE_KEY = "product3";
+
+  const fetchProducts = () => {
+    fetch(`${api_domain}/get_reseller_hosting_products.php?key=${api_key}`)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then(data => {
+        if (data?.products?.product?.length > 0) {
+          const productsData = data.products.product;
+
+          setPlans(productsData);
+
+          // Save to localStorage
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(productsData));
+
+        } else {
+          setError('No reseller hosting products were found.');
+
+        }
+      })
+      .catch(error => {
+        console.error('Failed to fetch reseller plans:', error);
+        setError('Failed to fetch reseller hosting plans. Please try again later.');
+      })
+      .finally(() => setLoading(false));
+  };
+
+  // 1. Load cached data instantly
+  const cached = localStorage.getItem(STORAGE_KEY);
+  if (cached) {
+    try {
+      setPlans(JSON.parse(cached));
+      setLoading(false);
+    } catch (e) {
+      console.error("LocalStorage parse error:", e);
+    }
+  }
+
+  // 2. Fetch fresh data immediately
+  fetchProducts();
+
+  // 3. Auto-refresh every 5 minutes
+  const interval = setInterval(fetchProducts, 300000);
+
+  // Cleanup
+  return () => clearInterval(interval);
+
+}, []);
+
+
+
+
+
+
   return (
-    <Context.Provider value={{yes,domainPricings, dollarRate, api_key,api_domain,products,error,loading}}>
+    <Context.Provider value={{yes,domainPricings, dollarRate, api_key,api_domain,
+    products,error,loading,
+    wordpressProducts, plans,vpsPlans}}>
       {children}
     </Context.Provider>
   )

@@ -700,62 +700,62 @@ const SkeletonCard = styled.div`
 `;
 
 const ResellerHostingPage = () => {
-  const [plans, setPlans] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState('');
   const heroTitleAnim = useAnimateOnScroll('animate__fadeInDown animate__slower');
   const heroSubtitleAnim = useAnimateOnScroll('animate__fadeInUp animate__slower');
   const navigate = useNavigate();
-  const {api_key,api_domain}=useContext(Context);
+  const {api_key,api_domain,plans,loading, error}=useContext(Context);
 
-  useEffect(() => {
-    setLoading(true);
-    setError('');
+  // useEffect(() => {
+  //   setLoading(true);
+  //   setError('');
 
-    fetch(`${api_domain}/get_reseller_hosting_products.php?key=${api_key}`)
-      .then(res => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then(data => {
-        if (data && data.products && data.products.product && data.products.product.length > 0) {
-          setPlans(data.products.product);
-          Swal.fire({
-            toast: true,
-            position: 'top-end',
-            icon: 'success',
-            title: 'Plans loaded!',
-            showConfirmButton: false,
-            timer: 2000,
-          });
-        } else {
-          setError('No reseller hosting products were found.');
-          Swal.fire({
-            toast: true,
-            position: 'top-end',
-            icon: 'warning',
-            title: 'No plans available',
-            showConfirmButton: false,
-            timer: 2000,
-          });
-        }
-      })
-      .catch(error => {
-        console.error('Failed to fetch reseller plans:', error);
-        setError('Failed to fetch reseller hosting plans. Please try again later.');
-        Swal.fire({
-          toast: true,
-          position: 'top-end',
-          icon: 'error',
-          title: 'Error loading plans',
-          showConfirmButton: false,
-          timer: 2000,
-        });
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  //   fetch(`${api_domain}/get_reseller_hosting_products.php?key=${api_key}`)
+  //     .then(res => {
+  //       if (!res.ok) {
+  //         throw new Error(`HTTP error! status: ${res.status}`);
+  //       }
+  //       return res.json();
+  //     })
+  //     .then(data => {
+  //       if (data && data.products && data.products.product && data.products.product.length > 0) {
+  //         setPlans(data.products.product);
+  //         Swal.fire({
+  //           toast: true,
+  //           position: 'top-end',
+  //           icon: 'success',
+  //           title: 'Plans loaded!',
+  //           showConfirmButton: false,
+  //           timer: 2000,
+  //         });
+  //       } else {
+  //         setError('No reseller hosting products were found.');
+  //         Swal.fire({
+  //           toast: true,
+  //           position: 'top-end',
+  //           icon: 'warning',
+  //           title: 'No plans available',
+  //           showConfirmButton: false,
+  //           timer: 2000,
+  //         });
+  //       }
+  //     })
+  //     .catch(error => {
+  //       console.error('Failed to fetch reseller plans:', error);
+  //       setError('Failed to fetch reseller hosting plans. Please try again later.');
+  //       Swal.fire({
+  //         toast: true,
+  //         position: 'top-end',
+  //         icon: 'error',
+  //         title: 'Error loading plans',
+  //         showConfirmButton: false,
+  //         timer: 2000,
+  //       });
+  //     })
+  //     .finally(() => setLoading(false));
+  // }, []);
 
   return (
     <PageWrapper>
