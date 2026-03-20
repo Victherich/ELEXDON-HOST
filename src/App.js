@@ -46,6 +46,9 @@ import EmailHostingPage from './components/EmailHostingPage';
 import WorkWithUs from './components/WorkWithUs';
 import BecomeReseller from './components/BecomeReseller';
 import WhoisLookup from './components/WhoisLookup';
+import wp from './Images/whatsapplogo.png'
+
+
 
 function App() {
   return (
@@ -99,6 +102,8 @@ function App() {
 
         </Routes>
         <Hero2/>
+         <a><img src={wp} alt="logo" className="WhatsAppIcon" onClick={() => window.open("https://wa.me/2348185609702", "_blank")} /></a> 
+   
         <Footer/>
        
         

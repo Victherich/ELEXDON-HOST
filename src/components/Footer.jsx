@@ -637,8 +637,9 @@ const Footer = () => {
         <p>
           <strong style={{color:" #2B32B2", 
              textShadow: "-1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff"
-          }}>Phone (NIG):</strong> +234 818 560 9702
+          }}>Phone (NIG):</strong> +234 818 560 9702, +234 706 691 1338
         </p>
+
           <p>
           <strong style={{color:" #2B32B2", 
              textShadow: "-1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff"
