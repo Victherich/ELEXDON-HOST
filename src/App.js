@@ -47,6 +47,7 @@ import WorkWithUs from './components/WorkWithUs';
 import BecomeReseller from './components/BecomeReseller';
 import WhoisLookup from './components/WhoisLookup';
 import wp from './Images/whatsapplogo.png'
+import Developer from './components/Developer';
 
 
 
@@ -57,6 +58,7 @@ function App() {
     <ScrollToTop/>
       <Header/>
         <Routes>
+          {/* <Route path='/developer' element={<Developer/>}/> */}
           <Route path='/' element={<LandingPage/>}/>
           <Route path ='/domainspage' element={<DomainsPage/>}/>
           <Route path='/sharedhosting' element={<Sharedhostingpage/>}/>
