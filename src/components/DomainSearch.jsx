@@ -147,7 +147,7 @@ const DomainSearch = () => {
   const [result, setResult] = useState(null);
   const navigate = useNavigate();
 
-  const {domainPricings}=useContext(Context);
+  const {domainPricings, api_key}=useContext(Context);
 
   const titleAnim = useAnimateOnScroll('animate__fadeInDown animate__slower');
   const formAnim = useAnimateOnScroll('animate__fadeInUp animate__slower');
@@ -245,13 +245,14 @@ const handleSubmit = async (e) => {
   });
 
   try {
-    const res = await fetch("https://www.elexdonhost.com/api_elexdonhost/check_domain.php", {
+    const res = await fetch(`https://www.elexdonhost.com/api_elexdonhost/check_domain.php?key=${api_key}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ domain: fullDomain, type: "register" }),
     });
 
     const data = await res.json();
+    console.log(data)
 
     if (data.available) {
       setResult({ available: true, name: fullDomain });

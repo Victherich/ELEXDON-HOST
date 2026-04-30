@@ -10,7 +10,6 @@ const yes ="true"
 
 const dollarRate = 1510;
 const [products, setProducts] = useState([]);
-
  const [wordpressProducts, setWordpressProducts] = useState([]);
    const [plans, setPlans] = useState([]);
     const [vpsPlans, setVpsPlans] = useState([]);
@@ -324,7 +323,7 @@ useEffect(() => {
   return (
     <Context.Provider value={{yes,domainPricings, dollarRate, api_key,api_domain,
     products,error,loading,
-    wordpressProducts, plans,vpsPlans}}>
+    wordpressProducts, plans, vpsPlans}}>
       {children}
     </Context.Provider>
   )
