@@ -17,12 +17,12 @@ const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
  const domainPricings = [
-  { domain: ".com", register: 27500, transfer: 27500, renewal: 27500 },
+  { domain: ".com", register: 28000, transfer: 28000, renewal: 28000 },
   { domain: ".net", register: 40000, transfer: 40000, renewal: 40000 },
   { domain: ".org", register: 30000, transfer: 30000, renewal: 30000 },
   { domain: ".biz", register: 47000, transfer: 47000, renewal: 48000 },
   { domain: ".info", register: 60000, transfer: 60000, renewal: 65000 },
-  { domain: ".com.ng", register: 9000, transfer: 9500, renewal: 9500 },
+  { domain: ".com.ng", register: 10500, transfer: 10500, renewal: 10500 },
   { domain: ".ng", register: 17500, transfer: 17500, renewal: 18000 },
   { domain: ".us", register: 17500, transfer: 17500, renewal: 17500 },
   { domain: ".edu.ng", register: 18000, transfer: 18000, renewal: 18000 },
@@ -30,6 +30,7 @@ const [products, setProducts] = useState([]);
   { domain: ".uk", register: 26500, transfer: 26500, renewal: 26500 },
   { domain: ".club", register: 50000, transfer: 50000, renewal: 50000 },
   { domain: ".sch.ng", register: 3000, transfer: 3000, renewal: 3000 },
+    { domain: ".tech", register: 93000, transfer: 93000, renewal: 93000 },
 ];
 
 const api_key = "MY_SUPER_SECRET_KEY"

@@ -626,7 +626,7 @@
 
 
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import bg from "../Images/herobg5.jpg";
 import logo from "../Images/logo4.jpeg";
@@ -636,6 +636,7 @@ import PricingModalForDomain from "./PricingModalForDomain";
 import DomainSearch from "./DomainSearch";
 import PricingModalForDomain2 from "./PricingModalForDomain2";
 import countryOptions from "./CountryCodes";
+import { Context } from "./Context";
 
 const PageWrapper = styled.div`
   background: url(${bg}) no-repeat center center/cover;
@@ -741,6 +742,7 @@ export default function DomainRegisterCheckout() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isOpen, setIsOpen]=useState(false)
+  const {api_key} = useContext(Context)
 
   const [form, setForm] = useState({
     firstname: "",
@@ -940,7 +942,7 @@ Swal.fire({
   }
 });
 
-fetch('https://www.elexdonhost.com/api_elexdonhost/check_user.php', {
+fetch(`https://www.elexdonhost.com/api_elexdonhost/check_user.php?key=${api_key}`, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
