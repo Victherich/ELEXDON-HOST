@@ -431,7 +431,7 @@ const handleSubmit = async (e) => {
         </Form>
 
         <Title style={{ fontSize: "1rem" }}>
-          .com ₦28,500│.com.ng ₦13,500│.ng ₦17,500│.org ₦30,000│.net 40000│ .tech ₦120,000 |
+          .com ₦28,500│.com.ng ₦13,500│.ng ₦17,500│.org ₦30,000│.net ₦40,000│ .tech ₦120,000 |
         </Title>
 
         {result && (
