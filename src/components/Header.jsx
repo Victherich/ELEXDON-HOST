@@ -360,6 +360,8 @@ useEffect(()=>{
                </Dropdown>}
              </li>
             <li onClick={()=>setNavOpen(false)}><NavLink to="/support">Support</NavLink></li>
+
+            <li onClick={()=>setNavOpen(false)}><NavLink to="/webmail">Webmail</NavLink></li>
                {/* {user ? (
         <li style={{ color: '#fff', cursor: 'default', fontWeight: '500', marginTop: '1px' }}>
           <NavLink to='/dashboard'>

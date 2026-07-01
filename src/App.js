@@ -48,6 +48,7 @@ import BecomeReseller from './components/BecomeReseller';
 import WhoisLookup from './components/WhoisLookup';
 import wp from './Images/whatsapplogo.png'
 import Developer from './components/Developer';
+import WebmailOrderPage from './components/WebmailOrderPage';
 
 
 
@@ -100,6 +101,8 @@ function App() {
         <Route path='/nameserverconfiguration' element={<NameserverConfigurationPage/>}/>
         <Route path='/registrycodes' element={<RegistryCodesPage/>}/>
         <Route path="/reset-password" element={<ResetPasswordPage />} />
+
+        <Route path='/webmail' element={<WebmailOrderPage/>}/>
 
 
         </Routes>

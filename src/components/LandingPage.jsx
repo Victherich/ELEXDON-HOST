@@ -13,6 +13,7 @@ import Partners from './Partners'
 import Partners2 from './Partners2'
 import { useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
+import WebmailCtaBanner from './WebmailCtaBanner'
 
 
 const LandingPage = () => {
@@ -44,6 +45,7 @@ background: linear-gradient(to right, #2B32B2, #1488CC); /* W3C, IE 10+/ Edge, F
       <Hero/>
       <DomainSearch/>
       <AboutComponent/>
+      <WebmailCtaBanner/>
       <Border/>
      
       
