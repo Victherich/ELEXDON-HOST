@@ -82,239 +82,284 @@ const api_domain = "https://www.elexdonhost.com/api_elexdonhost"
 // }, []);
 
 
-useEffect(() => {
-  const STORAGE_KEY = "products1";
+// useEffect(() => {
+//   const STORAGE_KEY = "products1";
 
-  const fetchProducts = () => {
-    fetch(`${api_domain}/get_shared_hosting_products.php?key=${api_key}`)
-      .then(res => res.json())
-      .then(data => {
-        if (data.success && data.products?.product?.length > 0) {
-          const productsData = data.products.product;
+//   const fetchProducts = () => {
+//     fetch(`${api_domain}/get_shared_hosting_products.php?key=${api_key}`)
+//       .then(res => res.json())
+//       .then(data => {
+//         if (data.success && data.products?.product?.length > 0) {
+//           const productsData = data.products.product;
 
-          setProducts(productsData);
+//           setProducts(productsData);
 
-          // Save to localStorage
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(productsData));
-        } else {
-          setError(data.error || "No shared hosting products found.");
-        }
-      })
-      .catch(err => {
-        console.error("Fetch error:", err);
-        setError("Failed to fetch shared hosting plans. Please try again later.");
-      })
-      .finally(() => setLoading(false));
-  };
+//           // Save to localStorage
+//           localStorage.setItem(STORAGE_KEY, JSON.stringify(productsData));
+//         } else {
+//           setError(data.error || "No shared hosting products found.");
+//         }
+//       })
+//       .catch(err => {
+//         console.error("Fetch error:", err);
+//         setError("Failed to fetch shared hosting plans. Please try again later.");
+//       })
+//       .finally(() => setLoading(false));
+//   };
 
-  // 1. Load from localStorage immediately
-  const cached = localStorage.getItem(STORAGE_KEY);
-  if (cached) {
-    try {
-      setProducts(JSON.parse(cached));
-      setLoading(false); // show cached instantly
-    } catch (e) {
-      console.error("LocalStorage parse error:", e);
-    }
-  }
+//   // 1. Load from localStorage immediately
+//   const cached = localStorage.getItem(STORAGE_KEY);
+//   if (cached) {
+//     try {
+//       setProducts(JSON.parse(cached));
+//       setLoading(false); // show cached instantly
+//     } catch (e) {
+//       console.error("LocalStorage parse error:", e);
+//     }
+//   }
 
-  // 2. Fetch fresh data immediately
-  fetchProducts();
+//   // 2. Fetch fresh data immediately
+//   fetchProducts();
 
-  // 3. Fetch every 5 minutes (300000 ms)
-  const interval = setInterval(fetchProducts, 300000);
+//   // 3. Fetch every 5 minutes (300000 ms)
+//   const interval = setInterval(fetchProducts, 300000);
 
-  // Cleanup
-  return () => clearInterval(interval);
-}, []);
-
-
+//   // Cleanup
+//   return () => clearInterval(interval);
+// }, []);
 
 
 
 
 
+// useEffect(() => {
+//   const STORAGE_KEY = "products1";
+
+//   const fetchProducts = () => {
+//     fetch(`${api_domain}/get_shared_hosting_products2.php?key=${api_key}`)
+//       .then(res => res.json())
+//       .then(data => {
+//         // Updated check to match the normalized PHP backend array structure
+//         if (data.success && Array.isArray(data.products) && data.products.length > 0) {
+//           const productsData = data.products;
+
+//           setProducts(productsData);
+
+//           // Save to localStorage
+//           localStorage.setItem(STORAGE_KEY, JSON.stringify(productsData));
+//         } else {
+//           setError(data.error || "No shared hosting products found.");
+//         }
+//       })
+//       .catch(err => {
+//         console.error("Fetch error:", err);
+//         setError("Failed to fetch shared hosting plans. Please try again later.");
+//       })
+//       .finally(() => setLoading(false));
+//   };
+
+//   // 1. Load from localStorage immediately
+//   const cached = localStorage.getItem(STORAGE_KEY);
+//   if (cached) {
+//     try {
+//       setProducts(JSON.parse(cached));
+//       setLoading(false); // show cached instantly
+//     } catch (e) {
+//       console.error("LocalStorage parse error:", e);
+//     }
+//   }
+
+//   // 2. Fetch fresh data immediately
+//   fetchProducts();
+
+//   // 3. Fetch every 5 minutes (300000 ms)
+//   const interval = setInterval(fetchProducts, 300000);
+
+//   // Cleanup
+//   return () => clearInterval(interval);
+// }, [api_domain, api_key]); // Added dependencies to satisfy React hooks best practices
 
 
-useEffect(() => {
-  const STORAGE_KEY = "product2";
 
-  const fetchProducts = () => {
-    fetch(`${api_domain}/get_wordpress_hosting_products.php?key=${api_key}`)
-      .then(res => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then(data => {
-        if (data.products?.product?.length > 0) {
-          const productsData = data.products.product;
+// useEffect(() => {
+//   const STORAGE_KEY = "product2";
 
-          setWordpressProducts(productsData);
+//   const fetchProducts = () => {
+//     fetch(`${api_domain}/get_wordpress_hosting_products.php?key=${api_key}`)
+//       .then(res => {
+//         if (!res.ok) {
+//           throw new Error(`HTTP error! status: ${res.status}`);
+//         }
+//         return res.json();
+//       })
+//       .then(data => {
+//         if (data.products?.product?.length > 0) {
+//           const productsData = data.products.product;
 
-          // Save to localStorage
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(productsData));
+//           setWordpressProducts(productsData);
+
+//           // Save to localStorage
+//           localStorage.setItem(STORAGE_KEY, JSON.stringify(productsData));
 
          
-        } else {
-          setError('No products found. Please try again later.');
+//         } else {
+//           setError('No products found. Please try again later.');
 
           
-        }
-      })
-      .catch(err => {
-        console.error("Fetch error:", err);
-        setError('Failed to fetch WordPress products. Please try again later.');
+//         }
+//       })
+//       .catch(err => {
+//         console.error("Fetch error:", err);
+//         setError('Failed to fetch WordPress products. Please try again later.');
 
        
-      })
-      .finally(() => setLoading(false));
-  };
+//       })
+//       .finally(() => setLoading(false));
+//   };
 
-  // 1. Load from localStorage instantly
-  const cached = localStorage.getItem(STORAGE_KEY);
-  if (cached) {
-    try {
-      setWordpressProducts(JSON.parse(cached));
-      setLoading(false);
-    } catch (e) {
-      console.error("LocalStorage parse error:", e);
-    }
-  }
+//   // 1. Load from localStorage instantly
+//   const cached = localStorage.getItem(STORAGE_KEY);
+//   if (cached) {
+//     try {
+//       setWordpressProducts(JSON.parse(cached));
+//       setLoading(false);
+//     } catch (e) {
+//       console.error("LocalStorage parse error:", e);
+//     }
+//   }
 
-  // 2. Fetch fresh data immediately
-  fetchProducts();
+//   // 2. Fetch fresh data immediately
+//   fetchProducts();
 
-  // 3. Refresh every 5 minutes
-  const interval = setInterval(fetchProducts, 300000);
+//   // 3. Refresh every 5 minutes
+//   const interval = setInterval(fetchProducts, 300000);
 
-  // Cleanup
-  return () => clearInterval(interval);
+//   // Cleanup
+//   return () => clearInterval(interval);
 
-}, []);
-
-
+// }, []);
 
 
 
-useEffect(() => {
-  const STORAGE_KEY = "product4";
 
-  const fetchProducts = () => {
-    fetch(`https://www.elexdonhost.com/api_elexdonhost/get_vps_hosting_products.php?key=${api_key}`)
-      .then(res => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then(data => {
-        if (data?.products?.product?.length > 0) {
-          const filtered = data.products.product.filter(
-            p =>
-              p.type === "server" ||
-              p.type === "hostingaccount" ||
-              p.type === "reselleraccount"
-          );
 
-          setVpsPlans(filtered);
+// useEffect(() => {
+//   const STORAGE_KEY = "product4";
 
-          // Save to localStorage
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
+//   const fetchProducts = () => {
+//     fetch(`https://www.elexdonhost.com/api_elexdonhost/get_vps_hosting_products.php?key=${api_key}`)
+//       .then(res => {
+//         if (!res.ok) {
+//           throw new Error(`HTTP error! status: ${res.status}`);
+//         }
+//         return res.json();
+//       })
+//       .then(data => {
+//         if (data?.products?.product?.length > 0) {
+//           const filtered = data.products.product.filter(
+//             p =>
+//               p.type === "server" ||
+//               p.type === "hostingaccount" ||
+//               p.type === "reselleraccount"
+//           );
+
+//           setVpsPlans(filtered);
+
+//           // Save to localStorage
+//           localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
 
    
-        } else {
-          setError('No VPS plans were found.');
+//         } else {
+//           setError('No VPS plans were found.');
 
-        }
-      })
-      .catch(err => {
-        console.error("Error fetching VPS plans:", err);
-        setError('Failed to fetch VPS plans. Please try again later.');
+//         }
+//       })
+//       .catch(err => {
+//         console.error("Error fetching VPS plans:", err);
+//         setError('Failed to fetch VPS plans. Please try again later.');
 
-      })
-      .finally(() => setLoading(false));
-  };
+//       })
+//       .finally(() => setLoading(false));
+//   };
 
-  // 1. Load cached data instantly
-  const cached = localStorage.getItem(STORAGE_KEY);
-  if (cached) {
-    try {
-      setVpsPlans(JSON.parse(cached));
-      setLoading(false);
-    } catch (e) {
-      console.error("LocalStorage parse error:", e);
-    }
-  }
+//   // 1. Load cached data instantly
+//   const cached = localStorage.getItem(STORAGE_KEY);
+//   if (cached) {
+//     try {
+//       setVpsPlans(JSON.parse(cached));
+//       setLoading(false);
+//     } catch (e) {
+//       console.error("LocalStorage parse error:", e);
+//     }
+//   }
 
-  // 2. Fetch fresh data immediately
-  fetchProducts();
+//   // 2. Fetch fresh data immediately
+//   fetchProducts();
 
-  // 3. Auto-refresh every 5 minutes
-  const interval = setInterval(fetchProducts, 300000);
+//   // 3. Auto-refresh every 5 minutes
+//   const interval = setInterval(fetchProducts, 300000);
 
-  // Cleanup
-  return () => clearInterval(interval);
+//   // Cleanup
+//   return () => clearInterval(interval);
 
-}, []);
-
-
+// }, []);
 
 
-useEffect(() => {
-  const STORAGE_KEY = "product3";
 
-  const fetchProducts = () => {
-    fetch(`${api_domain}/get_reseller_hosting_products.php?key=${api_key}`)
-      .then(res => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then(data => {
-        if (data?.products?.product?.length > 0) {
-          const productsData = data.products.product;
 
-          setPlans(productsData);
+// useEffect(() => {
+//   const STORAGE_KEY = "product3";
 
-          // Save to localStorage
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(productsData));
+//   const fetchProducts = () => {
+//     fetch(`${api_domain}/get_reseller_hosting_products.php?key=${api_key}`)
+//       .then(res => {
+//         if (!res.ok) {
+//           throw new Error(`HTTP error! status: ${res.status}`);
+//         }
+//         return res.json();
+//       })
+//       .then(data => {
+//         if (data?.products?.product?.length > 0) {
+//           const productsData = data.products.product;
 
-        } else {
-          setError('No reseller hosting products were found.');
+//           setPlans(productsData);
 
-        }
-      })
-      .catch(error => {
-        console.error('Failed to fetch reseller plans:', error);
-        setError('Failed to fetch reseller hosting plans. Please try again later.');
-      })
-      .finally(() => setLoading(false));
-  };
+//           // Save to localStorage
+//           localStorage.setItem(STORAGE_KEY, JSON.stringify(productsData));
 
-  // 1. Load cached data instantly
-  const cached = localStorage.getItem(STORAGE_KEY);
-  if (cached) {
-    try {
-      setPlans(JSON.parse(cached));
-      setLoading(false);
-    } catch (e) {
-      console.error("LocalStorage parse error:", e);
-    }
-  }
+//         } else {
+//           setError('No reseller hosting products were found.');
 
-  // 2. Fetch fresh data immediately
-  fetchProducts();
+//         }
+//       })
+//       .catch(error => {
+//         console.error('Failed to fetch reseller plans:', error);
+//         setError('Failed to fetch reseller hosting plans. Please try again later.');
+//       })
+//       .finally(() => setLoading(false));
+//   };
 
-  // 3. Auto-refresh every 5 minutes
-  const interval = setInterval(fetchProducts, 300000);
+//   // 1. Load cached data instantly
+//   const cached = localStorage.getItem(STORAGE_KEY);
+//   if (cached) {
+//     try {
+//       setPlans(JSON.parse(cached));
+//       setLoading(false);
+//     } catch (e) {
+//       console.error("LocalStorage parse error:", e);
+//     }
+//   }
 
-  // Cleanup
-  return () => clearInterval(interval);
+//   // 2. Fetch fresh data immediately
+//   fetchProducts();
 
-}, []);
+//   // 3. Auto-refresh every 5 minutes
+//   const interval = setInterval(fetchProducts, 300000);
+
+//   // Cleanup
+//   return () => clearInterval(interval);
+
+// }, []);
 
 
 

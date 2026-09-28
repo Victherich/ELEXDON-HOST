@@ -1,4 +1,3 @@
-
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import dragon1 from '../Images/f1.png';
@@ -11,158 +10,201 @@ import dragon7 from '../Images/f1.png';
 import dragon8 from '../Images/f2.png';
 import dragon9 from '../Images/f3.png';
 import dragon10 from '../Images/f4.png';
-import bgImg from '../Images/galaxy.gif';
-import modelImg from '../Images/ELogo.png';
 
-const rotate = keyframes`
-  from {
-    transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+const scrollLeft = keyframes`
+  0% {
+    transform: translateX(0);
   }
-  to {
-    transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+  100% {
+    transform: translateX(-50%);
   }
 `;
 
-const GlobalBackground = styled.div`
+const floatOrb = keyframes`
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+  }
+`;
+
+const GlobalBackground = styled.section`
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
-  background-color: #d2d2d2;
+  /* Clean light theme background with subtle grid lines */
+  background-color: #f8fafc;
   background-image:
-    repeating-linear-gradient(to right, transparent 0 100px, #25283b22 100px 101px),
-    repeating-linear-gradient(to bottom, transparent 0 100px, #25283b22 100px 101px);
+    repeating-linear-gradient(to right, transparent 0 100px, rgba(79, 70, 229, 0.04) 100px 101px),
+    repeating-linear-gradient(to bottom, transparent 0 100px, rgba(147, 51, 234, 0.04) 100px 101px);
   position: relative;
-  min-height: 100vh;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: 60px 0;
 
-
-  &::before {
-    position: absolute;
-    // width: min(1400px, 90vw);
-    width:100%;
-    top: 0%;
-    left: 0%;
-    height: 100%;
-    // transform: translateX(-50%);
+  /* Ambient glowing light orbs */
+  &::before, &::after {
     content: '';
-    background-image: url(${bgImg});
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-size:cover;
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
     pointer-events: none;
     z-index: 0;
   }
+
+  &::before {
+    top: 10%;
+    left: 15%;
+    width: 280px;
+    height: 280px;
+    background: rgba(79, 70, 229, 0.08);
+    animation: ${floatOrb} 8s ease-in-out infinite;
+  }
+
+  &::after {
+    bottom: 10%;
+    right: 15%;
+    width: 300px;
+    height: 300px;
+    background: rgba(147, 51, 234, 0.08);
+    animation: ${floatOrb} 10s ease-in-out infinite reverse;
+  }
 `;
 
-const Banner = styled.div`
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
+const HeaderContent = styled.div`
   text-align: center;
-`;
-
-const Slider = styled.div`
-  position: absolute;
-  width: 200px;
-  height: 250px;
-  top: 10%;
-  left: calc(50% - 100px);
-  transform-style: preserve-3d;
-  transform: perspective(1000px);
-  animation: ${rotate} 20s linear infinite;
   z-index: 2;
+  padding: 0 20px 30px 20px;
+
+  h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+    
+    span {
+      background: linear-gradient(135deg, #4f46e5, #9333ea);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 1.6rem;
+    }
+  }
+
+  p {
+    color: #64748b;
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
 `;
 
-const Item = styled.div`
-  position: absolute;
-  inset: 0;
-  transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(550px);
+const SliderContainer = styled.div`
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+  z-index: 2;
+
+  /* Clean gradient fade edges blending into the light background */
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 140px;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  &::before {
+    left: 0;
+    background: linear-gradient(to right, #f8fafc, transparent);
+  }
+
+  &::after {
+    right: 0;
+    background: linear-gradient(to left, #f8fafc, transparent);
+  }
+`;
+
+const Track = styled.div`
+  display: flex;
+  width: max-content;
+  gap: 24px;
+  animation: ${scrollLeft} 35s linear infinite;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+`;
+
+const Card = styled.div`
+  width: 220px;
+  height: 280px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  position: relative;
+
+  &:hover {
+    transform: translateY(-6px);
+    border-color: rgba(147, 51, 234, 0.4);
+    box-shadow: 0 15px 30px -5px rgba(147, 51, 234, 0.15);
+  }
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-`;
-
-const Content = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(1400px, 100vw);
-  padding-bottom: 100px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1;
-`;
-
-const Title = styled.h1`
-  font-family: 'ICA Rubrik', sans-serif;
-  font-size: 16em;
-  line-height: 1em;
-  color: #25283b;
-  position: relative;
-  text-align:center;
-  &::after {
-    position: absolute;
-    content: attr(data-content);
-    inset: 0;
-    -webkit-text-stroke: 2px #d2d2d2;
-    color: transparent;
-    z-index: 2;
+    transition: transform 0.5s ease;
   }
 
-  @media(max-width:884px){
-    display:none;
+  &:hover img {
+    transform: scale(1.05);
   }
-`;
-
-const Author = styled.div`
-  font-family: 'Poppins', sans-serif;
-  text-align: right;
-  max-width: 200px;
-`;
-// 
-const Model = styled.div`
-//   background-image: url(${modelImg});
-  width: 100%;
-  height: 75vh;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background-size: auto 130%;
-  background-repeat: no-repeat;
-  background-position: top center;
-  z-index: 1;
 `;
 
 const Hero2 = () => {
-  const images = [dragon1, dragon2, dragon3, dragon4, dragon5, dragon6, dragon7, dragon8, dragon9, dragon10];
+  const images = [
+    dragon1, dragon2, dragon3, dragon4, dragon5, 
+    dragon6, dragon7, dragon8, dragon9, dragon10
+  ];
+
+  // Duplicate for smooth seamless looping
+  const loopImages = [...images, ...images];
+
   return (
     <GlobalBackground>
-      <Banner>
-        <Slider style={{ '--quantity': images.length }}>
-          {images.map((img, i) => (
-            <Item key={i} style={{ '--position': i + 1 }}>
-              <img src={img} alt={`dragon_${i + 1}`} />
-            </Item>
+      <HeaderContent>
+        <h2>Powered by <span>Elexdon Infrastructure</span></h2>
+        <p>Explore our high-performance cloud assets, templates, and server nodes.</p>
+      </HeaderContent>
+      
+      <SliderContainer>
+        <Track>
+          {loopImages.map((img, i) => (
+            <Card key={i}>
+              <img src={img} alt={`Slide item ${i + 1}`} />
+            </Card>
           ))}
-        </Slider>
-        <Content>
-          <Title data-content="ELEXDON HOST">ELEXDON HOST</Title>
-          <Author>
-            <h2></h2>
-            <p><b></b></p>
-          </Author>
-          <Model />
-        </Content>
-      </Banner>
+        </Track>
+      </SliderContainer>
     </GlobalBackground>
   );
 };

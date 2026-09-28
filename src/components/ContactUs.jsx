@@ -1,4 +1,334 @@
-import React from 'react';
+// import React from 'react';
+// import styled from 'styled-components';
+// import heroBg from '../Images/contact4.jpg';
+// import support1 from '../Images/contact1.jpg';
+// import support2 from '../Images/contact2.jpg';
+// import support3 from '../Images/contact3.jpg';
+// import support4 from '../Images/contact4.jpg';
+// import useAnimateOnScroll from './useAnimateOnScroll';
+// import 'animate.css'
+// import { useState } from 'react';
+
+// const Section = styled.section`
+//   padding: 80px 20px;
+//   text-align: center;
+
+//   h2{
+//   color:#2B32B2;
+//   font-size:2rem;
+//   }
+// `;
+
+// const Hero = styled(Section)`
+//   background-image: url(${heroBg});
+//   background-size: cover;
+//   background-position: center;
+//   color: white;
+//   position: relative;
+//   padding: 150px 20px;
+
+//   &::before {
+//     content: '';
+//     position: absolute;
+//     top: 0; left: 0; right: 0; bottom: 0;
+//     background: rgba(0, 0, 0, 0.6);
+//     z-index: 1;
+//   }
+
+//   div {
+//     position: relative;
+//     z-index: 2;
+//     max-width: 800px;
+//     margin: auto;
+//     font-size:2rem;
+//   }
+// `;
+
+// const CardsContainer = styled.div`
+//   display: grid;
+//   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+//   gap: 30px;
+//   margin-top: 40px;
+// `;
+
+// const Card = styled.div`
+//   background: white;
+//   border-radius: 12px;
+//   overflow: hidden;
+//   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+//   text-align: left;
+
+//   img {
+//     width: 100%;
+//     height: 180px;
+//     object-fit: cover;
+//   }
+
+//   div {
+//     padding: 20px;
+
+//     h3 {
+//       margin-bottom: 10px;
+//       font-size: 1.2rem;
+//       color:#2B32B2;
+//     }
+
+//     p {
+//       font-size: 0.95rem;
+//       color: #555;
+//     }
+//   }
+// `;
+
+// const Form = styled.form`
+//   max-width: 600px;
+//   margin: auto;
+//   display: flex;
+//   flex-direction: column;
+//   gap: 20px;
+
+//   input, textarea {
+//     padding: 15px;
+//     border: 1px solid #ccc;
+//     border-radius: 8px;
+//     font-size: 1rem;
+//   }
+
+//   button {
+//     padding: 15px;
+//     background: #2c3e50;
+//     color: white;
+//     border: none;
+//     border-radius: 8px;
+//     cursor: pointer;
+//     font-size: 1rem;
+//     transition: background 0.3s;
+
+//     &:hover {
+//       background: #1a252f;
+//     }
+//   }
+// `;
+
+// const FAQ = styled.div`
+//   max-width: 800px;
+//   margin: 40px auto;
+//   text-align: left;
+
+//   h3 {
+//     margin-bottom: 15px;
+   
+//   }
+
+//   details {
+//     margin-bottom: 15px;
+//     background: #f1f1f1;
+//     padding: 15px;
+//     border-radius: 8px;
+//   }
+
+//   summary {
+//     font-weight: bold;
+//     cursor: pointer;
+//     color:#2B32B2;
+//   }
+// `;
+
+// const ContactInfo = styled.div`
+// //   background: #1e1e2f;
+
+//   background: #1488CC;  /* fallback for old browsers */
+// background: -webkit-linear-gradient(to right, #2B32B2, #1488CC);  /* Chrome 10-25, Safari 5.1-6 */
+// background: linear-gradient(to right, #2B32B2, #1488CC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+//   color: white;
+//   padding: 40px 20px;
+//   text-align: center;
+//   margin-top: 60px;
+
+//   h4 {
+//     margin-bottom: 10px;
+//     font-size: 1.2rem;
+//   }
+// `;
+
+// const ContactUs = () => {
+
+
+//   const heroTitleAnim = useAnimateOnScroll('animate__fadeInDown animate__slower');
+// const heroSubtitleAnim = useAnimateOnScroll('animate__fadeInUp animate__slower');
+// const a = useAnimateOnScroll('animate__fadeInUp animate__slower');
+// const b = useAnimateOnScroll('animate__fadeInUp animate__slower');
+// const c = useAnimateOnScroll('animate__fadeInUp animate__slower');
+// const d = useAnimateOnScroll('animate__fadeInUp animate__slower');
+// const e = useAnimateOnScroll('animate__fadeInDown animate__slower');
+
+
+//   const [formData, setFormData] = useState({
+//     name: "",
+//     email: "",
+//     phone: "",
+//     message: ""
+//   });
+
+
+//    const [status, setStatus] = useState("");
+
+//   const handleChange = (e) => {
+//     setFormData({
+//       ...formData,
+//       [e.target.name]: e.target.value
+//     });
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+//     try {
+//       const response = await fetch("https://elexdonhost.com/api_elexdonhost/contact_form_endpoint.php", {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify(formData)  
+//       });
+
+//       const data = await response.json();
+
+//       if (data.success) {
+//         setStatus("✅ Message sent successfully!");
+//         setFormData({ name: "", email: "", phone: "", message: "" });
+//       } else {
+//         setStatus("❌ " + data.error);
+//       }
+//     } catch (error) {
+//       setStatus("❌ Failed to send message.");
+//     }
+//   };
+
+  
+
+
+//   return (
+//     <div>
+//       <Hero>
+//         <div>
+//           <h1 ref={heroTitleAnim.ref} className={heroTitleAnim.className}>Need Help? We’re Here for You</h1>
+//           <p ref={heroSubtitleAnim.ref} className={heroSubtitleAnim.className}>Our support team is available 24/7 to assist you with anything you need.</p>
+//         </div>
+//       </Hero>
+
+//       <Section>
+//         <h2 style={{color:"#2B32B2"}}>Why Choose Our Support?</h2>
+//         <CardsContainer>
+//           <Card>
+//             <img src={support1} alt="Fast Response" />
+//             <div>
+//               <h3>Fast Response</h3>
+//               <p>We respond to all support queries quickly and efficiently.</p>
+//             </div>
+//           </Card>
+//           <Card>
+//             <img src={support2} alt="Expert Team" />
+//             <div>
+//               <h3>Expert Team</h3>
+//               <p>Our certified engineers solve issues with deep knowledge.</p>
+//             </div>
+//           </Card>
+//           <Card>
+//             <img src={support3} alt="Knowledge Base" />
+//             <div>
+//               <h3>Extensive Knowledge Base</h3>
+//               <p>Hundreds of guides and articles to help you 24/7.</p>
+//             </div>
+//           </Card>
+//           <Card>
+//             <img src={support4} alt="Live Chat" />
+//             <div>
+//               <h3>Live Chat</h3>
+//               <p>Reach out through our real-time chat system anytime.</p>
+//             </div>
+//           </Card>
+//         </CardsContainer>
+//       </Section>
+
+//       <Section>
+//         <h2 >Contact Our Support Team</h2>
+//          <Form onSubmit={handleSubmit}>
+//       <input
+//         type="text"
+//         name="name"
+//         placeholder="Your Name"
+//         value={formData.name}
+//         onChange={handleChange}
+//         required
+//       />
+
+//       <input
+//         type="email"
+//         name="email"
+//         placeholder="Your Email"
+//         value={formData.email}
+//         onChange={handleChange}
+//         required
+//       />
+
+//       <input
+//         type="text"
+//         name="phone"
+//         placeholder="Your Phone"
+//         value={formData.phone}
+//         onChange={handleChange}
+//         required
+//       />
+
+//       <textarea
+//         name="message"
+//         rows="6"
+//         placeholder="Your Message"
+//         value={formData.message}
+//         onChange={handleChange}
+//         required
+//       ></textarea>
+
+//       <button type="submit">Send Message</button>
+
+//       {status && <p>{status}</p>}
+//     </Form>
+//       </Section>
+
+//       <Section>
+//         <h2>Frequently Asked Questions</h2>
+//         <FAQ>
+//           <details>
+//             <summary>How fast do you respond to support requests?</summary>
+//             <p>Our average response time is less than 30 minutes via live chat or ticket.</p>
+//           </details>
+//           <details>
+//             <summary>Can I get help migrating my website?</summary>
+//             <p>Yes! We offer free website migrations from your old host to Elexdon Host.</p>
+//           </details>
+//           <details>
+//             <summary>Is your support available 24/7?</summary>
+//             <p>Absolutely, we are available every day, all year round, day or night.</p>
+//           </details>
+//         </FAQ>
+//       </Section>
+
+//       <ContactInfo>
+//         <h4>Call Us: +234 818 560 9702</h4>
+//         <h4>Email: support@elexdonhost.com</h4>
+      
+//       </ContactInfo>
+//     </div>
+//   );
+// };
+
+// export default ContactUs;
+
+
+
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import heroBg from '../Images/contact4.jpg';
 import support1 from '../Images/contact1.jpg';
@@ -6,16 +336,18 @@ import support2 from '../Images/contact2.jpg';
 import support3 from '../Images/contact3.jpg';
 import support4 from '../Images/contact4.jpg';
 import useAnimateOnScroll from './useAnimateOnScroll';
-import 'animate.css'
-import { useState } from 'react';
+import 'animate.css';
 
 const Section = styled.section`
-  padding: 80px 20px;
+  padding: 10px;
   text-align: center;
 
-  h2{
-  color:#2B32B2;
-  font-size:2rem;
+  h2 {
+    background: linear-gradient(135deg, #4f46e5, #9333ea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
   }
 `;
 
@@ -25,13 +357,13 @@ const Hero = styled(Section)`
   background-position: center;
   color: white;
   position: relative;
-  padding: 150px 20px;
+  padding: 70px 10px;
 
-  &::before {
+  &::before  {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(15, 23, 42, 0.8);
     z-index: 1;
   }
 
@@ -40,42 +372,59 @@ const Hero = styled(Section)`
     z-index: 2;
     max-width: 800px;
     margin: auto;
-    font-size:2rem;
+    font-size: 1.2rem;
+    padding: 10px;
+    
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      margin: 0;
+    }
   }
 `;
 
 const CardsContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
 `;
 
 const Card = styled.div`
   background: white;
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.08);
+  border: 1px solid rgba(79, 70, 229, 0.1);
   text-align: left;
 
   img {
     width: 100%;
-    height: 180px;
+    height: 120px;
     object-fit: cover;
   }
 
   div {
-    padding: 20px;
+    padding: 10px;
 
     h3 {
-      margin-bottom: 10px;
-      font-size: 1.2rem;
-      color:#2B32B2;
+      margin-bottom: 6px;
+      font-size: 1rem;
+      background: linear-gradient(135deg, #4f46e5, #9333ea);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     p {
-      font-size: 0.95rem;
-      color: #555;
+      font-size: 0.85rem;
+      color: #64748b;
+      margin: 0;
+      line-height: 1.4;
     }
   }
 `;
@@ -85,84 +434,103 @@ const Form = styled.form`
   margin: auto;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.06);
+  border: 1px solid rgba(79, 70, 229, 0.1);
 
   input, textarea {
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
+    padding: 8px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: #4f46e5;
+    }
   }
 
   button {
-    padding: 15px;
-    background: #2c3e50;
+    padding: 8px;
+    background: linear-gradient(135deg, #4f46e5, #9333ea);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 1rem;
-    transition: background 0.3s;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: opacity 0.2s;
 
     &:hover {
-      background: #1a252f;
+      opacity: 0.9;
     }
+  }
+
+  p {
+    font-size: 0.85rem;
+    margin: 0;
   }
 `;
 
 const FAQ = styled.div`
   max-width: 800px;
-  margin: 40px auto;
+  margin: 10px auto;
   text-align: left;
-
-  h3 {
-    margin-bottom: 15px;
-   
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 
   details {
-    margin-bottom: 15px;
-    background: #f1f1f1;
-    padding: 15px;
-    border-radius: 8px;
+    background: #f8fafc;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+    margin: 0;
   }
 
   summary {
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
-    color:#2B32B2;
+    background: linear-gradient(135deg, #4f46e5, #9333ea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 0.95srem;
+  }
+
+  p {
+    font-size: 0.85rem;
+    color: #475569;
+    margin-top: 6px;
+    margin-bottom: 0;
   }
 `;
 
 const ContactInfo = styled.div`
-//   background: #1e1e2f;
-
-  background: #1488CC;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #2B32B2, #1488CC);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #2B32B2, #1488CC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  background: linear-gradient(135deg, #4f46e5, #9333ea);
   color: white;
-  padding: 40px 20px;
+  padding: 10px;
   text-align: center;
-  margin-top: 60px;
+  margin-top: 10px;
+  border-radius: 8px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.15);
 
   h4 {
-    margin-bottom: 10px;
-    font-size: 1.2rem;
+    margin: 4px 0;
+    font-size: 0.95rem;
+    font-weight: 500;
   }
 `;
 
 const ContactUs = () => {
-
-
   const heroTitleAnim = useAnimateOnScroll('animate__fadeInDown animate__slower');
-const heroSubtitleAnim = useAnimateOnScroll('animate__fadeInUp animate__slower');
-const a = useAnimateOnScroll('animate__fadeInUp animate__slower');
-const b = useAnimateOnScroll('animate__fadeInUp animate__slower');
-const c = useAnimateOnScroll('animate__fadeInUp animate__slower');
-const d = useAnimateOnScroll('animate__fadeInUp animate__slower');
-const e = useAnimateOnScroll('animate__fadeInDown animate__slower');
-
+  const heroSubtitleAnim = useAnimateOnScroll('animate__fadeInUp animate__slower');
 
   const [formData, setFormData] = useState({
     name: "",
@@ -171,8 +539,7 @@ const e = useAnimateOnScroll('animate__fadeInDown animate__slower');
     message: ""
   });
 
-
-   const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("");
 
   const handleChange = (e) => {
     setFormData({
@@ -206,9 +573,6 @@ const e = useAnimateOnScroll('animate__fadeInDown animate__slower');
     }
   };
 
-  
-
-
   return (
     <div>
       <Hero>
@@ -219,7 +583,7 @@ const e = useAnimateOnScroll('animate__fadeInDown animate__slower');
       </Hero>
 
       <Section>
-        <h2 style={{color:"#2B32B2"}}>Why Choose Our Support?</h2>
+        <h2>Why Choose Our Support?</h2>
         <CardsContainer>
           <Card>
             <img src={support1} alt="Fast Response" />
@@ -253,48 +617,48 @@ const e = useAnimateOnScroll('animate__fadeInDown animate__slower');
       </Section>
 
       <Section>
-        <h2 >Contact Our Support Team</h2>
-         <Form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="name"
-        placeholder="Your Name"
-        value={formData.name}
-        onChange={handleChange}
-        required
-      />
+        <h2>Contact Our Support Team</h2>
+        <Form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
 
-      <input
-        type="email"
-        name="email"
-        placeholder="Your Email"
-        value={formData.email}
-        onChange={handleChange}
-        required
-      />
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
 
-      <input
-        type="text"
-        name="phone"
-        placeholder="Your Phone"
-        value={formData.phone}
-        onChange={handleChange}
-        required
-      />
+          <input
+            type="text"
+            name="phone"
+            placeholder="Your Phone"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+          />
 
-      <textarea
-        name="message"
-        rows="6"
-        placeholder="Your Message"
-        value={formData.message}
-        onChange={handleChange}
-        required
-      ></textarea>
+          <textarea
+            name="message"
+            rows="4"
+            placeholder="Your Message"
+            value={formData.message}
+            onChange={handleChange}
+            required
+          ></textarea>
 
-      <button type="submit">Send Message</button>
+          <button type="submit">Send Message</button>
 
-      {status && <p>{status}</p>}
-    </Form>
+          {status && <p>{status}</p>}
+        </Form>
       </Section>
 
       <Section>
@@ -318,7 +682,6 @@ const e = useAnimateOnScroll('animate__fadeInDown animate__slower');
       <ContactInfo>
         <h4>Call Us: +234 818 560 9702</h4>
         <h4>Email: support@elexdonhost.com</h4>
-      
       </ContactInfo>
     </div>
   );

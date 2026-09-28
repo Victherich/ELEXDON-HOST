@@ -1,21 +1,186 @@
 
+// // import React, { useState } from "react";
+// // import styled from "styled-components";
+// // import { Fade } from "react-awesome-reveal";
+
+// // // ---------- Styled Components ----------
+// // const PageWrapper = styled.div`
+// //   font-family: "Inter", sans-serif;
+// //   padding: 2rem;
+// //   max-width: 900px;
+// //   margin: auto;
+// //   padding-top:100px;
+// // `;
+
+// // const Title = styled.h1`
+// //   text-align: center;
+// //   color: #0d47a1;
+// //   margin-bottom: 1rem;
+// // `;
+
+// // const SearchBox = styled.div`
+// //   display: flex;
+// //   flex-direction: column;
+// //   align-items: center;
+// //   margin-bottom: 2rem;
+
+// //   input {
+// //     width: 100%;
+// //     max-width: 500px;
+// //     padding: 0.8rem 1rem;
+// //     border: 2px solid #ddd;
+// //     border-radius: 8px;
+// //     font-size: 1rem;
+// //     margin-bottom: 1rem;
+// //   }
+
+// //   button {
+// //     background: #ff6b00;
+// //     color: white;
+// //     border: none;
+// //     padding: 0.8rem 1.5rem;
+// //     border-radius: 8px;
+// //     cursor: pointer;
+// //     font-size: 1rem;
+// //     transition: 0.3s;
+
+// //     &:hover {
+// //       background: #e65a00;
+// //     }
+// //   }
+// // `;
+
+// // const ResultBox = styled.div`
+// //   background: #f9f9f9;
+// //   padding: 1.5rem;
+// //   border-radius: 12px;
+// //   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+// //   margin-top: 2rem;
+// //   white-space: pre-wrap;
+// //   font-family: monospace;
+// //   font-size: 0.9rem;
+// // `;
+
+// // const ErrorMsg = styled.p`
+// //   color: red;
+// //   text-align: center;
+// // `;
+
+// // // ---------- Component ----------
+// // export default function WhoisLookup() {
+// //   const [domain, setDomain] = useState("");
+// //   const [loading, setLoading] = useState(false);
+// //   const [whoisData, setWhoisData] = useState(null);
+// //   const [error, setError] = useState("");
+
+// //   const handleLookup = async () => {
+// //     if (!domain) {
+// //       setError("Please enter a domain name");
+// //       return;
+// //     }
+// //     setError("");
+// //     setLoading(true);
+// //     setWhoisData(null);
+
+// //     try {
+// //       // 🔑 Replace YOUR_API_KEY with your WhoisXML API key
+// //       const response = await fetch(
+// //         `https://whoisxmlapi.com/whoisserver/Whois?apiKey=YOUR_API_KEY&domainName=${domain}&outputFormat=JSON`
+// //       );
+
+// //       const data = await response.json();
+// //       setWhoisData(data);
+// //     } catch (err) {
+// //       setError("Error fetching WHOIS details. Try again later.");
+// //     } finally {
+// //       setLoading(false);
+// //     }
+// //   };
+
+// //   return (
+// //     <PageWrapper>
+// //       <Fade>
+// //         <Title>WHOIS Lookup</Title>
+// //         <p style={{ textAlign: "center", marginBottom: "2rem" }}>
+// //           Enter a domain name to see its registration details.
+// //         </p>
+
+// //         <SearchBox>
+// //           <input
+// //             type="text"
+// //             placeholder="e.g. elexdontech.com"
+// //             value={domain}
+// //             onChange={(e) => setDomain(e.target.value)}
+// //           />
+// //           <button onClick={handleLookup} disabled={loading}>
+// //             {loading ? "Looking up..." : "Search WHOIS"}
+// //           </button>
+// //         </SearchBox>
+
+// //         {error && <ErrorMsg>{error}</ErrorMsg>}
+
+// //         {whoisData && (
+// //           <ResultBox>
+// //             <strong>Registrar:</strong>{" "}
+// //             {whoisData?.WhoisRecord?.registryData?.registrarName || "N/A"}{"\n"}
+// //             <strong>Created:</strong>{" "}
+// //             {whoisData?.WhoisRecord?.registryData?.createdDate || "N/A"}{"\n"}
+// //             <strong>Expires:</strong>{" "}
+// //             {whoisData?.WhoisRecord?.registryData?.expiresDate || "N/A"}{"\n"}
+// //             <strong>Status:</strong>{" "}
+// //             {whoisData?.WhoisRecord?.registryData?.status || "N/A"}{"\n"}
+// //             <strong>Nameservers:</strong>{" "}
+// //             {whoisData?.WhoisRecord?.registryData?.nameServers?.hostNames?.join(
+// //               ", "
+// //             ) || "N/A"}
+// //           </ResultBox>
+// //         )}
+// //       </Fade>
+// //     </PageWrapper>
+// //   );
+// // }
+
+
+
+
 // import React, { useState } from "react";
-// import styled from "styled-components";
+// import styled, { keyframes } from "styled-components";
 // import { Fade } from "react-awesome-reveal";
+
+// // ---------- Animations ----------
+// const spin = keyframes`
+//   0% { transform: rotate(0deg); }
+//   100% { transform: rotate(360deg); }
+// `;
 
 // // ---------- Styled Components ----------
 // const PageWrapper = styled.div`
 //   font-family: "Inter", sans-serif;
 //   padding: 2rem;
-//   max-width: 900px;
+//   max-width: 100%;
 //   margin: auto;
-//   padding-top:100px;
+//   padding-top: 100px;
+//   background:rgba(0,0,255,0.2);
+  
+// `;
+
+// const Hero = styled.div`
+//   text-align: center;
+//   margin-bottom: 3rem;
 // `;
 
 // const Title = styled.h1`
-//   text-align: center;
-//   color: #0d47a1;
-//   margin-bottom: 1rem;
+//   font-size: 2.5rem;
+//   background: linear-gradient(90deg, #0d47a1, #1976d2);
+//   -webkit-background-clip: text;
+//   -webkit-text-fill-color: transparent;
+//   font-weight: 700;
+//   margin-bottom: 0.5rem;
+// `;
+
+// const Subtitle = styled.p`
+//   color: #555;
+//   font-size: 1.1rem;
 // `;
 
 // const SearchBox = styled.div`
@@ -23,47 +188,90 @@
 //   flex-direction: column;
 //   align-items: center;
 //   margin-bottom: 2rem;
+//   background: rgba(255, 255, 255, 0.7);
+//   backdrop-filter: blur(10px);
+//   padding: 2rem;
+//   border-radius: 16px;
+//   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 
 //   input {
 //     width: 100%;
 //     max-width: 500px;
-//     padding: 0.8rem 1rem;
+//     padding: 1rem 1.2rem;
 //     border: 2px solid #ddd;
-//     border-radius: 8px;
+//     border-radius: 12px;
 //     font-size: 1rem;
 //     margin-bottom: 1rem;
+//     outline: none;
+//     transition: 0.3s;
+
+//     &:focus {
+//       border-color: #1976d2;
+//       box-shadow: 0 0 8px rgba(25, 118, 210, 0.3);
+//     }
 //   }
 
 //   button {
-//     background: #ff6b00;
+//     background: linear-gradient(90deg, #ff6b00, #ff9100);
 //     color: white;
 //     border: none;
-//     padding: 0.8rem 1.5rem;
-//     border-radius: 8px;
+//     padding: 0.9rem 1.6rem;
+//     border-radius: 12px;
 //     cursor: pointer;
 //     font-size: 1rem;
+//     font-weight: 600;
 //     transition: 0.3s;
 
 //     &:hover {
-//       background: #e65a00;
+//       background: linear-gradient(90deg, #e65a00, #ff6b00);
+//       transform: translateY(-2px);
+//     }
+
+//     &:disabled {
+//       background: #ccc;
+//       cursor: not-allowed;
 //     }
 //   }
 // `;
 
+// const Loader = styled.div`
+//   border: 4px solid #f3f3f3;
+//   border-top: 4px solid #1976d2;
+//   border-radius: 50%;
+//   width: 28px;
+//   height: 28px;
+//   animation: ${spin} 1s linear infinite;
+//   margin: 1rem auto;
+// `;
+
 // const ResultBox = styled.div`
-//   background: #f9f9f9;
-//   padding: 1.5rem;
-//   border-radius: 12px;
-//   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+//   background: #fff;
+//   padding: 2rem;
+//   border-radius: 16px;
+//   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 //   margin-top: 2rem;
-//   white-space: pre-wrap;
-//   font-family: monospace;
-//   font-size: 0.9rem;
+// `;
+
+// const Row = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   padding: 0.7rem 0;
+//   border-bottom: 1px solid #eee;
+
+//   &:last-child {
+//     border-bottom: none;
+//   }
+
+//   strong {
+//     color: #0d47a1;
+//   }
 // `;
 
 // const ErrorMsg = styled.p`
 //   color: red;
 //   text-align: center;
+//   margin-top: 1rem;
+//   font-weight: 500;
 // `;
 
 // // ---------- Component ----------
@@ -75,7 +283,7 @@
 
 //   const handleLookup = async () => {
 //     if (!domain) {
-//       setError("Please enter a domain name");
+//       setError("⚠️ Please enter a domain name");
 //       return;
 //     }
 //     setError("");
@@ -91,7 +299,7 @@
 //       const data = await response.json();
 //       setWhoisData(data);
 //     } catch (err) {
-//       setError("Error fetching WHOIS details. Try again later.");
+//       setError("❌ Error fetching WHOIS details. Try again later.");
 //     } finally {
 //       setLoading(false);
 //     }
@@ -100,10 +308,12 @@
 //   return (
 //     <PageWrapper>
 //       <Fade>
-//         <Title>WHOIS Lookup</Title>
-//         <p style={{ textAlign: "center", marginBottom: "2rem" }}>
-//           Enter a domain name to see its registration details.
-//         </p>
+//         <Hero>
+//           <Title>WHOIS Lookup</Title>
+//           <Subtitle>
+//             Find complete domain registration details instantly 🚀
+//           </Subtitle>
+//         </Hero>
 
 //         <SearchBox>
 //           <input
@@ -117,22 +327,44 @@
 //           </button>
 //         </SearchBox>
 
+//         {loading && <Loader />}
+
 //         {error && <ErrorMsg>{error}</ErrorMsg>}
 
 //         {whoisData && (
 //           <ResultBox>
-//             <strong>Registrar:</strong>{" "}
-//             {whoisData?.WhoisRecord?.registryData?.registrarName || "N/A"}{"\n"}
-//             <strong>Created:</strong>{" "}
-//             {whoisData?.WhoisRecord?.registryData?.createdDate || "N/A"}{"\n"}
-//             <strong>Expires:</strong>{" "}
-//             {whoisData?.WhoisRecord?.registryData?.expiresDate || "N/A"}{"\n"}
-//             <strong>Status:</strong>{" "}
-//             {whoisData?.WhoisRecord?.registryData?.status || "N/A"}{"\n"}
-//             <strong>Nameservers:</strong>{" "}
-//             {whoisData?.WhoisRecord?.registryData?.nameServers?.hostNames?.join(
-//               ", "
-//             ) || "N/A"}
+//             <Row>
+//               <strong>Registrar:</strong>
+//               <span>
+//                 {whoisData?.WhoisRecord?.registryData?.registrarName || "N/A"}
+//               </span>
+//             </Row>
+//             <Row>
+//               <strong>Created:</strong>
+//               <span>
+//                 {whoisData?.WhoisRecord?.registryData?.createdDate || "N/A"}
+//               </span>
+//             </Row>
+//             <Row>
+//               <strong>Expires:</strong>
+//               <span>
+//                 {whoisData?.WhoisRecord?.registryData?.expiresDate || "N/A"}
+//               </span>
+//             </Row>
+//             <Row>
+//               <strong>Status:</strong>
+//               <span>
+//                 {whoisData?.WhoisRecord?.registryData?.status || "N/A"}
+//               </span>
+//             </Row>
+//             <Row>
+//               <strong>Nameservers:</strong>
+//               <span>
+//                 {whoisData?.WhoisRecord?.registryData?.nameServers?.hostNames?.join(
+//                   ", "
+//                 ) || "N/A"}
+//               </span>
+//             </Row>
 //           </ResultBox>
 //         )}
 //       </Fade>
@@ -141,11 +373,11 @@
 // }
 
 
-
-
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { Fade } from "react-awesome-reveal";
+import { FaSearch, FaGlobe, FaShieldAlt, FaCalendarAlt, FaServer, FaCheckCircle } from "react-icons/fa";
+import transferHero from '../Images/domaintransferimg.jpg'; // Or your preferred background image
 
 // ---------- Animations ----------
 const spin = keyframes`
@@ -156,122 +388,210 @@ const spin = keyframes`
 // ---------- Styled Components ----------
 const PageWrapper = styled.div`
   font-family: "Inter", sans-serif;
-  padding: 2rem;
-  max-width: 100%;
-  margin: auto;
-  padding-top: 100px;
-  background:rgba(0,0,255,0.2);
-  
+  background-image: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.92) 0%,
+      rgba(30, 27, 75, 0.88) 100%
+    ),
+    url(${transferHero});
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #f8fafc;
+  padding: 80px 20px 20px 20px;
+  // min-height: 100vh;
+`;
+
+const ContentContainer = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
 const Hero = styled.div`
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 40px;
+`;
+
+const BadgeHeader = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(147, 51, 234, 0.15);
+  border-left: 3px solid #a855f7;
+  background: linear-gradient(135deg, #c084fc, #e879f9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+
+  svg {
+    -webkit-text-fill-color: initial;
+    color: #c084fc;
+  }
 `;
 
 const Title = styled.h1`
-  font-size: 2.5rem;
-  background: linear-gradient(90deg, #0d47a1, #1976d2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  // background: linear-gradient(135deg, #c084fc, #e879f9);
+  // -webkit-background-clip: text;
+  // -webkit-text-fill-color: transparent;
+  font-weight: 900;
+  margin: 0 0 16px 0;
+  color:white;
 `;
 
 const Subtitle = styled.p`
-  color: #555;
-  font-size: 1.1rem;
+  color: #94a3b8;
+  font-size: 1.15rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
 `;
 
 const SearchBox = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 2rem;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  padding: 2rem;
+  gap: 16px;
+  max-width: 700px;
+  margin: 0 auto 40px auto;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(16px);
+  padding: 24px;
   border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(147, 51, 234, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 
   input {
-    width: 100%;
-    max-width: 500px;
-    padding: 1rem 1.2rem;
-    border: 2px solid #ddd;
-    border-radius: 12px;
+    flex: 1;
+    padding: 14px 16px;
+    border: 1px solid rgba(147, 51, 234, 0.3);
+    border-radius: 10px;
     font-size: 1rem;
-    margin-bottom: 1rem;
+    background: #090d16;
+    color: #f8fafc;
     outline: none;
-    transition: 0.3s;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
 
     &:focus {
-      border-color: #1976d2;
-      box-shadow: 0 0 8px rgba(25, 118, 210, 0.3);
+      border-color: #a855f7;
+      box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.25);
+    }
+
+    &::placeholder {
+      color: #64748b;
     }
   }
 
   button {
-    background: linear-gradient(90deg, #ff6b00, #ff9100);
+    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
     color: white;
     border: none;
-    padding: 0.9rem 1.6rem;
-    border-radius: 12px;
+    padding: 14px 28px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 1rem;
-    font-weight: 600;
-    transition: 0.3s;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+    transition: all 0.3s ease;
 
     &:hover {
-      background: linear-gradient(90deg, #e65a00, #ff6b00);
       transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(168, 85, 247, 0.5);
+      background: linear-gradient(135deg, #6d28d9 0%, #9333ea 100%);
     }
 
     &:disabled {
-      background: #ccc;
+      background: #334155;
+      box-shadow: none;
       cursor: not-allowed;
+      transform: none;
+      color: #94a3b8;
     }
   }
 `;
 
 const Loader = styled.div`
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #1976d2;
+  border: 4px solid rgba(147, 51, 234, 0.2);
+  border-top: 4px solid #a855f7;
   border-radius: 50%;
-  width: 28px;
-  height: 28px;
+  width: 36px;
+  height: 36px;
   animation: ${spin} 1s linear infinite;
-  margin: 1rem auto;
+  margin: 20px auto;
 `;
 
-const ResultBox = styled.div`
-  background: #fff;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-  margin-top: 2rem;
+const ResultGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
-const Row = styled.div`
+const ResultItem = styled.div`
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(12px);
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid rgba(147, 51, 234, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   display: flex;
-  justify-content: space-between;
-  padding: 0.7rem 0;
-  border-bottom: 1px solid #eee;
+  flex-direction: column;
+  gap: 8px;
 
-  &:last-child {
-    border-bottom: none;
+  &.full-width {
+    grid-column: 1 / -1;
   }
 
-  strong {
-    color: #0d47a1;
+  .label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #cbd5e1;
+
+    svg {
+      color: #c084fc;
+    }
+  }
+
+  .value {
+    font-size: 1.05rem;
+    color: #f1f5f9;
+    font-weight: 600;
+    word-break: break-word;
   }
 `;
 
 const ErrorMsg = styled.p`
-  color: red;
+  color: #f87171;
   text-align: center;
-  margin-top: 1rem;
-  font-weight: 500;
+  margin-top: 20px;
+  font-weight: 600;
+  background: rgba(127, 29, 29, 0.3);
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  padding: 12px;
+  border-radius: 10px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 // ---------- Component ----------
@@ -291,7 +611,6 @@ export default function WhoisLookup() {
     setWhoisData(null);
 
     try {
-      // 🔑 Replace YOUR_API_KEY with your WhoisXML API key
       const response = await fetch(
         `https://whoisxmlapi.com/whoisserver/Whois?apiKey=YOUR_API_KEY&domainName=${domain}&outputFormat=JSON`
       );
@@ -307,68 +626,84 @@ export default function WhoisLookup() {
 
   return (
     <PageWrapper>
-      <Fade>
-        <Hero>
-          <Title>WHOIS Lookup</Title>
-          <Subtitle>
-            Find complete domain registration details instantly 🚀
-          </Subtitle>
-        </Hero>
+      <ContentContainer>
+        <Fade>
+          <Hero>
+            <BadgeHeader>
+              <FaGlobe /> Domain Intelligence
+            </BadgeHeader>
+            <Title>WHOIS Lookup</Title>
+            <Subtitle>
+              Find complete domain registration details, name servers, and expiration timelines instantly 🚀
+            </Subtitle>
+          </Hero>
 
-        <SearchBox>
-          <input
-            type="text"
-            placeholder="e.g. elexdontech.com"
-            value={domain}
-            onChange={(e) => setDomain(e.target.value)}
-          />
-          <button onClick={handleLookup} disabled={loading}>
-            {loading ? "Looking up..." : "Search WHOIS"}
-          </button>
-        </SearchBox>
+          <SearchBox>
+            <input
+              type="text"
+              placeholder="e.g. elexdonhost.com"
+              value={domain}
+              onChange={(e) => setDomain(e.target.value)}
+            />
+            <button onClick={handleLookup} disabled={loading}>
+              {loading ? "Searching..." : <><FaSearch /> Search WHOIS</>}
+            </button>
+          </SearchBox>
 
-        {loading && <Loader />}
+          {loading && <Loader />}
 
-        {error && <ErrorMsg>{error}</ErrorMsg>}
+          {error && <ErrorMsg>{error}</ErrorMsg>}
 
-        {whoisData && (
-          <ResultBox>
-            <Row>
-              <strong>Registrar:</strong>
-              <span>
-                {whoisData?.WhoisRecord?.registryData?.registrarName || "N/A"}
-              </span>
-            </Row>
-            <Row>
-              <strong>Created:</strong>
-              <span>
-                {whoisData?.WhoisRecord?.registryData?.createdDate || "N/A"}
-              </span>
-            </Row>
-            <Row>
-              <strong>Expires:</strong>
-              <span>
-                {whoisData?.WhoisRecord?.registryData?.expiresDate || "N/A"}
-              </span>
-            </Row>
-            <Row>
-              <strong>Status:</strong>
-              <span>
-                {whoisData?.WhoisRecord?.registryData?.status || "N/A"}
-              </span>
-            </Row>
-            <Row>
-              <strong>Nameservers:</strong>
-              <span>
-                {whoisData?.WhoisRecord?.registryData?.nameServers?.hostNames?.join(
-                  ", "
-                ) || "N/A"}
-              </span>
-            </Row>
-          </ResultBox>
-        )}
-      </Fade>
+          {whoisData && (
+            <ResultGrid>
+              <ResultItem>
+                <div className="label">
+                  <FaShieldAlt /> Registrar
+                </div>
+                <div className="value">
+                  {whoisData?.WhoisRecord?.registryData?.registrarName || "N/A"}
+                </div>
+              </ResultItem>
+
+              <ResultItem>
+                <div className="label">
+                  <FaCalendarAlt /> Created Date
+                </div>
+                <div className="value">
+                  {whoisData?.WhoisRecord?.registryData?.createdDate || "N/A"}
+                </div>
+              </ResultItem>
+
+              <ResultItem>
+                <div className="label">
+                  <FaCalendarAlt /> Expiration Date
+                </div>
+                <div className="value">
+                  {whoisData?.WhoisRecord?.registryData?.expiresDate || "N/A"}
+                </div>
+              </ResultItem>
+
+              <ResultItem>
+                <div className="label">
+                  <FaCheckCircle /> Domain Status
+                </div>
+                <div className="value">
+                  {whoisData?.WhoisRecord?.registryData?.status || "N/A"}
+                </div>
+              </ResultItem>
+
+              <ResultItem className="full-width">
+                <div className="label">
+                  <FaServer /> Name Servers
+                </div>
+                <div className="value">
+                  {whoisData?.WhoisRecord?.registryData?.nameServers?.hostNames?.join(", ") || "N/A"}
+                </div>
+              </ResultItem>
+            </ResultGrid>
+          )}
+        </Fade>
+      </ContentContainer>
     </PageWrapper>
   );
 }
-
