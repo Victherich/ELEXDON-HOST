@@ -462,7 +462,7 @@ const Button = styled.button`
 const PAYPAL_CLIENT_ID = 'AY3JP-UI68WChZpC_0f7oTadUrItrOcSwqL2E4GVFJHfo-4QPabv308FQRUTfmDS4jfNFYi9AbLZh9iV';
 
 const PricingModal = ({ isOpen, onClose, product, tld, domainName, domainType, billingCycle, email, handleSubmit, checkoutType, currency }) => {
-  const { domainPricings, dollarRate } = useContext(Context);
+  const { domainPricings, dollarRate , api_key,api_domain, paystack_key} = useContext(Context);
   const domain = domainPricings.find((e) => e.domain === tld);
 
   const [domainPrice, setDomainPrice] = useState(0);
@@ -557,13 +557,12 @@ console.log(dollarAmount)
   const payWithPaystack = () => {
     const paystack = new PaystackPop();
     paystack.newTransaction({
-      //  key: "pk_test_60e1f53bba7c80b60029bf611a26a66a9a22d4e4",
-      key: "pk_live_3626fe7772aaca28a10724ebb1f9727dfcc5d6cb",
+      key: paystack_key,
       amount: Math.ceil(total * 100),
       email: email,
       onSuccess: (transaction) => {
-        handleVerify(transaction.reference);
-      //  handleSubmit('TEST');
+        
+       handleSubmit(transaction.reference);
       },
       onCancel: () => {
         Swal.fire({ icon: "warning", text: "Payment cancelled by user.", showConfirmButton: true });
@@ -588,7 +587,7 @@ console.log(dollarAmount)
       }
     });
     try {
-      const response = await fetch('https://www.elexdonhost.com/api_elexdonhost/verify_payment.php', {
+      const response = await fetch(`${api_domain}/verify_payment.php`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -716,7 +715,7 @@ console.log(dollarAmount)
                   />
                 </PayPalScriptProvider>
               </div>
-            <Button style={{ background: "green" }} onClick={()=>setBtModalOpen(true)}>Bitcoin</Button>
+            {/* <Button style={{ background: "green" }} onClick={()=>setBtModalOpen(true)}>Bitcoin</Button> */}
             
             <Button style={{ background: "gray" }} onClick={onClose}>Cancel</Button>
           </ModalContainer>

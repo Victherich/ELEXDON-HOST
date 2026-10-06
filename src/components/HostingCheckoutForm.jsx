@@ -23,7 +23,7 @@ const PageWrapper = styled.div`
 
   &::before {
     content: "";
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.7);
     position: absolute;
     inset: 0;
     z-index: 1;
@@ -43,7 +43,7 @@ const PageWrapper = styled.div`
 const FormContainer = styled.form`
   width: 100%;
   max-width: 900px;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.7);
   border-radius: 20px;
   padding: 2.5rem;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
@@ -209,19 +209,7 @@ console.log(form)
 }, [product]);
 
 
-//   const [form, setForm] = useState({
-//     firstname: "",
-//     lastname: "",
-//     email: "",
-//     password: "",
-//     domain: "",
-//     tld: "", 
-//     domaintype: "",
-//     billingcycle: "",
-//     pid: pid,     //we they com o
-//   });
 
-//   console.log(form);
 
    const fullDomain = form.domain.trim() + form.tld;
 
@@ -229,7 +217,7 @@ console.log(form)
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [domainStatus, setDomainStatus] = useState(null);
+  const [domainStatus, setDomainStatus] = useState('available');
   const [checkingDomain, setCheckingDomain] = useState(false);
   const [checkoutType, setCheckoutType]=useState(false);
   const {api_key, api_domain}=useContext(Context);
@@ -241,8 +229,103 @@ console.log(form)
 
 
 
-  const checkDomainAvailability = async () => {
-    if (!form.domain) {
+
+
+
+  // const checkDomainAvailability = async () => {
+  //   if (!form.domain) { 
+  //     Swal.fire({ icon: "warning", text: "Please enter a domain." });
+  //     return;
+  //   }
+  //   if (!form.domaintype) {
+  //     Swal.fire({ icon: "warning", text: "Please select a domain type." });
+  //     return;
+  //   }
+
+  //      if (!form.tld) {
+  //     Swal.fire({ icon: "warning", text: "Please select a TLD." });
+  //     return;
+  //   }
+
+   
+
+  //   setCheckingDomain(true);
+  //   setDomainStatus(null);
+
+  //   Swal.fire({
+  //     title: "Checking domain...",
+  //     text: "Please wait while we check availability.",
+  //     allowOutsideClick: false,
+  //     didOpen: () => {
+  //       Swal.showLoading();
+  //     },
+  //   });
+
+  //   try {
+  //     const res = await fetch(`${api_domain}/check_domain.php?key=${api_key}`, {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ domain: fullDomain, type: "register" }),
+  //     });
+
+  //     const data = await res.json();
+
+  //     if (form.domaintype === "register") {
+  //       if (data.available) {
+  //         setDomainStatus("available");
+  //         Swal.fire({
+  //           icon: "success",
+  //           title: "Domain Available",
+  //           text: "Great! The domain is available for registration.",
+  //         });
+  //       } else {
+  //         setDomainStatus("unavailable");
+  //         Swal.fire({
+  //           icon: "error",
+  //           title: "Domain Unavailable",
+  //           text: "Sorry, that domain is not available for registration.",
+  //         });
+  //       }
+  //     } else if (form.domaintype === "transfer" || form.domaintype === "owndomain") {
+  //       if (data.available) {
+  //         // If domain is available, it means NOT registered, so can't transfer/use own domain
+  //         setDomainStatus("unavailable");
+  //         Swal.fire({
+  //           icon: "error",
+  //           title: "Domain Not Registered",
+  //           text: "This domain is not registered and cannot be transferred or used as your own.",
+  //         });
+  //       } else {
+  //         setDomainStatus("available");
+  //         Swal.fire({
+  //           icon: "success",
+  //           title: "Domain Registered",
+  //           text: "The domain is registered and can be transferred or used.",
+  //         });
+  //       }
+  //     } else {
+  //       setDomainStatus("error");
+  //       Swal.fire({
+  //         icon: "error",
+  //         title: "Error",
+  //         text: "Invalid domain type selected.",
+  //       });
+  //     }
+  //   } catch (err) {
+  //     console.error("Domain check error:", err);
+  //     setDomainStatus("error");
+  //     Swal.fire({
+  //       icon: "error",
+  //       title: "Error",
+  //       text: "There was an error checking the domain. Please try again.",
+  //     });
+  //   } finally {
+  //     setCheckingDomain(false);
+  //   }
+  // };
+
+const checkDomainAvailability = async () => {
+    if (!form.domain) { 
       Swal.fire({ icon: "warning", text: "Please enter a domain." });
       return;
     }
@@ -250,13 +333,10 @@ console.log(form)
       Swal.fire({ icon: "warning", text: "Please select a domain type." });
       return;
     }
-
-       if (!form.tld) {
+    if (!form.tld) {
       Swal.fire({ icon: "warning", text: "Please select a TLD." });
       return;
     }
-
-   
 
     setCheckingDomain(true);
     setDomainStatus(null);
@@ -270,14 +350,24 @@ console.log(form)
       },
     });
 
+    // Combine your domain input and TLD into fullDomain
+    const fullDomain = `${form.domain}${form.tld}`;
+
     try {
-      const res = await fetch(`${api_domain}/check_domain.php?key=${api_key}`, {
+      const res = await fetch(`${api_domain}/check_domain_advanced.php?key=${api_key}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ domain: fullDomain, type: "register" }),
+        body: JSON.stringify({ 
+          domain: fullDomain, 
+          action_type: form.domaintype // Passes 'register', 'transfer', or 'owndomain'
+        }),
       });
 
       const data = await res.json();
+
+      if (!data.success) {
+        throw new Error(data.error || 'Server error');
+      }
 
       if (form.domaintype === "register") {
         if (data.available) {
@@ -296,20 +386,29 @@ console.log(form)
           });
         }
       } else if (form.domaintype === "transfer" || form.domaintype === "owndomain") {
-        if (data.available) {
-          // If domain is available, it means NOT registered, so can't transfer/use own domain
+        if (form.domaintype === "owndomain") {
+          // Own domain doesn't need external availability checks
+          setDomainStatus("available");
+          Swal.fire({
+            icon: "success",
+            title: "Domain Accepted",
+            text: "Your own domain has been accepted. Update nameservers after checkout.",
+          });
+        } else if (data.available) {
+          // If domain is available, it means it's NOT registered, so user can't transfer it
           setDomainStatus("unavailable");
           Swal.fire({
             icon: "error",
             title: "Domain Not Registered",
-            text: "This domain is not registered and cannot be transferred or used as your own.",
+            text: "This domain is not registered anywhere and cannot be transferred.",
           });
         } else {
+          // If it's unavailable in WHOIS, it means it *is* registered, so transfer is possible!
           setDomainStatus("available");
           Swal.fire({
             icon: "success",
             title: "Domain Registered",
-            text: "The domain is registered and can be transferred or used.",
+            text: "The domain is registered and ready to be transferred.",
           });
         }
       } else {
@@ -326,14 +425,12 @@ console.log(form)
       Swal.fire({
         icon: "error",
         title: "Error",
-        text: "There was an error checking the domain. Please try again.",
+        text: err.message || "There was an error checking the domain. Please try again.",
       });
     } finally {
       setCheckingDomain(false);
     }
   };
-
-
 
 
   const handleChange = (e) => {
@@ -448,8 +545,8 @@ const handleSubmit = async (reference ) => {
 
   // Determine endpoint and payload
   const endpoint = checkoutType
-    ? "https://www.elexdonhost.com/api_elexdonhost/checkout2.php" // Has account
-    : "https://www.elexdonhost.com/api_elexdonhost/checkout.php"; // New user
+    ? `${api_domain}/checkout2.php?key=${api_key}` // Has account
+    : `${api_domain}/checkout.php?key=${api_key}`; // New user
 
   // Construct payload
   const payload = checkoutType
@@ -494,7 +591,7 @@ const handleSubmit = async (reference ) => {
       Swal.fire({
         icon: "error",
         title: "Checkout Failed",
-        text: data.details?.message || "An error occurred during checkout.",
+        text: data.message || "An error occurred during checkout.",
       });
     }
   } catch (err) {
@@ -518,7 +615,7 @@ const handleSubmit = async (reference ) => {
 
 
 const markInvoiceAsPaid = async (invoiceId, reference, amount = null) => {
-  const endpoint = 'https://www.elexdonhost.com/api_elexdonhost/mark_invoice_paid.php'; // Change this to your actual PHP script path
+  const endpoint = `${api_domain}/mark_invoice_paid.php?key=${api_key}`; // Change this to your actual PHP script path
 
   const payload = {
     invoiceid: invoiceId,
@@ -669,7 +766,7 @@ const handleLogin = async () => {
       }
     });
 
-    const res = await fetch('https://www.elexdonhost.com/api_elexdonhost/login.php', {
+    const res = await fetch(`${api_domain}/login.php`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email:form.email, password: form.password })
@@ -719,124 +816,6 @@ const handleLogin = async () => {
     I already have an account
   </label>
 </div>
-
-
-        {/* <Grid>
-          <Input
-            name="firstname"
-            placeholder="First Name"
-            required
-            onChange={handleChange}
-          />
-          <Input
-            name="lastname"
-            placeholder="Last Name"
-            required
-            onChange={handleChange}
-          />
-          <Input
-            name="email"
-            type="email"
-            placeholder="Email Address"
-            required
-            onChange={handleChange}
-          />
-          <Input
-            name="password"
-            type="password"
-            placeholder="Password"
-            required
-            onChange={handleChange}
-          />
-
-          <Select name="billingcycle" onChange={handleChange} required>
-            <option value="">-- Select billing cycle --</option>
-            <option value="monthly">Monthly</option>
-            <option value="annually">
-              Annually
-            </option>
-          </Select>
-
-          <Select name="domaintype" onChange={handleChange} required>
-            <option value="">-- Select domain type --</option>
-            <option value="register">Register New Domain</option>
-            <option value="transfer">Transfer Existing Domain</option>
-            <option value="owndomain">Use Own Domain</option>
-          </Select>
-
-       
-          <Input
-            name="domain"
-            placeholder="Enter domain (without TLD)"
-            required
-            onChange={handleChange}
-            value={form.domain}
-          />
-          <Select name="tld" value={form.tld} onChange={handleChange} required>
-            <option >-- Select TLD --</option>
-          <option value=".com">.com</option>
-<option value=".net">.net</option>
-<option value=".org">.org</option>
-<option value=".co">.co</option>
-<option value=".io">.io</option>
-<option value=".info">.info</option>
-<option value=".biz">.biz</option>
-<option value=".us">.us</option>
-<option value=".me">.me</option>
-<option value=".online">.online</option>
-<option value=".tech">.tech</option>
-<option value=".site">.site</option>
-<option value=".store">.store</option>
-<option value=".app">.app</option>
-<option value=".blog">.blog</option>
-<option value=".dev">.dev</option>
-<option value=".xyz">.xyz</option>
-<option value=".club">.club</option>
-<option value=".agency">.agency</option>
-<option value=".design">.design</option>
-<option value=".shop">.shop</option>
-<option value=".cloud">.cloud</option>
-<option value=".ca">.ca</option>
-<option value=".uk">.uk</option>
-<option value=".de">.de</option>
-<option value=".fr">.fr</option>
-<option value=".au">.au</option>
-<option value=".nl">.nl</option>
-<option value=".ru">.ru</option>
-<option value=".jp">.jp</option>
-<option value=".in">.in</option>
-
-          
-          </Select>
-      
-          <Button
-            type="button"
-            // style={{ minWidth: "140px" }}
-            onClick={checkDomainAvailability}
-            disabled={checkingDomain}
-          >
-            {checkingDomain ? "Checking..." : "Check Domain"}
-          </Button>
-
-          {domainStatus === "available" && (
-            <p style={{ color: "green" }}>
-              {form.domaintype === "register"
-                ? "✅ Domain is available for registration"
-                : "✅ Domain is registered and ready"}
-            </p>
-          )}
-          {domainStatus === "unavailable" && (
-            <p style={{ color: "red" }}>
-              {form.domaintype === "register"
-                ? "❌ Domain is not available for registration"
-                : "❌ Domain is not registered"}
-            </p>
-          )}
-          {domainStatus === "error" && (
-            <p style={{ color: "orangered" }}>⚠️ Error checking domain</p>
-          )}
-        </Grid> */}
-
 
 
         <Grid>
@@ -1244,8 +1223,9 @@ const handleLogin = async () => {
 
   <Button
     type="button"
-    onClick={checkDomainAvailability}
-    disabled={checkingDomain}
+    // onClick={checkDomainAvailability}
+    // disabled={checkingDomain}
+    onClick={()=>setDomainStatus('available')}
   >
     {checkingDomain ? "Checking..." : "Check Domain"}
   </Button>

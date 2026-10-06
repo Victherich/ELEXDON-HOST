@@ -49,6 +49,12 @@ import WhoisLookup from './components/WhoisLookup';
 import wp from './Images/whatsapplogo.png'
 import Developer from './components/Developer';
 import WebmailOrderPage from './components/WebmailOrderPage';
+import SSLCheckoutPage from './components/SSLCheckoutPage';
+import UserDashboard2 from './components/UserDashboard2';
+import EmailCheckoutPage from './components/EmailCheckoutPage';
+import ElexdonMultipleHostPage from './components/ElexdonMultipleHostPage';
+import PublicBlogPage from './components/PublicBlogPage';
+import PostPage from './components/PostDetailPage';
 
 
 
@@ -66,7 +72,9 @@ function App() {
           <Route path='/dedicatedhosting' element={<DedicatedHostingPage/>}/>
           <Route path='/aboutus' element={<AboutPage/>}/>
           <Route path='/contactus' element={<ContactUs/>}/>
-          <Route path ='/blogs' element={<BlogPage/>}/>
+          {/* <Route path ='/blogs' element={<BlogPage/>}/> */}
+          <Route path='/blogs' element={<PublicBlogPage/>}/>
+          <Route path='/post/:slug' element={<PostPage/>}/>
           <Route path='/termsandconditions' element={<TermsPage/>}/>
           <Route path='/privacypolicy' element={<PrivacyPolicyPage/>}/>
           <Route path='/refundpolicy' element={<RefundPolicyPage/>}/>
@@ -75,6 +83,7 @@ function App() {
           <Route path='/resellerhosting' element={<ResellerHostingPage/>}/>
           <Route path='/vps' element={<VPSPage/>}/>
           <Route path='/sslpage' element={<SSLPage/>}/>
+          <Route path='/sslcheckout' element={<SSLCheckoutPage/>}/>
           <Route path='/freessl' element ={<FreeSSL/>}/>
           <Route path='/support' element={<SupportPage/>}/>
           <Route path='/signup' element={<SignupPage/>}/>
@@ -87,6 +96,7 @@ function App() {
         <Route path='/invoice/:invoiceId' element={<InvoicePage/>}/>
         <Route path='/invoicerenewal/:invoiceId' element={<InvoiceRenewal/>}/>
         <Route path='/dashboard' element={<UserDashboard/>}/>
+        <Route path='/dashboard2' element={<UserDashboard2/>}/>
         <Route path='/domainregistercheckout/:domainname/:domain/:tld' element={<DomainRegisterCheckout/>}/>
         <Route path='/domaintransfercheckout/:domainname/:eppcode/:domain/:tld' element={<DomainTransferCheckout/>}/>
 
@@ -103,6 +113,8 @@ function App() {
         <Route path="/reset-password" element={<ResetPasswordPage />} />
 
         <Route path='/webmail' element={<WebmailOrderPage/>}/>
+        <Route path='/emailcheckout' element={<EmailCheckoutPage/>}/>
+        <Route path='/elexdonmultiplehost' element={<ElexdonMultipleHostPage/>}/>
 
 
         </Routes>

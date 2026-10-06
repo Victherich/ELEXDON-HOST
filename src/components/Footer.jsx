@@ -1034,7 +1034,8 @@ const Footer = () => {
           <Link onClick={() => navigate('/sharedhosting')}>Shared Hosting</Link>
           {/* <Link onClick={() => navigate('/dedicatedhosting')}>Dedicated Servers</Link> */}
           <Link onClick={() => navigate('/wordpresshosting')}>WordPress Hosting</Link>
-          <Link onClick={() => navigate('/resellerhosting')}>Reseller Hosting</Link>
+          {/* <Link onClick={() => navigate('/resellerhosting')}>Reseller Hosting</Link> */}
+           <Link onClick={() => navigate('/elexdonmultiplehost')}>Elexdon Multiple Host</Link>
           {/* <Link onClick={() => navigate('/vps')}>VPS Hosting</Link> */}
           <Link onClick={() => navigate('/webmail')}>Email / Webmail</Link>
         </NavSection>
@@ -1044,7 +1045,7 @@ const Footer = () => {
           <Title>Domains</Title>
           <Link onClick={() => navigate('/domainspage')}>Register Domain</Link>
           <Link onClick={() => navigate('/domaintransfer')}>Transfer Domain</Link>
-          <Link onClick={() => navigate('/freessl')}>Free SSL</Link>
+          {/* <Link onClick={() => navigate('/freessl')}>Free SSL</Link> */}
           <Link onClick={() => navigate('/sslpage')}>SSL</Link>
           <Link onClick={() => navigate('/whoislookup')}>WHOIS Lookup</Link>
         </NavSection>

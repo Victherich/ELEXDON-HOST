@@ -1240,7 +1240,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { FaBars, FaTimes, FaGlobe, FaServer, FaShieldAlt, FaUserCircle, FaEnvelope, FaHeadset, FaSignInAlt, FaUserPlus, FaShoppingCart, FaTicketAlt } from 'react-icons/fa';
 import logo from '../Images/logo4.jpeg';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 
 const fadeIn = keyframes`
@@ -1258,7 +1258,7 @@ const HeaderWrapper = styled.header`
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 999;
+  z-index: 500;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   color: ${({ scrolled }) => (scrolled ? '#173b5d' : 'white')};
   background: ${({ scrolled }) => (scrolled ? 'rgba(255, 255, 255, 0.92)' : 'transparent')};
@@ -1273,7 +1273,7 @@ const HeaderWrapper = styled.header`
 
 const Container = styled.div`
   max-width: 1400px;
-  padding: 12px 20px;
+  padding: 5px 20px;
   margin: auto;
   display: flex;
   justify-content: space-between;
@@ -1302,7 +1302,7 @@ const Nav = styled.nav`
     width: 100%;
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(16px);
-    padding: 15px 20px;
+    padding: 5px 20px;
     border-bottom: 1px solid #eae2f8;
     max-height: 80vh;
     overflow-y: auto;
@@ -1333,18 +1333,18 @@ const NavItemLink = styled(NavLink)`
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 12px;
+  padding: 2px 12px;
   text-decoration: none;
-  color: ${({ scrolled }) => (scrolled ? '#475569' : 'rgba(255, 255, 255, 0.9)')};
-  font-size: 12px;
+  color: ${({ scrolled }) => (scrolled ? '#475569' : 'rgba(255, 255, 255, 1)')};
+  // font-size: 0.86rem;
   font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+  // letter-spacing: 0.5px;
+  // text-transform: uppercase;
   border-radius: 8px;
   transition: all 0.2s ease;
 
   &.active, &:hover {
-    color: #4f46e5;
+    // color: #4f46e5;
     background: ${({ scrolled }) => (scrolled ? 'rgba(79, 70, 229, 0.08)' : 'rgba(255, 255, 255, 0.15)')};
   }
 
@@ -1354,6 +1354,8 @@ const NavItemLink = styled(NavLink)`
       background: rgba(79, 70, 229, 0.08);
       color: #4f46e5;
     }
+
+    padding: 6px 12px;
   }
 `;
 
@@ -1361,13 +1363,13 @@ const DropdownTrigger = styled.div`
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 12px;
-  color: ${({ scrolled }) => (scrolled ? '#475569' : 'rgba(255, 255, 255, 0.9)')};
+  padding: 2px 12px;
+  color: ${({ scrolled }) => (scrolled ? '#475569' : 'rgba(255, 255, 255, 1)')};
   cursor: pointer;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 0.8rem;
   letter-spacing: 0.5px;
-  text-transform: uppercase;
+  // text-transform: uppercase;
   border-radius: 8px;
   transition: all 0.2s ease;
   user-select: none;
@@ -1377,12 +1379,12 @@ const DropdownTrigger = styled.div`
   }
 
   &:hover {
-    color: #4f46e5;
+    // color: #4f46e5;
     background: ${({ scrolled }) => (scrolled ? 'rgba(79, 70, 229, 0.08)' : 'rgba(255, 255, 255, 0.15)')};
   }
 
   span.arrow {
-    font-size: 9px;
+    font-size: 14px;
     transition: transform 0.2s;
     transform: ${({ open }) => (open ? 'rotate(180deg)' : 'rotate(0deg)')};
   }
@@ -1418,7 +1420,7 @@ const DropdownMenu = styled.div`
 const DropdownItem = styled(NavLink)`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   padding: 9px 12px;
   font-size: 12px;
   font-weight: 600;
@@ -1459,7 +1461,7 @@ const DropdownHashItem = styled(HashLink)`
     background: linear-gradient(135deg, #4f46e5, #9333ea);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 14px;
+    font-size: 1rem;
   }
 
   &:hover {
@@ -1483,6 +1485,14 @@ const Header = () => {
   const [navOpen, setNavOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
+
+  const location = useLocation();
+const isDashboardRoute = location.pathname === '/dashboard' || 
+location.pathname === '/dashboard2' || location.pathname === '/sslcheckout' ||
+location.pathname ==='/emailcheckout'||location.pathname==='/login'||location.pathname==='/blogs'||
+location.pathname.includes('/post');
+// Combine your scroll check with the dashboard route check
+const headerScrolled = scrolled || isDashboardRoute;
 
   const menuRef1 = useRef();
   const menuRef2 = useRef();
@@ -1527,12 +1537,23 @@ const Header = () => {
     return () => clearInterval(id);
   }, []);
 
+   const [user2, setUser2] = useState(null);
+  useEffect(() => {
+    const checkUser = () => {
+      const storedUser = localStorage.getItem('user2');
+      setUser2(storedUser ? JSON.parse(storedUser) : null);
+    };
+    checkUser();
+    const id = setInterval(checkUser, 3000);
+    return () => clearInterval(id);
+  }, []);
+
   const toggleMenu = (menuName) => {
     setActiveDropdown(activeDropdown === menuName ? null : menuName);
   };
 
   return (
-    <HeaderWrapper scrolled={scrolled}>
+    <HeaderWrapper scrolled={headerScrolled}>
       <Container>
         <Logo onClick={() => navigate('/')}>
           <img src={logo} alt="Elexdon Logo" />
@@ -1549,14 +1570,14 @@ const Header = () => {
         <Nav isOpen={navOpen}>
           <ul>
             <li>
-              <NavItemLink scrolled={scrolled} to="/" end onClick={() => setNavOpen(false)}>
+              <DropdownTrigger scrolled={headerScrolled} end onClick={() => {setNavOpen(false);navigate('/')}}>
                 Home
-              </NavItemLink>
+              </DropdownTrigger>
             </li>
 
             {/* DOMAINS */}
             <li ref={menuRef1} onMouseEnter={() => setActiveDropdown('domains')} onMouseLeave={() => setActiveDropdown(null)}>
-              <DropdownTrigger scrolled={scrolled} open={activeDropdown === 'domains'} onClick={() => toggleMenu('domains')}>
+              <DropdownTrigger scrolled={headerScrolled} open={activeDropdown === 'domains'} onClick={() => toggleMenu('domains')}>
                 <FaGlobe /> Domains <span className="arrow">▾</span>
               </DropdownTrigger>
               <DropdownMenu open={activeDropdown === 'domains'}>
@@ -1566,9 +1587,9 @@ const Header = () => {
                 <DropdownItem to="/domainspage" onClick={() => { setNavOpen(false); setActiveDropdown(null); }}>
                   <FaGlobe /> Domain Registration
                 </DropdownItem>
-                <DropdownItem to="/domaintransfer" onClick={() => { setNavOpen(false); setActiveDropdown(null); }}>
+                {/* <DropdownItem to="/domaintransfer" onClick={() => { setNavOpen(false); setActiveDropdown(null); }}>
                   <FaGlobe /> Domain Transfer
-                </DropdownItem>
+                </DropdownItem> */}
                 <DropdownItem to="/whoislookup" onClick={() => { setNavOpen(false); setActiveDropdown(null); }}>
                   <FaGlobe /> WHOIS Look Up
                 </DropdownItem>
@@ -1577,8 +1598,8 @@ const Header = () => {
 
             {/* HOSTING */}
             <li ref={menuRef2} onMouseEnter={() => setActiveDropdown('hosting')} onMouseLeave={() => setActiveDropdown(null)}>
-              <DropdownTrigger scrolled={scrolled} open={activeDropdown === 'hosting'} onClick={() => toggleMenu('hosting')}>
-                <FaServer /> Hosting <span className="arrow">▾</span>
+              <DropdownTrigger scrolled={headerScrolled} open={activeDropdown === 'hosting'} onClick={() => toggleMenu('hosting')}>
+                <FaServer />Website Hosting <span className="arrow">▾</span>
               </DropdownTrigger>
               <DropdownMenu open={activeDropdown === 'hosting'}>
                 <DropdownItem to="/sharedhosting" onClick={() => { setNavOpen(false); setActiveDropdown(null); }}>
@@ -1590,6 +1611,9 @@ const Header = () => {
                 <DropdownItem to="/wordpresshosting" onClick={() => { setNavOpen(false); setActiveDropdown(null); }}>
                   <FaServer /> WordPress Hosting
                 </DropdownItem>
+                <DropdownItem to="/elexdonmultiplehost" onClick={() => { setNavOpen(false); setActiveDropdown(null); }}>
+                  <FaServer /> Elexdon Multiple Host
+                </DropdownItem>
                 {/* <DropdownItem to="/resellerhosting" onClick={() => { setNavOpen(false); setActiveDropdown(null); }}>
                   <FaServer /> Reseller Hosting
                 </DropdownItem> */}
@@ -1597,6 +1621,12 @@ const Header = () => {
                   <FaServer /> VPS Hosting
                 </DropdownItem> */}
               </DropdownMenu>
+            </li>
+
+             <li>
+              <DropdownTrigger scrolled={headerScrolled} onClick={() => {setNavOpen(false);navigate('/webmail')}}>
+                <FaEnvelope /> Email Hosting
+              </DropdownTrigger>
             </li>
 
             {/* <li>
@@ -1607,42 +1637,40 @@ const Header = () => {
 
             {/* SECURITY */}
             <li ref={menuRef3} onMouseEnter={() => setActiveDropdown('security')} onMouseLeave={() => setActiveDropdown(null)}>
-              <DropdownTrigger scrolled={scrolled} open={activeDropdown === 'security'} onClick={() => toggleMenu('security')}>
-                <FaShieldAlt /> Security <span className="arrow">▾</span>
+              <DropdownTrigger scrolled={headerScrolled} open={activeDropdown === 'security'} onClick={() => toggleMenu('security')}>
+                <FaShieldAlt /> Services <span className="arrow">▾</span>
               </DropdownTrigger>
               <DropdownMenu open={activeDropdown === 'security'}>
-                <DropdownItem to="/freessl" onClick={() => { setNavOpen(false); setActiveDropdown(null); }}>
+                {/* <DropdownItem to="/freessl" onClick={() => { setNavOpen(false); setActiveDropdown(null); }}>
                   <FaShieldAlt /> Free SSL
-                </DropdownItem>
+                </DropdownItem> */}
                 <DropdownItem to="/sslpage" onClick={() => { setNavOpen(false); setActiveDropdown(null); }}>
-                  <FaShieldAlt /> Site Security Lock
+                  <FaShieldAlt /> Security
                 </DropdownItem>
               </DropdownMenu>
             </li>
 
             <li>
-              <NavItemLink scrolled={scrolled} to="/support" onClick={() => setNavOpen(false)}>
+              <DropdownTrigger scrolled={headerScrolled} onClick={() => {setNavOpen(false);navigate('/support')}}>
                 <FaHeadset /> Support
-              </NavItemLink>
+              </DropdownTrigger>
             </li>
 
-            <li>
-              <NavItemLink scrolled={scrolled} to="/webmail" onClick={() => setNavOpen(false)}>
-                <FaEnvelope /> Webmail
-              </NavItemLink>
-            </li>
+           
 
             {/* ACCOUNT */}
-            {user ? (
+            {user||user2 ? (
               <li>
-                <NavItemLink scrolled={scrolled} to="/dashboard" onClick={() => setNavOpen(false)}>
-                  <FaUserCircle /> {user.name.slice(0, 3)}
-                </NavItemLink>
+                <DropdownTrigger scrolled={headerScrolled} onClick={() => {setNavOpen(false);navigate('/login')}}>
+                  <FaUserCircle /> 
+                  My Account
+                  {/* {user.name.slice(0, 3)} */}
+                </DropdownTrigger>
               </li>
             ) : (
               <li ref={menuRef4} onMouseEnter={() => setActiveDropdown('account')} onMouseLeave={() => setActiveDropdown(null)}>
-                <DropdownTrigger scrolled={scrolled} open={activeDropdown === 'account'} onClick={() => toggleMenu('account')}>
-                  <FaUserCircle /> Account <span className="arrow">▾</span>
+                <DropdownTrigger scrolled={headerScrolled} open={activeDropdown === 'account'} onClick={() => toggleMenu('account')}>
+                  <FaUserCircle />Manage Account <span className="arrow">▾</span>
                 </DropdownTrigger>
                 <DropdownMenu open={activeDropdown === 'account'} style={{ left: 'auto', right: 0 }}>
                   <DropdownItem to="/signup" onClick={() => { setNavOpen(false); setActiveDropdown(null); }}>
@@ -1651,12 +1679,12 @@ const Header = () => {
                   <DropdownItem to="/login" onClick={() => { setNavOpen(false); setActiveDropdown(null); }}>
                     <FaSignInAlt /> Login
                   </DropdownItem>
-                  <DropdownItem to="/login" onClick={() => { setNavOpen(false); setActiveDropdown(null); }}>
+                  {/* <DropdownItem to="/login" onClick={() => { setNavOpen(false); setActiveDropdown(null); }}>
                     <FaShoppingCart /> View Cart
-                  </DropdownItem>
-                  <DropdownItem to="/support" onClick={() => { setNavOpen(false); setActiveDropdown(null); }}>
+                  </DropdownItem> */}
+                  {/* <DropdownItem to="/support" onClick={() => { setNavOpen(false); setActiveDropdown(null); }}>
                     <FaTicketAlt /> Submit Ticket
-                  </DropdownItem>
+                  </DropdownItem> */}
                 </DropdownMenu>
               </li>
             )}

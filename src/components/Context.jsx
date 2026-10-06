@@ -1,6 +1,6 @@
 
 import React, { createContext, useState , useEffect} from 'react'
-
+import axios from 'axios';
 
 export const Context = createContext();
 
@@ -35,7 +35,8 @@ const [products, setProducts] = useState([]);
 
 const api_key = "MY_SUPER_SECRET_KEY"
 const api_domain = "https://www.elexdonhost.com/api_elexdonhost"
-
+// const paystack_key = "pk_live_3626fe7772aaca28a10724ebb1f9727dfcc5d6cb"
+const paystack_key="pk_test_60e1f53bba7c80b60029bf611a26a66a9a22d4e4"
 
 
 
@@ -366,10 +367,252 @@ const api_domain = "https://www.elexdonhost.com/api_elexdonhost"
 
 
 
+const emailPackages = [
+  {
+    id: "1",
+    title: "Email Plus Core",
+    price: "NGN 20,000 / user / month",
+    numericPrice: 20000,
+    duration: "1 month",
+    features: [
+      "10 GB Mailbox per user",
+      "Webmail & Mobile Access",
+      "Advanced Spam Protection",
+      "Custom Domain Emails",
+      "99.9% Uptime Guarantee"
+    ],
+    buttonText: "Get Started",
+    buttonHref: "#order-form"
+  },
+  {
+    id: "2",
+    title: "Email Plus Workspace",
+    price: "NGN 25,000 / user / month",
+    numericPrice: 25000,
+    duration: "1 month",
+    features: [
+      "30 GB Mailbox per user",
+      "Collaboration Tools & Calendars",
+      "File Storage & Sharing",
+      "Video Conferencing Support",
+      "Priority Customer Support"
+    ],
+    buttonText: "Get Started",
+    buttonHref: "#order-form"
+  },
+];
+
+
+
+  const sslPackages = [
+    {
+      id: '1',
+      title: 'E-Commercial SSL',
+      priceDisplay: '₦13,500',
+      duration: '.00/year',
+      numericPrice: 13500,
+      features: [
+        { label: 'Brand (CA)', value: 'Certum' },
+        { label: 'Validation Level', value: 'Domain Validation' },
+        { label: 'Paperwork Required', value: 'No' },
+        { label: 'Domains Secured', value: 'Single Domain' },
+        { label: 'Delivery', value: 'Within 1 Day' }
+      ]
+    },
+    {
+      id: '2',
+      title: 'E-Trusted SSL (OV)',
+      priceDisplay: '₦170,000',
+      duration: '.00/Year',
+      numericPrice: 170000,
+      features: [
+        { label: 'Brand (CA)', value: 'Certum' },
+        { label: 'Validation Level', value: 'Organizational Validation' },
+        { label: 'Paperwork Required', value: 'Yes' },
+        { label: 'Domains Secured', value: 'Single Domain' },
+        { label: 'Delivery', value: '7 Days' }
+      ]
+    },
+    {
+      id: '3',
+      title: 'E-Commercial Wildcard (DV)',
+      priceDisplay: '₦105,000',
+      duration: '/Annually',
+      numericPrice: 105000,
+      features: [
+        { label: 'Brand (CA)', value: 'Certum' },
+        { label: 'Validation Level', value: 'Domain Validation' },
+        { label: 'Paperwork Required', value: 'No' },
+        { label: 'Domains Secured', value: 'Wildcard (1 + sub-domains)' },
+        { label: 'Delivery', value: '24 hours' }
+      ]
+    },
+    {
+      id: '4',
+      title: 'E-Trusted Wildcard SSL (OV)',
+      priceDisplay: '₦180,000',
+      duration: '.00/Year',
+      numericPrice: 180000,
+      features: [
+        { label: 'Brand (CA)', value: 'Certum' },
+        { label: 'Validation Level', value: 'Organizational Validation' },
+        { label: 'Paperwork Required', value: 'Yes' },
+        { label: 'Domains Secured', value: 'Wildcard (1 + sub-domains)' },
+        { label: 'Delivery', value: '7 Days' }
+      ]
+    },
+    {
+      id: '5',
+      title: 'E-Comodo Positive DV SSL',
+      priceDisplay: '₦20,000',
+      duration: '.00/Year',
+      numericPrice: 20000,
+      features: [
+        { label: 'Description', value: 'Suitable for personal / social media' },
+        { label: 'Brand (CA)', value: 'Comodo' },
+        { label: 'Validation Level', value: 'Domain Validation' },
+        { label: 'Paperwork Required', value: 'No' },
+        { label: 'Domains Secured', value: 'Single Domain' },
+        { label: 'Delivery', value: 'Within 1 Day' }
+      ]
+    },
+    {
+      id: '6',
+      title: 'E-Comodo Positive Wildcard DV',
+      priceDisplay: '₦130,000',
+      duration: '.00/Year',
+      numericPrice: 130000,
+      features: [
+        { label: 'Description', value: 'Suitable for personal / social media' },
+        { label: 'Brand (CA)', value: 'Comodo' },
+        { label: 'Validation Level', value: 'Domain Validation' },
+        { label: 'Paperwork Required', value: 'No' },
+        { label: 'Domains Secured', value: '1 plus first-level subdomains' },
+        { label: 'Delivery', value: 'Within 1 Day' }
+      ]
+    }
+  ];
+
+
+    const categories = [
+    // { id: 2, title: "Relationship" },
+    // { id: 3, title: "Entrepreneurship/Business" },
+    // { id: 4, title: "Inspire/Motivate" },
+    { id: 5, title: "Digital Skills/Tech" },
+    // { id: 6, title: "Education" },
+    // { id: 7, title: "Family" },
+    // { id: 8, title: "Food" },
+    // { id: 10, title: "Health" },
+    // { id: 11, title: "Viral Gist" },
+    // { id: 12, title: "Religion" },
+    // { id: 13, title: "Entertainment" },
+    // { id: 14, title: "Travel" },
+    // { id: 15, title: "Finance & Investment" },
+    // { id: 16, title: "Sports" },
+    // { id: 17, title: "Beauty" },
+    // { id: 18, title: "Trending News" },
+    { id: 19, title: "Tech & AI Tools" },
+    // { id: 20, title: "Kids Zone" },
+    // { id: 21, title: "Gaming" }
+  ];
+
+
+
+    const [posts, setPosts] = useState([]);
+  // const [loading, setLoading] = useState(true);
+
+  const cacheKey = "all_posts";
+  const firestoreKey = "mike_connect_all_posts_doc";
+
+
+  // const loadFromFirestore = async () => {
+  //   try {
+  //     const ref = doc(db, "cache", firestoreKey);
+  //     const snap = await getDoc(ref);
+
+  //     if (snap.exists()) {
+  //       const data = snap.data().posts || [];
+  //       return data;
+  //     }
+  //     return null;
+  //   } catch (err) {
+  //     return null;
+  //   }
+  // };
+
+  // const saveToFirestore = async (data) => {
+  //   try {
+  //     const ref = doc(db, "cache", firestoreKey);
+  //     await setDoc(ref, { posts: data, updatedAt: Date.now() });
+  //   } catch (err) {
+  //     console.log("Firestore save failed");
+  //   }
+  // };
+
+
+useEffect(() => {
+  const loadPosts = async () => {
+    setLoading(true);
+
+    let cached = null;
+
+    // ✅ 1. Try localStorage FIRST (instant if exists)
+    try {
+      cached = JSON.parse(localStorage.getItem(cacheKey));
+
+      if (cached?.length) {
+        setPosts(cached);
+        setLoading(false); // show immediately
+      }
+    } catch {}
+
+    // =========================
+    // 2. Try API
+    // =========================
+    try {
+      const res = await axios.get(
+        `https://www.mikeconnect.com/mc_api/get_posts_by_category.php?category=0&t=${Date.now()}`
+      );
+
+      if (res.data?.success) {
+        const allPosts = res.data.posts || [];
+
+        setPosts(allPosts);
+        localStorage.setItem(cacheKey, JSON.stringify(allPosts));
+
+        // saveToFirestore(allPosts);
+
+        setLoading(false);
+        return;
+      }
+    } catch (err) {
+      console.log("API failed");
+    }
+
+    // =========================
+    // 3. Firestore fallback
+    // =========================
+    // const firestoreData = await loadFromFirestore();
+
+    // if (firestoreData?.length) {
+    //   setPosts(firestoreData);
+    //   localStorage.setItem(cacheKey, JSON.stringify(firestoreData));
+    // }
+
+    setLoading(false);
+  };
+
+  loadPosts();
+}, []);
+
+
+
+
+
   return (
     <Context.Provider value={{yes,domainPricings, dollarRate, api_key,api_domain,
     products,error,loading,
-    wordpressProducts, plans, vpsPlans}}>
+    wordpressProducts, plans, vpsPlans, paystack_key, emailPackages, sslPackages, categories, posts}}>
       {children}
     </Context.Provider>
   )

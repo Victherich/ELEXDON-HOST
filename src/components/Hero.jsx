@@ -716,8 +716,9 @@ import styled, { keyframes } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { FaServer, FaShieldAlt, FaRocket, FaArrowRight } from 'react-icons/fa';
 // import hero5 from '../Images/hero5.jpg';
-import hero5 from '../Images/hero5d.png';
+// import hero5 from '../Images/hero5d.png';
 // import hero5 from '../Images/hero5c.png';
+import hero5 from '../Images/hero5g.jpg';
 
 const fadeIn = keyframes`
   from {
@@ -733,14 +734,14 @@ const fadeIn = keyframes`
 const HeroSection = styled.section`
   position: relative;
   width: 100%;
-  min-height: 90vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   /* Dark semi-transparent overlay blended with the new purple-blue theme */
   background-image: linear-gradient(
     360deg,
-      rgba(0, 0, 0, 0.0) 0%,
+      rgba(0, 0, 0, 0.3) 0%,
       rgba(0, 0, 0, 0.5) 100%
     ),
     url(${hero5});
@@ -811,7 +812,7 @@ const Subtitle = styled.p`
   font-size: 1rem;
   font-weight:bold;
   line-height: 1.6;
-  color: #cbd5e1;
+  color: white;
   max-width: 700px;
   margin-bottom: 30px;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
@@ -844,11 +845,20 @@ const PrimaryButton = styled.button`
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
+  /* Multi-layered shadow for a glowing, realistic depth */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 
+              0 10px 20px -3px rgba(147, 51, 234, 0.4);
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(147, 51, 234, 0.5);
+    /* Deeper, more vibrant spread on hover */
+    box-shadow: 0 6px 8px -1px rgba(79, 70, 229, 0.25), 
+                0 14px 28px -4px rgba(147, 51, 234, 0.55);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(79, 70, 229, 0.3);
   }
 `;
 
@@ -868,12 +878,24 @@ const SecondaryButton = styled.button`
   border: 1px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
   transition: all 0.2s ease;
+  /* Subtle ambient shadow + inner highlight for glass effect */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.15);
 
   &:hover {
     background: rgba(255, 255, 255, 0.15);
     color: #ffffff;
     border-color: rgba(147, 51, 234, 0.6);
     transform: translateY(-2px);
+    /* Enhanced shadow with a faint purple ambient glow matching your theme */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15), 
+                0 0 20px rgba(147, 51, 234, 0.25), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
 `;
 
@@ -938,9 +960,9 @@ const Hero = () => {
   return (
     <HeroSection>
       <Container>
-        <Badge>
+        {/* <Badge>
           <FaRocket /> Enterprise Cloud Infrastructure
-        </Badge>
+        </Badge> */}
         
         <Title>
           ELEXDON HOST <br />

@@ -694,12 +694,14 @@
 
 
 // LoginPage.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import bg from '../Images/herobg5.jpg';
 import illustration from '../Images/logo4.jpeg';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import {Context} from './Context';
+
 
 const AuthContainer = styled.div`
   display: flex;
@@ -933,11 +935,48 @@ const HeroText = styled.p`
   max-width: 500px;
 `;
 
+
+// ... (keep your other styled components like AuthContainer, LeftColumn, Input, etc.)
+
+const Select = styled.select`
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #1f2937;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none; /* Removes native browser dropdown arrow */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+
+  &:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+  }
+
+  option {
+    color: #1f2937;
+    background-color: #ffffff;
+    padding: 8px;
+  }
+`;
+
+
+
+
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [accountType, setAccountType] = useState(''); 
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
+  const {api_domain, api_key} = useContext(Context);
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -946,11 +985,36 @@ const LoginPage = () => {
     }
   }, [navigate]);
 
-  const handleLogin = async () => {
+
+    useEffect(() => {
+    const storedUser = localStorage.getItem('user2');
+    if (storedUser) {
+      navigate('/dashboard2');
+    }
+  }, [navigate]);
+
+
+
+
+
+
+ const handleLogin = async () => {
     if (!email || !password) {
       Swal.fire({ icon: 'warning', text: 'Please enter email and password.' });
       return;
     }
+
+    if (!accountType) {
+      Swal.fire({ icon: 'warning', text: 'Please select an account type.' });
+      return;
+    }
+
+    // Determine endpoint and destination based on account type selection
+    const isHosting = accountType === 'hosting';
+    const endpoint = isHosting 
+      ? `${api_domain}/login.php?key=${api_key}` 
+      : `${api_domain}/login_user.php`;
+    const targetDashboard = isHosting ? '/dashboard' : '/dashboard2';
 
     try {
       Swal.fire({
@@ -961,7 +1025,7 @@ const LoginPage = () => {
         }
       });
 
-      const res = await fetch('https://www.elexdonhost.com/api_elexdonhost/login.php', {
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -972,8 +1036,15 @@ const LoginPage = () => {
 
       if (data.success) {
         Swal.fire({ icon: 'success', text: 'Login successful!' });
-        localStorage.setItem('user', JSON.stringify(data.user));
-        navigate('/dashboard');
+        
+        // Store in 'user2' if navigating to dashboard2, otherwise store in 'user'
+        if (targetDashboard === '/dashboard2') {
+          localStorage.setItem('user2', JSON.stringify(data.user));
+        } else {
+          localStorage.setItem('user', JSON.stringify(data.user));
+        }
+
+        navigate(targetDashboard);
       } else {
         console.log(data);
         Swal.fire({ icon: 'error', text: data.message || 'Login failed' });
@@ -985,6 +1056,10 @@ const LoginPage = () => {
     }
   };
 
+  
+  
+  
+  
   return (
     <AuthContainer>
       {/* Left Column: Form & Brand Logo */}
@@ -1016,15 +1091,28 @@ const LoginPage = () => {
           />
         </InputGroup>
 
+        <InputGroup>
+          <Label>Account Type</Label>
+          <Select 
+            value={accountType} 
+            onChange={(e) => setAccountType(e.target.value)}
+            required
+          >
+             <option value="">--Select Account Type to login to--</option>
+            <option value="hosting">Hosting account</option>
+            <option value="ssl_webmail">SSL / Webmail account</option>
+          </Select>
+        </InputGroup>
+
         <ActionRow>
-          <CheckboxLabel>
+          {/* <CheckboxLabel>
             <input 
               type="checkbox" 
               checked={rememberMe} 
               onChange={(e) => setRememberMe(e.target.checked)} 
             />
             Remember Me
-          </CheckboxLabel>
+          </CheckboxLabel> */}
           <a onClick={() => navigate('/forgot-password')}>Forgot Password?</a>
         </ActionRow>
 

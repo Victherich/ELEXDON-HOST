@@ -11,102 +11,121 @@
 
 // import { useLocation, useNavigate } from 'react-router-dom';
 // import axios from 'axios';
-// import UserProfile from './UserProfile';
+// import UserProfile2 from './UserProfile2';
 // import UserInvoicesPage from './UserInvoicesPage';
 // import UserActiveServices from './UserActiveServices';
 // import UserTickets from './UserTickets';
 // import UserActiveDomains from './UserActiveDomains';
+// import ManageDomainOrders from './ManageDomainOrders';
+// import ManageEmailOrders from './ManageEmailOrders';
+// import ManageSSLOrders from './ManageSSLOrders';
 
 
 
-// // Styled Components
+
+// // Styled Components (Modernized)
 // const DashboardContainer = styled.div`
 //   display: flex;
 //   min-height: 100vh;
+//   background-color: #f8fafc;
 //   overflow: hidden;
+//   padding-top: 40px; /* Adjust for fixed header */
 // `;
 
 // const Sidebar = styled.div`
-// padding-top:50px;
-//   background:#F4F4F4;
-//   color: white;
-//   width: ${(props) => (props.isOpen ? '250px' : '0')};
+//   padding-top: 60px;
+//   background: #ffffff;
+//   color: #1e293b;
+//   width: ${(props) => (props.isOpen ? '260px' : '0')};
 //   overflow: hidden;
-//   transition: width 0.3s ease-in-out;
+//   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 //   display: flex;
 //   flex-direction: column;
 //   position: fixed;
 //   height: 100%;
-//   min-height:100vh;
-//   z-index:7;
-//   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+//   min-height: 100vh;
+//   z-index: 7;
+//   border-right: 1px solid #f1f5f9;
+//   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.03);
 
 //   @media (min-width: 768px) {
-//     width: 250px;
+//     width: 200px;
+//     min-width: 200px;
 //     position: static;
 //     transition: none;
 //   }
 // `;
 
 // const SidebarHeader = styled.div`
-//   padding: 20px;
-//   font-size: 1.5rem;
-//   text-align: center;
-//   font-weight: bold;
-//   color:#000050;
-
+//   padding: 24px 20px;
+//   font-size: 1rem;
+//   text-align: left;
+//   font-weight: 700;
+//   color: #4f46e5;
+//   letter-spacing: -0.025em;
+//   border-bottom: 1px solid #f1f5f9;
+//   margin-bottom: 12px;
 // `;
 
 // const SidebarMenu = styled.ul`
 //   list-style: none;
-//   padding: 0;
+//   padding: 0 12px;
 //   margin: 0;
 //   display: flex;
 //   flex-direction: column;
-//   gap: 10px;
+//   gap: 6px;
 // `;
 
 // const SidebarMenuItem = styled.li`
-//   padding: 15px 20px;
+//   padding: 12px 16px;
 //   cursor: pointer;
-//   background: ${(props) => (props.active ? 'gray;' : 'transparent')};
-//   color: ${(props)=>(props.active ? 'white':"#000050")};
-
-
-//   font-weight: ${(props) => (props.active ? 'bold' : 'normal')};
-//   transition: all 0.3s ease-in-out;
+//   border-radius: 10px;
+//   background: ${(props) => (props.active ? 'linear-gradient(135deg, #4f46e5, #9333ea)' : 'transparent')};
+//   color: ${(props) => (props.active ? '#ffffff' : '#64748b')};
+//   font-weight: ${(props) => (props.active ? '600' : '500')};
+//   font-size: 0.9rem;
+//   transition: all 0.2s ease-in-out;
+//   box-shadow: ${(props) => (props.active ? '0 4px 12px rgba(79, 70, 229, 0.2)' : 'none')};
 
 //   &:hover {
- 
-//     background:gray;
+//     background: ${(props) => (props.active ? 'linear-gradient(135deg, #4f46e5, #9333ea)' : '#f8fafc')};
+//     color: ${(props) => (props.active ? '#ffffff' : '#1e293b')};
+//     transform: translateX(4px);
 //   }
 // `;
 
 // const ContentArea = styled.div`
-// width:100%;
+//   width: 100%;
 //   flex-grow: 1;
-//   margin-left: ${(props) => (props.isOpen ? '250px' : '0')};
-//   transition: margin-left 0.3s ease-in-out;
-//   // padding: 20px;
+//   margin-left: ${(props) => (props.isOpen ? '260px' : '0')};
+//   transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+//   background-color: #f8fafc;
 
 //   @media (min-width: 768px) {
-//     // margin-left: 250px;
+//     margin-left: 0;
 //   }
 // `;
 
 // const Hamburger = styled.div`
 //   position: fixed;
-//   top: 70px;
+//   top: 75px;
 //   left: 20px;
-//   background: #000050;
+//   background: linear-gradient(135deg, #4f46e5, #9333ea);
 //   color: white;
-//   padding: 10px;
-//   border-radius: 50%;
+//   width: 42px;
+//   height: 42px;
+//   border-radius: 12px;
 //   display: flex;
 //   align-items: center;
 //   justify-content: center;
 //   cursor: pointer;
 //   z-index: 9;
+//   box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+//   transition: transform 0.2s ease;
+
+//   &:hover {
+//     transform: scale(1.05);
+//   }
 
 //   @media (min-width: 768px) {
 //     display: none;
@@ -120,17 +139,16 @@
 //   left: 0;
 //   width: 100%;
 //   height: 100%;
-//   background: rgba(0, 0, 0, 0.5);
+//   background: rgba(15, 23, 42, 0.4);
+//   backdrop-filter: blur(4px);
 //   z-index: 6;
 // `;
 
 
 
 
-
-
 // // Main Component
-// const UserDashboard = () => {
+// const UserDashboard2 = () => {
 //   const [menuOpen, setMenuOpen] = useState(false);
 //   const [activeMenu, setActiveMenu] = useState('profile');
 //   const [user, setUser]=useState({});
@@ -196,22 +214,22 @@
 //   const renderContent = () => {
 //     switch (activeMenu) {
 //       case 'profile':
-//         return  <UserProfile  handleMenuClick={handleMenuClick}/>;
+//         return  <UserProfile2  handleMenuClick={handleMenuClick}/>;
 
-//          case 'myinvoices':
-//         return  <UserInvoicesPage/>;
+//          case 'managedomainorders':
+//         return  <ManageDomainOrders handleMenuClick={handleMenuClick} />;
 
       
 
-//           case 'useractiveservices':
-//         return  <UserActiveServices/>;
+//           case 'manageemailsorders':
+//         return  <ManageEmailOrders handleMenuClick={handleMenuClick} />;
 
 
-//           case 'useractivedomains':
-//         return  <UserActiveDomains/>;
+//           case 'managesslorders':
+//         return  <ManageSSLOrders handleMenuClick={handleMenuClick}  />;
 
-//           case 'tickets':
-//         return  <UserTickets/>;
+//         //   case 'tickets':
+//         // return  <UserTickets/>;
        
 
 //       default:
@@ -232,7 +250,7 @@
 //       </Hamburger>
 //       <Overlay isOpen={menuOpen} onClick={closeMenuOnOutsideClick} />
 //       <Sidebar isOpen={menuOpen}>
-//         <SidebarHeader>User Dashboard</SidebarHeader>
+//         <SidebarHeader>SSL / WEBMAIL / DOMAIN MANAGEMENT</SidebarHeader>
 //         <SidebarMenu>
        
 //           <SidebarMenuItem
@@ -243,44 +261,7 @@
 //           <FaUserCircle/>  WELCOME, {user?.name?.toUpperCase().slice(0,3)}
 //           </SidebarMenuItem>
 
-//            <SidebarMenuItem
-//           style={{fontSize:"0.9rem"}}
-//             active={activeMenu === 'myinvoices'}
-//             onClick={() => handleMenuClick('myinvoices')}
-//           >
-//           Invoices
-//           </SidebarMenuItem>
-
-//             <SidebarMenuItem
-//           style={{fontSize:"0.9rem"}}
-//             active={activeMenu === 'useractiveservices'}
-//             onClick={() => handleMenuClick('useractiveservices')}
-//           >
-//           Active Services
-//           </SidebarMenuItem>
-
-
-//             <SidebarMenuItem
-//           style={{fontSize:"0.9rem"}}
-//             active={activeMenu === 'useractivedomains'}
-//             onClick={() => handleMenuClick('useractivedomains')}
-//           >
-//           Active Domains
-//           </SidebarMenuItem>
-
-
-//            <SidebarMenuItem
-//           style={{fontSize:"0.9rem"}}
-//             active={activeMenu === 'tickets'}
-//             onClick={() => handleMenuClick('tickets')}
-//           >
-//           Tickets
-//           </SidebarMenuItem>
-
-        
-
-          
-//           <SidebarMenuItem
+//                     <SidebarMenuItem
 //             onClick={handleLogout}
 //           >
 //             Logout
@@ -292,8 +273,7 @@
 //   );
 // };
 
-// export default UserDashboard;
-
+// export default UserDashboard2;
 
 
 
@@ -303,15 +283,15 @@
 
 import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { FaBars, FaTimes, FaUserCircle, FaFileInvoice, FaServer, FaGlobe, FaHeadset, FaSignOutAlt } from 'react-icons/fa';
+import { FaBars, FaTimes, FaUserCircle, FaGlobe, FaEnvelope, FaShieldAlt, FaSignOutAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
-import UserProfile from './UserProfile';
-import UserInvoicesPage from './UserInvoicesPage';
-import UserActiveServices from './UserActiveServices';
-import UserTickets from './UserTickets';
-import UserActiveDomains from './UserActiveDomains';
+import UserProfile2 from './UserProfile2';
+import ManageDomainOrders from './ManageDomainOrders';
+import ManageEmailOrders from './ManageEmailOrders';
+import ManageSSLOrders from './ManageSSLOrders';
+import BlogPostsManager from './BlogPostsManager';
 
 // -----------------------------------------------------
 // Animations & Theme Styling
@@ -327,16 +307,16 @@ const fadeIn = keyframes`
 const DashboardContainer = styled.div`
   display: flex;
   min-height: 100vh;
+  background-color: #f8fafc;
   overflow-x: hidden;
-  background-color: #F8FAFC;
+  padding-top: 40px;
   font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  padding-top: 50px;
 `;
 
 const Sidebar = styled.div`
-  padding-top: 30px;
-  background: #FFFFFF;
-  border-right: 1px solid #E2E8F0;
+  padding-top: 60px;
+  background: #ffffff;
+  color: #1e293b;
   width: ${(props) => (props.isOpen ? '260px' : '0')};
   overflow: hidden;
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -346,67 +326,71 @@ const Sidebar = styled.div`
   height: 100%;
   min-height: 100vh;
   z-index: 7;
-  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.02);
+  border-right: 1px solid #f1f5f9;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.03);
 
   @media (min-width: 768px) {
-    width: 260px;
+    width: 240px;
+    // min-width: 240px;
     position: static;
     transition: none;
   }
 `;
 
 const SidebarHeader = styled.div`
-  padding: 0 24px 24px 24px;
-  font-size: 1.25rem;
+  padding: 24px 20px;
+  font-size: 0.85rem;
+  text-align: left;
   font-weight: 700;
-  color: #0F172A;
-  border-bottom: 1px solid #F1F5F9;
-  letter-spacing: -0.02em;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  color: #4f46e5;
+  letter-spacing: -0.025em;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 12px;
 `;
 
 const SidebarMenu = styled.ul`
   list-style: none;
-  padding: 20px 16px;
+  padding: 0 12px;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
+  flex-grow: 1;
+  padding-bottom: 30px;
 `;
 
 const SidebarMenuItem = styled.li`
   padding: 12px 16px;
-  border-radius: 10px;
   cursor: pointer;
-  background: ${(props) => (props.active ? 'linear-gradient(135deg, #4f46e5 0%, #9333ea 100%)' : 'transparent')};
-  color: ${(props) => (props.active ? '#FFFFFF' : '#64748B')};
-  font-size: 0.9rem;
+  border-radius: 10px;
+  background: ${(props) => (props.active ? 'linear-gradient(135deg, #4f46e5, #9333ea)' : 'transparent')};
+  color: ${(props) => (props.active ? '#ffffff' : '#64748b')};
   font-weight: ${(props) => (props.active ? '600' : '500')};
+  font-size: 0.9rem;
   display: flex;
   align-items: center;
   gap: 12px;
-  box-shadow: ${(props) => (props.active ? '0 4px 12px rgba(79, 70, 229, 0.25)' : 'none')};
   transition: all 0.2s ease-in-out;
+  box-shadow: ${(props) => (props.active ? '0 4px 12px rgba(79, 70, 229, 0.2)' : 'none')};
 
   svg {
     font-size: 1.1rem;
-    color: ${(props) => (props.active ? '#FFFFFF' : '#94A3B8')};
+    color: ${(props) => (props.active ? '#ffffff' : '#94A3B8')};
     transition: color 0.2s ease;
   }
 
   &:hover {
-    background: ${(props) => (props.active ? 'linear-gradient(135deg, #4f46e5 0%, #9333ea 100%)' : '#F8FAFC')};
-    color: ${(props) => (props.active ? '#FFFFFF' : '#0F172A')};
+    background: ${(props) => (props.active ? 'linear-gradient(135deg, #4f46e5, #9333ea)' : '#f8fafc')};
+    color: ${(props) => (props.active ? '#ffffff' : '#1e293b')};
+    transform: translateX(2px);
 
     svg {
-      color: ${(props) => (props.active ? '#FFFFFF' : '#4f46e5')};
+      color: ${(props) => (props.active ? '#ffffff' : '#4f46e5')};
     }
   }
 
   &.logout-item {
-    margin-top: auto;
+    // margin-top: auto;
     color: #EF4444;
 
     svg {
@@ -416,6 +400,10 @@ const SidebarMenuItem = styled.li`
     &:hover {
       background: #FEF2F2;
       color: #DC2626;
+
+      svg {
+        color: #DC2626;
+      }
     }
   }
 `;
@@ -423,28 +411,30 @@ const SidebarMenuItem = styled.li`
 const ContentArea = styled.div`
   width: 100%;
   flex-grow: 1;
-  min-height: 100vh;
-  background-color: #F8FAFC;
-  overflow-y: auto;
-  transition: margin-left 0.3s ease-in-out;
+  margin-left: ${(props) => (props.isOpen ? '260px' : '0')};
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #f8fafc;
+
+  @media (min-width: 768px) {
+    margin-left: 0;
+  }
 `;
 
 const Hamburger = styled.div`
   position: fixed;
-  top: 20px;
+  top: 75px;
   left: 20px;
-  background: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+  background: linear-gradient(135deg, #4f46e5, #9333ea);
   color: white;
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 9;
-  font-size: 1.1rem;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
   transition: transform 0.2s ease;
 
   &:hover {
@@ -464,7 +454,7 @@ const Overlay = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(15, 23, 42, 0.4);
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(4px);
   z-index: 6;
   animation: ${fadeIn} 0.2s ease-out;
 `;
@@ -472,14 +462,14 @@ const Overlay = styled.div`
 // -----------------------------------------------------
 // Main Component
 // -----------------------------------------------------
-const UserDashboard = () => {
+const UserDashboard2 = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState('profile');
   const [user, setUser] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
+    const storedUser = localStorage.getItem('user2');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     } else {
@@ -499,7 +489,7 @@ const UserDashboard = () => {
       cancelButtonText: "Cancel",
     }).then((result) => {
       if (result.isConfirmed) {
-        localStorage.removeItem('user');
+        localStorage.removeItem('user2');
         navigate('/login');
         Swal.fire({
           title: "Logged Out",
@@ -525,15 +515,15 @@ const UserDashboard = () => {
   const renderContent = () => {
     switch (activeMenu) {
       case 'profile':
-        return <UserProfile handleMenuClick={handleMenuClick} />;
-      case 'myinvoices':
-        return <UserInvoicesPage />;
-      case 'useractiveservices':
-        return <UserActiveServices />;
-      case 'useractivedomains':
-        return <UserActiveDomains />;
-      case 'tickets':
-        return <UserTickets />;
+        return <UserProfile2 handleMenuClick={handleMenuClick} />;
+      case 'managedomainorders':
+        return <ManageDomainOrders handleMenuClick={handleMenuClick} />;
+      case 'manageemailsorders':
+        return <ManageEmailOrders handleMenuClick={handleMenuClick} />;
+      case 'managesslorders':
+        return <ManageSSLOrders handleMenuClick={handleMenuClick} />;
+         case 'manageblogs':
+        return <BlogPostsManager handleMenuClick={handleMenuClick} />;
       default:
         return (
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
@@ -556,10 +546,7 @@ const UserDashboard = () => {
       <Overlay isOpen={menuOpen} onClick={closeMenuOnOutsideClick} />
       
       <Sidebar isOpen={menuOpen}>
-        <SidebarHeader>
-          Client Portal
-        </SidebarHeader>
-        
+        <SidebarHeader>SSL & WEBMAIL MANAGEMENT</SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem
             active={activeMenu === 'profile'}
@@ -569,31 +556,24 @@ const UserDashboard = () => {
           </SidebarMenuItem>
 
           {/* <SidebarMenuItem
-            active={activeMenu === 'myinvoices'}
-            onClick={() => handleMenuClick('myinvoices')}
+            active={activeMenu === 'managedomainorders'}
+            onClick={() => handleMenuClick('managedomainorders')}
           >
-            <FaFileInvoice /> Hosting Invoices
-          </SidebarMenuItem> */}
-
-          <SidebarMenuItem
-            active={activeMenu === 'useractiveservices'}
-            onClick={() => handleMenuClick('useractiveservices')}
-          >
-            <FaServer /> Active Hosting
-          </SidebarMenuItem>
-
-          {/* <SidebarMenuItem
-            active={activeMenu === 'useractivedomains'}
-            onClick={() => handleMenuClick('useractivedomains')}
-          >
-            <FaGlobe /> Active Domains
+            <FaGlobe /> Domain Orders
           </SidebarMenuItem> */}
 
           {/* <SidebarMenuItem
-            active={activeMenu === 'tickets'}
-            onClick={() => handleMenuClick('tickets')}
+            active={activeMenu === 'manageemailsorders'}
+            onClick={() => handleMenuClick('manageemailsorders')}
           >
-            <FaHeadset /> Support Tickets
+            <FaEnvelope /> Webmail Orders
+          </SidebarMenuItem> */}
+
+          {/* <SidebarMenuItem
+            active={activeMenu === 'managesslorders'}
+            onClick={() => handleMenuClick('managesslorders')}
+          >
+            <FaShieldAlt /> SSL Orders
           </SidebarMenuItem> */}
 
           <SidebarMenuItem
@@ -612,4 +592,4 @@ const UserDashboard = () => {
   );
 };
 
-export default UserDashboard;
+export default UserDashboard2;

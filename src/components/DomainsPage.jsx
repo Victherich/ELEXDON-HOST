@@ -356,6 +356,7 @@ import useAnimateOnScroll from './useAnimateOnScroll';
 import 'animate.css';
 import DomainNameSpace from './DomainNameSpace';
 import DomainSearch from './DomainSearch';
+import DomainPricingPage from './DomainPricingPage';
 
 const PageContainer = styled.div`
   background: #f8fafc;
@@ -395,7 +396,7 @@ const Title = styled.h1`
 `;
 
 const Subtitle = styled.p`
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   margin: 0;
   color: white;
 `;
@@ -490,18 +491,20 @@ const DomainsPage = () => {
         <HeroContent>
           <Title ref={heroTitleAnim.ref} className={heroTitleAnim.className}>Domain Registration</Title>
           <Subtitle ref={heroSubtitleAnim.ref} className={heroSubtitleAnim.className}>
-            Join our awesome customers. Domain is where it starts. Choose your domain today!
+            Secure the Perfect Domain Name. Establish your online identity with lightning-fast routing and transparent registration pricing.
+            {/* Join our awesome customers. Domain is where it starts. Choose your domain today! */}
           </Subtitle>
         </HeroContent>
       </HeroSection>
 
-      <div style={{ padding: '0 10px' }}>
+      <div>
         <DomainSearch />
-        <DomainNameSpace />
+        {/* <DomainNameSpace /> */}
       </div>
+      <DomainPricingPage/>
 
       {/* Pricing Table Group 1 */}
-      <PricingSection>
+      {/* <PricingSection>
         <h2 ref={pricingTitle1.ref} >Domain Pricing - Group 1</h2>
         <TableWrapper>
           <DomainTable>
@@ -536,10 +539,10 @@ const DomainsPage = () => {
             </tbody>
           </DomainTable>
         </TableWrapper>
-      </PricingSection>
+      </PricingSection> */}
 
       {/* Pricing Table Group 2 */}
-      <PricingSection>
+      {/* <PricingSection>
         <h2 ref={pricingTitle2.ref} >Domain Pricing - Group 2</h2>
         <TableWrapper>
           <DomainTable>
@@ -573,10 +576,10 @@ const DomainsPage = () => {
             </tbody>
           </DomainTable>
         </TableWrapper>
-      </PricingSection>
+      </PricingSection> */}
 
       {/* Pricing Table Group 3 */}
-      <PricingSection>
+      {/* <PricingSection>
         <h2 ref={pricingTitle3.ref}>Domain Pricing - Group 3</h2>
         <TableWrapper>
           <DomainTable>
@@ -610,7 +613,7 @@ const DomainsPage = () => {
             </tbody>
           </DomainTable>
         </TableWrapper>
-      </PricingSection>
+      </PricingSection> */}
     </PageContainer>
   );
 };

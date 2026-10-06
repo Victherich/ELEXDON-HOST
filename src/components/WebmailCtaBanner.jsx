@@ -884,9 +884,7 @@ export default function WebmailCtaBanner() {
           </SmallLabel>
 
           <Title>
-            Make Your Email
-            <br />
-            Part of Your <Highlight>Brand.</Highlight>
+            Webmail <Highlight>Hosting</Highlight>
           </Title>
 
           <Description>
