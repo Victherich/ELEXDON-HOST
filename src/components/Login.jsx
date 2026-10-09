@@ -1099,8 +1099,8 @@ const LoginPage = () => {
             required
           >
              <option value="">--Select Account Type to login to--</option>
-            <option value="hosting">Hosting account</option>
-            <option value="ssl_webmail">SSL / Webmail account</option>
+            <option value="hosting">Hosting & Domain account</option>
+            <option value="ssl_webmail">SSL & Webmail account</option>
           </Select>
         </InputGroup>
 

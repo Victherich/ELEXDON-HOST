@@ -1490,7 +1490,7 @@ const Header = () => {
 const isDashboardRoute = location.pathname === '/dashboard' || 
 location.pathname === '/dashboard2' || location.pathname === '/sslcheckout' ||
 location.pathname ==='/emailcheckout'||location.pathname==='/login'||location.pathname==='/blogs'||
-location.pathname.includes('/post');
+location.pathname.includes('/post')||location.pathname.includes('/domainregistercheckout');
 // Combine your scroll check with the dashboard route check
 const headerScrolled = scrolled || isDashboardRoute;
 

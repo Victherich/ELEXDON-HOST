@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { FaGlobe, FaSearch, FaArrowRight, FaTag } from 'react-icons/fa';
+import { Context } from './Context';
 
 const PageContainer = styled.div`
   font-family: "Inter", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -253,46 +254,67 @@ const Table = styled.table`
 
 const DomainPricingPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
+const {domainPricings}=useContext(Context);
 
-  const pricingData = [
-    { ext: '.ng', badge: 'Sale', newPrice: '₦11,500.00', newPeriod: '1 Year', transfer: '₦11,500.00', transferPeriod: '1 Year', renewal: '₦17,500.00', renewalPeriod: '1 Year' },
-    { ext: '.com.ng', badge: 'Hot', newPrice: '₦4,500.00', newPeriod: '1 Year', transfer: '₦1,200.00', transferPeriod: '1 Year', renewal: '₦9,000.00', renewalPeriod: '1 Year' },
-    { ext: '.com', badge: 'Hot', newPrice: '₦11,500.00', newPeriod: '1 Year', transfer: '₦11,500.00', transferPeriod: '1 Year', renewal: '₦20,500.00', renewalPeriod: '1 Year' },
-    { ext: '.online', badge: 'Hot', newPrice: '₦12,000.00', newPeriod: '1 Year', transfer: '₦75,000.00', transferPeriod: '1 Year', renewal: '₦75,000.00', renewalPeriod: '1 Year' },
-    { ext: '.org', badge: 'Sale', newPrice: '₦28,000.00', newPeriod: '1 Year', transfer: '₦28,000.00', transferPeriod: '1 Year', renewal: '₦28,000.00', renewalPeriod: '1 Year' },
-    { ext: '.org.ng', badge: 'Hot', newPrice: '₦6,000.00', newPeriod: '1 Year', transfer: 'N/A', transferPeriod: '', renewal: '₦12,000.00', renewalPeriod: '1 Year' },
-    { ext: '.site', badge: 'New', newPrice: '₦8,000.00', newPeriod: '1 Year', transfer: '₦78,000.00', transferPeriod: '1 Year', renewal: '₦78,000.00', renewalPeriod: '1 Year' },
-    { ext: '.biz', badge: 'Sale', newPrice: '₦50,000.00', newPeriod: '1 Year', transfer: '₦50,000.00', transferPeriod: '1 Year', renewal: '₦50,000.00', renewalPeriod: '1 Year' },
-    { ext: '.store', badge: 'Sale', newPrice: '₦13,500.00', newPeriod: '1 Year', transfer: '₦118,000.00', transferPeriod: '1 Year', renewal: '₦118,000.00', renewalPeriod: '1 Year' },
-    { ext: '.net', badge: 'Sale', newPrice: '₦30,000.00', newPeriod: '1 Year', transfer: '₦30,000.00', transferPeriod: '1 Year', renewal: '₦35,000.00', renewalPeriod: '1 Year' },
-    { ext: '.uk', badge: '', newPrice: '₦28,000.00', newPeriod: '1 Year', transfer: '₦28,000.00', transferPeriod: '1 Year', renewal: '₦28,000.00', renewalPeriod: '1 Year' },
-    { ext: '.tech', badge: 'New', newPrice: '₦11,800.00', newPeriod: '1 Year', transfer: '₦120,000.00', transferPeriod: '1 Year', renewal: '₦120,000.00', renewalPeriod: '1 Year' },
-    { ext: '.gov.ng', badge: '', newPrice: '₦20,000.00', newPeriod: '1 Year', transfer: '₦20,000.00', transferPeriod: '1 Year', renewal: '₦20,000.00', renewalPeriod: '1 Year' },
-    { ext: '.website', badge: '', newPrice: '₦10,000.00', newPeriod: '1 Year', transfer: '₦70,000.00', transferPeriod: '1 Year', renewal: '₦70,000.00', renewalPeriod: '1 Year' },
-    { ext: '.edu.ng', badge: '', newPrice: '₦20,000.00', newPeriod: '1 Year', transfer: '₦15,000.00', transferPeriod: '1 Year', renewal: '₦20,000.00', renewalPeriod: '1 Year' },
-    { ext: '.club', badge: '', newPrice: '₦50,000.00', newPeriod: '1 Year', transfer: '₦50,000.00', transferPeriod: '1 Year', renewal: '₦50,000.00', renewalPeriod: '1 Year' },
-    { ext: '.co.uk', badge: '', newPrice: '₦28,000.00', newPeriod: '1 Year', transfer: '₦28,000.00', transferPeriod: '1 Year', renewal: '₦28,000.00', renewalPeriod: '1 Year' },
-    { ext: '.info', badge: '', newPrice: '₦60,000.00', newPeriod: '1 Year', transfer: '₦60,000.00', transferPeriod: '1 Year', renewal: '₦60,000.00', renewalPeriod: '1 Year' },
-    { ext: '.mobi', badge: '', newPrice: '₦90,000.00', newPeriod: '1 Year', transfer: '₦90,000.00', transferPeriod: '1 Year', renewal: '₦106,000.00', renewalPeriod: '1 Year' },
-    { ext: '.net.ng', badge: '', newPrice: '₦5,000.00', newPeriod: '1 Year', transfer: 'N/A', transferPeriod: '', renewal: '₦10,000.00', renewalPeriod: '1 Year' },
-    { ext: '.me', badge: '', newPrice: '₦51,000.00', newPeriod: '1 Year', transfer: '₦51,000.00', transferPeriod: '1 Year', renewal: '₦51,000.00', renewalPeriod: '1 Year' },
-    { ext: '.xyz', badge: '', newPrice: '₦50,000.00', newPeriod: '1 Year', transfer: '₦50,000.00', transferPeriod: '1 Year', renewal: '₦50,000.00', renewalPeriod: '1 Year' },
-    { ext: '.ca', badge: 'New', newPrice: '₦50,000.00', newPeriod: '1 Year', transfer: '₦50,000.00', transferPeriod: '1 Year', renewal: '₦50,000.00', renewalPeriod: '1 Year' },
-    { ext: '.io', badge: '', newPrice: '₦145,000.00', newPeriod: '1 Year', transfer: '₦145,000.00', transferPeriod: '1 Year', renewal: '₦145,000.00', renewalPeriod: '1 Year' },
-    { ext: '.blog', badge: '', newPrice: '₦60,878.00', newPeriod: '1 Year', transfer: '₦60,878.00', transferPeriod: '1 Year', renewal: '₦73,777.00', renewalPeriod: '1 Year' },
-    { ext: '.icu', badge: '', newPrice: '₦23,000.00', newPeriod: '1 Year', transfer: '₦23,000.00', transferPeriod: '1 Year', renewal: '₦23,000.00', renewalPeriod: '1 Year' },
-    { ext: '.top', badge: '', newPrice: '₦23,666.00', newPeriod: '1 Year', transfer: '₦23,666.00', transferPeriod: '1 Year', renewal: '₦25,344.00', renewalPeriod: '1 Year' },
-    { ext: '.vip', badge: '', newPrice: '₦40,758.00', newPeriod: '1 Year', transfer: '₦40,758.00', transferPeriod: '1 Year', renewal: '₦50,412.00', renewalPeriod: '1 Year' },
-    { ext: '.us', badge: '', newPrice: '₦30,000.00', newPeriod: '1 Year', transfer: '₦30,000.00', transferPeriod: '1 Year', renewal: '₦30,000.00', renewalPeriod: '1 Year' },
-    { ext: '.ru', badge: '', newPrice: '₦15,363.00', newPeriod: '1 Year', transfer: 'N/A', transferPeriod: '', renewal: '₦17,960.00', renewalPeriod: '1 Year' },
-    { ext: '.nl', badge: '', newPrice: '₦25,613.00', newPeriod: '1 Year', transfer: '₦25,613.00', transferPeriod: '1 Year', renewal: '₦30,806.00', renewalPeriod: '1 Year' },
-    { ext: '.de', badge: '', newPrice: '₦20,988.00', newPeriod: '1 Year', transfer: '₦20,988.00', transferPeriod: '1 Year', renewal: '₦25,099.00', renewalPeriod: '1 Year' },
-    { ext: '.eu', badge: '', newPrice: '₦24,339.00', newPeriod: '1 Year', transfer: '₦24,339.00', transferPeriod: '1 Year', renewal: '₦23,017.00', renewalPeriod: '1 Year' },
-    { ext: '.cn', badge: '', newPrice: '₦21,070.00', newPeriod: '1 Year', transfer: '₦23,070.00', transferPeriod: '1 Year', renewal: '₦24,397.00', renewalPeriod: '1 Year' },
-  ];
+//    const domainPricings = [
+//   { domain: ".com", register: 28500, transfer: 28500, renewal: 28500 },
+//   { domain: ".net", register: 40000, transfer: 40000, renewal: 40000 },
+//   { domain: ".org", register: 30000, transfer: 30000, renewal: 30000 },
+//   { domain: ".biz", register: 47000, transfer: 47000, renewal: 48000 },
+//   { domain: ".info", register: 60000, transfer: 60000, renewal: 65000 },
+//   { domain: ".com.ng", register: 13500, transfer: 13500, renewal: 13500 },
+//   { domain: ".ng", register: 17500, transfer: 17500, renewal: 18000 },
+//   { domain: ".us", register: 17500, transfer: 17500, renewal: 17500 },
+//   { domain: ".edu.ng", register: 18000, transfer: 18000, renewal: 18000 },
+//   { domain: ".eu", register: 1199, transfer: 1199, renewal: 1300 },
+//   { domain: ".uk", register: 26500, transfer: 26500, renewal: 26500 },
+//   { domain: ".club", register: 50000, transfer: 50000, renewal: 50000 },
+//   { domain: ".sch.ng", register: 3000, transfer: 3000, renewal: 3000 },
+//     { domain: ".tech", register: 120000, transfer: 120000, renewal: 120000 },
+// ];
 
-  const filteredData = pricingData.filter((item) =>
-    item.ext.toLowerCase().includes(searchTerm.toLowerCase())
+  // const pricingData = [
+  //   { domain: '.ng', badge: 'Sale', register: 11500.00, newPeriod: '1 Year', transfer: 11500.00, transferPeriod: '1 Year', renewal: 17500.00, renewalPeriod: '1 Year' },
+  //   { ext: '.com.ng', badge: 'Hot', newPrice: '₦4,500.00', newPeriod: '1 Year', transfer: '₦1,200.00', transferPeriod: '1 Year', renewal: '₦9,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.com', badge: 'Hot', newPrice: '₦11,500.00', newPeriod: '1 Year', transfer: '₦11,500.00', transferPeriod: '1 Year', renewal: '₦20,500.00', renewalPeriod: '1 Year' },
+  //   { ext: '.online', badge: 'Hot', newPrice: '₦12,000.00', newPeriod: '1 Year', transfer: '₦75,000.00', transferPeriod: '1 Year', renewal: '₦75,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.org', badge: 'Sale', newPrice: '₦28,000.00', newPeriod: '1 Year', transfer: '₦28,000.00', transferPeriod: '1 Year', renewal: '₦28,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.org.ng', badge: 'Hot', newPrice: '₦6,000.00', newPeriod: '1 Year', transfer: 'N/A', transferPeriod: '', renewal: '₦12,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.site', badge: 'New', newPrice: '₦8,000.00', newPeriod: '1 Year', transfer: '₦78,000.00', transferPeriod: '1 Year', renewal: '₦78,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.biz', badge: 'Sale', newPrice: '₦50,000.00', newPeriod: '1 Year', transfer: '₦50,000.00', transferPeriod: '1 Year', renewal: '₦50,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.store', badge: 'Sale', newPrice: '₦13,500.00', newPeriod: '1 Year', transfer: '₦118,000.00', transferPeriod: '1 Year', renewal: '₦118,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.net', badge: 'Sale', newPrice: '₦30,000.00', newPeriod: '1 Year', transfer: '₦30,000.00', transferPeriod: '1 Year', renewal: '₦35,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.uk', badge: '', newPrice: '₦28,000.00', newPeriod: '1 Year', transfer: '₦28,000.00', transferPeriod: '1 Year', renewal: '₦28,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.tech', badge: 'New', newPrice: '₦11,800.00', newPeriod: '1 Year', transfer: '₦120,000.00', transferPeriod: '1 Year', renewal: '₦120,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.gov.ng', badge: '', newPrice: '₦20,000.00', newPeriod: '1 Year', transfer: '₦20,000.00', transferPeriod: '1 Year', renewal: '₦20,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.website', badge: '', newPrice: '₦10,000.00', newPeriod: '1 Year', transfer: '₦70,000.00', transferPeriod: '1 Year', renewal: '₦70,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.edu.ng', badge: '', newPrice: '₦20,000.00', newPeriod: '1 Year', transfer: '₦15,000.00', transferPeriod: '1 Year', renewal: '₦20,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.club', badge: '', newPrice: '₦50,000.00', newPeriod: '1 Year', transfer: '₦50,000.00', transferPeriod: '1 Year', renewal: '₦50,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.co.uk', badge: '', newPrice: '₦28,000.00', newPeriod: '1 Year', transfer: '₦28,000.00', transferPeriod: '1 Year', renewal: '₦28,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.info', badge: '', newPrice: '₦60,000.00', newPeriod: '1 Year', transfer: '₦60,000.00', transferPeriod: '1 Year', renewal: '₦60,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.mobi', badge: '', newPrice: '₦90,000.00', newPeriod: '1 Year', transfer: '₦90,000.00', transferPeriod: '1 Year', renewal: '₦106,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.net.ng', badge: '', newPrice: '₦5,000.00', newPeriod: '1 Year', transfer: 'N/A', transferPeriod: '', renewal: '₦10,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.me', badge: '', newPrice: '₦51,000.00', newPeriod: '1 Year', transfer: '₦51,000.00', transferPeriod: '1 Year', renewal: '₦51,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.xyz', badge: '', newPrice: '₦50,000.00', newPeriod: '1 Year', transfer: '₦50,000.00', transferPeriod: '1 Year', renewal: '₦50,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.ca', badge: 'New', newPrice: '₦50,000.00', newPeriod: '1 Year', transfer: '₦50,000.00', transferPeriod: '1 Year', renewal: '₦50,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.io', badge: '', newPrice: '₦145,000.00', newPeriod: '1 Year', transfer: '₦145,000.00', transferPeriod: '1 Year', renewal: '₦145,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.blog', badge: '', newPrice: '₦60,878.00', newPeriod: '1 Year', transfer: '₦60,878.00', transferPeriod: '1 Year', renewal: '₦73,777.00', renewalPeriod: '1 Year' },
+  //   { ext: '.icu', badge: '', newPrice: '₦23,000.00', newPeriod: '1 Year', transfer: '₦23,000.00', transferPeriod: '1 Year', renewal: '₦23,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.top', badge: '', newPrice: '₦23,666.00', newPeriod: '1 Year', transfer: '₦23,666.00', transferPeriod: '1 Year', renewal: '₦25,344.00', renewalPeriod: '1 Year' },
+  //   { ext: '.vip', badge: '', newPrice: '₦40,758.00', newPeriod: '1 Year', transfer: '₦40,758.00', transferPeriod: '1 Year', renewal: '₦50,412.00', renewalPeriod: '1 Year' },
+  //   { ext: '.us', badge: '', newPrice: '₦30,000.00', newPeriod: '1 Year', transfer: '₦30,000.00', transferPeriod: '1 Year', renewal: '₦30,000.00', renewalPeriod: '1 Year' },
+  //   { ext: '.ru', badge: '', newPrice: '₦15,363.00', newPeriod: '1 Year', transfer: 'N/A', transferPeriod: '', renewal: '₦17,960.00', renewalPeriod: '1 Year' },
+  //   { ext: '.nl', badge: '', newPrice: '₦25,613.00', newPeriod: '1 Year', transfer: '₦25,613.00', transferPeriod: '1 Year', renewal: '₦30,806.00', renewalPeriod: '1 Year' },
+  //   { ext: '.de', badge: '', newPrice: '₦20,988.00', newPeriod: '1 Year', transfer: '₦20,988.00', transferPeriod: '1 Year', renewal: '₦25,099.00', renewalPeriod: '1 Year' },
+  //   { ext: '.eu', badge: '', newPrice: '₦24,339.00', newPeriod: '1 Year', transfer: '₦24,339.00', transferPeriod: '1 Year', renewal: '₦23,017.00', renewalPeriod: '1 Year' },
+  //   { ext: '.cn', badge: '', newPrice: '₦21,070.00', newPeriod: '1 Year', transfer: '₦23,070.00', transferPeriod: '1 Year', renewal: '₦24,397.00', renewalPeriod: '1 Year' },
+  // ];
+
+
+
+
+  const filteredData = domainPricings.filter((item) =>
+    item.domain.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -337,8 +359,9 @@ const DomainPricingPage = () => {
                 {filteredData.map((item, idx) => (
                   <tr key={idx}>
                     <td>
+
                       <div className="domain-col">
-                        {item.ext}
+                        {item.domain}
                         {item.badge && (
                           <span className={`badge-tag ${item.badge.toLowerCase()}`}>
                             {item.badge}
@@ -348,7 +371,7 @@ const DomainPricingPage = () => {
                     </td>
                     <td>
                       <div className="price-cell">
-                        <span className="price">{item.newPrice}</span>
+                        <span className="price">₦{item.register.toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                         <span className="period">{item.newPeriod}</span>
                       </div>
                     </td>
@@ -358,7 +381,7 @@ const DomainPricingPage = () => {
                           <span className="na">N/A</span>
                         ) : (
                           <>
-                            <span className="price">{item.transfer}</span>
+                           <span className="price">₦{item.transfer.toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                             <span className="period">{item.transferPeriod}</span>
                           </>
                         )}
@@ -366,7 +389,7 @@ const DomainPricingPage = () => {
                     </td>
                     <td>
                       <div className="price-cell">
-                        <span className="price">{item.renewal}</span>
+                        <span className="price">₦{item.renewal.toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                         <span className="period">{item.renewalPeriod}</span>
                       </div>
                     </td>

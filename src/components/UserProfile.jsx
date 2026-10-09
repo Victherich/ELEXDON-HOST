@@ -520,7 +520,7 @@ const StatsGrid = styled.div`
     border: 1px solid #E2E8F0;
     border-radius: 14px;
     padding: 20px 16px;
-    // cursor: pointer;
+    cursor: pointer;
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -529,9 +529,9 @@ const StatsGrid = styled.div`
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover {
-      // border-color: #4f46e5;
-      // transform: translateY(-2px);
-      // box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.15);
+      border-color: #4f46e5;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.15);
       background: #faf5ff;
 
       h3 {
@@ -731,15 +731,19 @@ const UserProfile = ({ handleMenuClick }) => {
         {stats && (
           <StatsGrid>
             <button 
-            // onClick={() => handleMenuClick('myinvoices')}
+            onClick={() => handleMenuClick('myinvoices')}
               >
-              <h3>Hosting Invoices</h3>
+              <h3>Invoices</h3>
               <p>{invoices?.length || 0}</p>
             </button>
 
             <button onClick={() => handleMenuClick('useractiveservices')}>
-              <h3>Active Hosting (Click)</h3>
+              <h3>Active Services</h3>
               <p>{services?.length || 0}</p>
+            </button>
+             <button onClick={() => handleMenuClick('useractivedomains')}>
+              <h3>Active Domains</h3>
+              <p>{domains?.length || 0}</p>
             </button>
 
             {/* <button onClick={() => handleMenuClick('tickets')}>

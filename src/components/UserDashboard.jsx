@@ -357,7 +357,7 @@ const Sidebar = styled.div`
 
 const SidebarHeader = styled.div`
   padding: 0 24px 24px 24px;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #0F172A;
   border-bottom: 1px solid #F1F5F9;
@@ -557,7 +557,7 @@ const UserDashboard = () => {
       
       <Sidebar isOpen={menuOpen}>
         <SidebarHeader>
-          Client Portal
+          Client Hosting & Domain Portal
         </SidebarHeader>
         
         <SidebarMenu>
@@ -568,12 +568,12 @@ const UserDashboard = () => {
             <FaUserCircle /> WELCOME, {welcomeName}
           </SidebarMenuItem>
 
-          {/* <SidebarMenuItem
+          <SidebarMenuItem
             active={activeMenu === 'myinvoices'}
             onClick={() => handleMenuClick('myinvoices')}
           >
-            <FaFileInvoice /> Hosting Invoices
-          </SidebarMenuItem> */}
+            <FaFileInvoice /> Invoices
+          </SidebarMenuItem>
 
           <SidebarMenuItem
             active={activeMenu === 'useractiveservices'}
@@ -582,12 +582,12 @@ const UserDashboard = () => {
             <FaServer /> Active Hosting
           </SidebarMenuItem>
 
-          {/* <SidebarMenuItem
+          <SidebarMenuItem
             active={activeMenu === 'useractivedomains'}
             onClick={() => handleMenuClick('useractivedomains')}
           >
             <FaGlobe /> Active Domains
-          </SidebarMenuItem> */}
+          </SidebarMenuItem>
 
           {/* <SidebarMenuItem
             active={activeMenu === 'tickets'}

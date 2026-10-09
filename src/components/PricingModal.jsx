@@ -555,6 +555,32 @@ console.log(dollarAmount)
   // };
 
   const payWithPaystack = () => {
+
+
+let timerInterval;
+    Swal.fire({
+      icon: 'info',
+      title: 'Initializing Payment...',
+      html: 'Opening payment gateway in <b></b> seconds.<br/><br/><i><strong>Do not refresh or close this page while making the payment.</strong></i>',
+      timer: 15000,
+      timerProgressBar: true,
+      showConfirmButton: false,
+      allowOutsideClick: false,
+      didOpen: () => {
+        const b = Swal.getHtmlContainer().querySelector('b');
+        timerInterval = setInterval(() => {
+          const timeLeft = Swal.getTimerLeft();
+          if (timeLeft) {
+            b.textContent = (timeLeft / 1000).toFixed(0);
+          }
+        }, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+      },
+      didClose: () => { 
+
+
     const paystack = new PaystackPop();
     paystack.newTransaction({
       key: paystack_key,
@@ -576,6 +602,7 @@ console.log(dollarAmount)
         });
       }
     });
+  }})
   };
 
   const handleVerify = async (reference) => {

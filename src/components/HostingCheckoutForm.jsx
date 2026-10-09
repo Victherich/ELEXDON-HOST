@@ -150,6 +150,7 @@ const TldSelect = styled.select`
 export default function HostingCheckoutPage() {
 
  const [product, setProduct] = useState(null);
+ const {handleSendServiceNotification}=useContext(Context);
 
   useEffect(() => {
     const stored = localStorage.getItem("selectedProduct");
@@ -211,7 +212,7 @@ console.log(form)
 
 
 
-   const fullDomain = form.domain.trim() + form.tld;
+  //  const fullDomain = form.domain.trim() + form.tld;
 
 //    console.log(fullDomain)
 
@@ -324,113 +325,160 @@ console.log(form)
   //   }
   // };
 
-const checkDomainAvailability = async () => {
-    if (!form.domain) { 
-      Swal.fire({ icon: "warning", text: "Please enter a domain." });
-      return;
-    }
-    if (!form.domaintype) {
-      Swal.fire({ icon: "warning", text: "Please select a domain type." });
-      return;
-    }
-    if (!form.tld) {
-      Swal.fire({ icon: "warning", text: "Please select a TLD." });
+// const checkDomainAvailability = async () => {
+//     if (!form.domain) { 
+//       Swal.fire({ icon: "warning", text: "Please enter a domain." });
+//       return;
+//     }
+//     if (!form.domaintype) {
+//       Swal.fire({ icon: "warning", text: "Please select a domain type." });
+//       return;
+//     }
+//     if (!form.tld) {
+//       Swal.fire({ icon: "warning", text: "Please select a TLD." });
+//       return;
+//     }
+
+//     setCheckingDomain(true);
+//     setDomainStatus(null);
+
+//     Swal.fire({
+//       title: "Checking domain...",
+//       text: "Please wait while we check availability.",
+//       allowOutsideClick: false,
+//       didOpen: () => {
+//         Swal.showLoading();
+//       },
+//     });
+
+//     // Combine your domain input and TLD into fullDomain
+//     const fullDomain = `${form.domain}${form.tld}`;
+
+//     try {
+//       const res = await fetch(`${api_domain}/check_domain_advanced.php?key=${api_key}`, {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ 
+//           domain: fullDomain, 
+//           action_type: form.domaintype // Passes 'register', 'transfer', or 'owndomain'
+//         }),
+//       });
+
+//       const data = await res.json();
+
+//       if (!data.success) {
+//         throw new Error(data.error || 'Server error');
+//       }
+
+//       if (form.domaintype === "register") {
+//         if (data.available) {
+//           setDomainStatus("available");
+//           Swal.fire({
+//             icon: "success",
+//             title: "Domain Available",
+//             text: "Great! The domain is available for registration.",
+//           });
+//         } else {
+//           setDomainStatus("unavailable");
+//           Swal.fire({
+//             icon: "error",
+//             title: "Domain Unavailable",
+//             text: "Sorry, that domain is not available for registration.",
+//           });
+//         }
+//       } else if (form.domaintype === "transfer" || form.domaintype === "owndomain") {
+//         if (form.domaintype === "owndomain") {
+//           // Own domain doesn't need external availability checks
+//           setDomainStatus("available");
+//           Swal.fire({
+//             icon: "success",
+//             title: "Domain Accepted",
+//             text: "Your own domain has been accepted. Update nameservers after checkout.",
+//           });
+//         } else if (data.available) {
+//           // If domain is available, it means it's NOT registered, so user can't transfer it
+//           setDomainStatus("unavailable");
+//           Swal.fire({
+//             icon: "error",
+//             title: "Domain Not Registered",
+//             text: "This domain is not registered anywhere and cannot be transferred.",
+//           });
+//         } else {
+//           // If it's unavailable in WHOIS, it means it *is* registered, so transfer is possible!
+//           setDomainStatus("available");
+//           Swal.fire({
+//             icon: "success",
+//             title: "Domain Registered",
+//             text: "The domain is registered and ready to be transferred.",
+//           });
+//         }
+//       } else {
+//         setDomainStatus("error");
+//         Swal.fire({
+//           icon: "error",
+//           title: "Error",
+//           text: "Invalid domain type selected.",
+//         });
+//       }
+//     } catch (err) {
+//       console.error("Domain check error:", err);
+//       setDomainStatus("error");
+//       Swal.fire({
+//         icon: "error",
+//         title: "Error",
+//         text: err.message || "There was an error checking the domain. Please try again.",
+//       });
+//     } finally {
+//       setCheckingDomain(false);
+//     }
+//   };
+
+
+ const checkDomainAvailability = async (e) => {
+    e.preventDefault();
+    if (!form.domain || !form.tld || form.tld === '-- Select TLD --') {
+      Swal.fire({ icon: "warning", text: "Please enter a domain and select a valid TLD." });
       return;
     }
 
-    setCheckingDomain(true);
-    setDomainStatus(null);
+    const cleanDomainQuery = form.domain.trim().replace(/^\/+|\/+$/g, '');
+    const fullDomain = `${cleanDomainQuery}${form.tld}`;
 
     Swal.fire({
       title: "Checking domain...",
       text: "Please wait while we check availability.",
       allowOutsideClick: false,
-      didOpen: () => {
-        Swal.showLoading();
-      },
+      didOpen: () => Swal.showLoading(),
     });
 
-    // Combine your domain input and TLD into fullDomain
-    const fullDomain = `${form.domain}${form.tld}`;
-
     try {
-      const res = await fetch(`${api_domain}/check_domain_advanced.php?key=${api_key}`, {
+      const res = await fetch(`${api_domain}/check_domain2.php?key=${api_key || ''}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          domain: fullDomain, 
-          action_type: form.domaintype // Passes 'register', 'transfer', or 'owndomain'
-        }),
+        body: JSON.stringify({ domain: fullDomain }),
       });
 
       const data = await res.json();
+      Swal.close();
 
-      if (!data.success) {
-        throw new Error(data.error || 'Server error');
-      }
-
-      if (form.domaintype === "register") {
+      if (data.success) {
         if (data.available) {
-          setDomainStatus("available");
-          Swal.fire({
-            icon: "success",
-            title: "Domain Available",
-            text: "Great! The domain is available for registration.",
-          });
+          // setResult({ available: true, name: data.domain });
+          setDomainStatus('available')
+          Swal.fire({ icon: "success", title: "Domain Available!", text: `${data.domain} is available for registration.` });
         } else {
-          setDomainStatus("unavailable");
-          Swal.fire({
-            icon: "error",
-            title: "Domain Unavailable",
-            text: "Sorry, that domain is not available for registration.",
-          });
-        }
-      } else if (form.domaintype === "transfer" || form.domaintype === "owndomain") {
-        if (form.domaintype === "owndomain") {
-          // Own domain doesn't need external availability checks
-          setDomainStatus("available");
-          Swal.fire({
-            icon: "success",
-            title: "Domain Accepted",
-            text: "Your own domain has been accepted. Update nameservers after checkout.",
-          });
-        } else if (data.available) {
-          // If domain is available, it means it's NOT registered, so user can't transfer it
-          setDomainStatus("unavailable");
-          Swal.fire({
-            icon: "error",
-            title: "Domain Not Registered",
-            text: "This domain is not registered anywhere and cannot be transferred.",
-          });
-        } else {
-          // If it's unavailable in WHOIS, it means it *is* registered, so transfer is possible!
-          setDomainStatus("available");
-          Swal.fire({
-            icon: "success",
-            title: "Domain Registered",
-            text: "The domain is registered and ready to be transferred.",
-          });
+          // setResult({ available: false, name: data.domain });
+          Swal.fire({ icon: "info", title: "Domain Taken", text: `${data.domain} is already registered.` });
         }
       } else {
-        setDomainStatus("error");
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: "Invalid domain type selected.",
-        });
+        Swal.fire({ icon: "error", title: "Check Failed", text: data.error || "Could not complete check." });
       }
     } catch (err) {
       console.error("Domain check error:", err);
-      setDomainStatus("error");
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: err.message || "There was an error checking the domain. Please try again.",
-      });
-    } finally {
-      setCheckingDomain(false);
+      Swal.fire({ icon: "error", title: "Error", text: "Network error checking the domain. Please try again." });
     }
   };
+
 
 
   const handleChange = (e) => {
@@ -648,6 +696,7 @@ const markInvoiceAsPaid = async (invoiceId, reference, amount = null) => {
     const result = await response.json();
 
     if (result.success) {
+      handleSendServiceNotification("HOSTING", form?.email)
       Swal.fire({
         icon: 'success',
         title: 'Success',
@@ -1223,9 +1272,9 @@ const handleLogin = async () => {
 
   <Button
     type="button"
-    // onClick={checkDomainAvailability}
-    // disabled={checkingDomain}
-    onClick={()=>setDomainStatus('available')}
+    onClick={checkDomainAvailability}
+    disabled={checkingDomain}
+    // onClick={()=>setDomainStatus('available')}
   >
     {checkingDomain ? "Checking..." : "Check Domain"}
   </Button>

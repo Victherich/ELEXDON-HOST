@@ -1,6 +1,7 @@
 
 import React, { createContext, useState , useEffect} from 'react'
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export const Context = createContext();
 
@@ -16,22 +17,64 @@ const [products, setProducts] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
 
- const domainPricings = [
-  { domain: ".com", register: 28500, transfer: 28500, renewal: 28500 },
-  { domain: ".net", register: 40000, transfer: 40000, renewal: 40000 },
-  { domain: ".org", register: 30000, transfer: 30000, renewal: 30000 },
-  { domain: ".biz", register: 47000, transfer: 47000, renewal: 48000 },
-  { domain: ".info", register: 60000, transfer: 60000, renewal: 65000 },
-  { domain: ".com.ng", register: 13500, transfer: 13500, renewal: 13500 },
-  { domain: ".ng", register: 17500, transfer: 17500, renewal: 18000 },
-  { domain: ".us", register: 17500, transfer: 17500, renewal: 17500 },
-  { domain: ".edu.ng", register: 18000, transfer: 18000, renewal: 18000 },
-  { domain: ".eu", register: 1199, transfer: 1199, renewal: 1300 },
-  { domain: ".uk", register: 26500, transfer: 26500, renewal: 26500 },
-  { domain: ".club", register: 50000, transfer: 50000, renewal: 50000 },
-  { domain: ".sch.ng", register: 3000, transfer: 3000, renewal: 3000 },
-    { domain: ".tech", register: 120000, transfer: 120000, renewal: 120000 },
-];
+//  const domainPricings = [
+//   { domain: ".com", register: 28500, transfer: 28500, renewal: 28500 },
+//   { domain: ".net", register: 40000, transfer: 40000, renewal: 40000 },
+//   { domain: ".org", register: 30000, transfer: 30000, renewal: 30000 },
+//   { domain: ".biz", register: 47000, transfer: 47000, renewal: 48000 },
+//   { domain: ".info", register: 60000, transfer: 60000, renewal: 65000 },
+//   { domain: ".com.ng", register: 13500, transfer: 13500, renewal: 13500 },
+//   { domain: ".ng", register: 17500, transfer: 17500, renewal: 18000 },
+//   { domain: ".us", register: 17500, transfer: 17500, renewal: 17500 },
+//   { domain: ".edu.ng", register: 18000, transfer: 18000, renewal: 18000 },
+//   { domain: ".eu", register: 1199, transfer: 1199, renewal: 1300 },
+//   { domain: ".uk", register: 26500, transfer: 26500, renewal: 26500 },
+//   { domain: ".club", register: 50000, transfer: 50000, renewal: 50000 },
+//   { domain: ".sch.ng", register: 3000, transfer: 3000, renewal: 3000 },
+//     { domain: ".tech", register: 120000, transfer: 120000, renewal: 120000 },
+// ];
+
+
+
+
+const domainPricings = [
+    { domain: '.ng', badge: 'Sale', register: 11500.00, newPeriod: '1 Year', transfer: 11500.00, transferPeriod: '1 Year', renewal: 17500.00, renewalPeriod: '1 Year' },
+    { domain: '.com.ng', badge: 'Hot', register: 4500.00, newPeriod: '1 Year', transfer: 1200.00, transferPeriod: '1 Year', renewal: 9000.00, renewalPeriod: '1 Year' },
+    { domain: '.com', badge: 'Hot', register: 11500.00, newPeriod: '1 Year', transfer: 11500.00, transferPeriod: '1 Year', renewal: 20500.00, renewalPeriod: '1 Year' },
+    { domain: '.online', badge: 'Hot', register: 12000.00, newPeriod: '1 Year', transfer: 75000.00, transferPeriod: '1 Year', renewal: 75000.00, renewalPeriod: '1 Year' },
+    { domain: '.org', badge: 'Sale', register: 28000.00, newPeriod: '1 Year', transfer: 28000.00, transferPeriod: '1 Year', renewal: 28000.00, renewalPeriod: '1 Year' },
+    { domain: '.org.ng', badge: 'Hot', register: 6000.00, newPeriod: '1 Year', transfer: 0.00, transferPeriod: '', renewal: 12000.00, renewalPeriod: '1 Year' },
+    { domain: '.site', badge: 'New', register: 8000.00, newPeriod: '1 Year', transfer: 78000.00, transferPeriod: '1 Year', renewal: 78000.00, renewalPeriod: '1 Year' },
+    { domain: '.biz', badge: 'Sale', register: 50000.00, newPeriod: '1 Year', transfer: 50000.00, transferPeriod: '1 Year', renewal: 50000.00, renewalPeriod: '1 Year' },
+    { domain: '.store', badge: 'Sale', register: 13500.00, newPeriod: '1 Year', transfer: 118000.00, transferPeriod: '1 Year', renewal: 118000.00, renewalPeriod: '1 Year' },
+    { domain: '.net', badge: 'Sale', register: 30000.00, newPeriod: '1 Year', transfer: 30000.00, transferPeriod: '1 Year', renewal: 35000.00, renewalPeriod: '1 Year' },
+    { domain: '.uk', badge: '', register: 28000.00, newPeriod: '1 Year', transfer: 28000.00, transferPeriod: '1 Year', renewal: 28000.00, renewalPeriod: '1 Year' },
+    { domain: '.tech', badge: 'New', register: 11800.00, newPeriod: '1 Year', transfer: 120000.00, transferPeriod: '1 Year', renewal: 120000.00, renewalPeriod: '1 Year' },
+    { domain: '.gov.ng', badge: '', register: 20000.00, newPeriod: '1 Year', transfer: 20000.00, transferPeriod: '1 Year', renewal: 20000.00, renewalPeriod: '1 Year' },
+    { domain: '.website', badge: '', register: 10000.00, newPeriod: '1 Year', transfer: 70000.00, transferPeriod: '1 Year', renewal: 70000.00, renewalPeriod: '1 Year' },
+    { domain: '.edu.ng', badge: '', register: 20000.00, newPeriod: '1 Year', transfer: 15000.00, transferPeriod: '1 Year', renewal: 20000.00, renewalPeriod: '1 Year' },
+    { domain: '.club', badge: '', register: 50000.00, newPeriod: '1 Year', transfer: 50000.00, transferPeriod: '1 Year', renewal: 50000.00, renewalPeriod: '1 Year' },
+    { domain: '.co.uk', badge: '', register: 28000.00, newPeriod: '1 Year', transfer: 28000.00, transferPeriod: '1 Year', renewal: 28000.00, renewalPeriod: '1 Year' },
+    { domain: '.info', badge: '', register: 60000.00, newPeriod: '1 Year', transfer: 60000.00, transferPeriod: '1 Year', renewal: 60000.00, renewalPeriod: '1 Year' },
+    { domain: '.mobi', badge: '', register: 90000.00, newPeriod: '1 Year', transfer: 90000.00, transferPeriod: '1 Year', renewal: 106000.00, renewalPeriod: '1 Year' },
+    { domain: '.net.ng', badge: '', register: 5000.00, newPeriod: '1 Year', transfer: 0.00, transferPeriod: '', renewal: 10000.00, renewalPeriod: '1 Year' },
+    { domain: '.me', badge: '', register: 51000.00, newPeriod: '1 Year', transfer: 51000.00, transferPeriod: '1 Year', renewal: 51000.00, renewalPeriod: '1 Year' },
+    { domain: '.xyz', badge: '', register: 50000.00, newPeriod: '1 Year', transfer: 50000.00, transferPeriod: '1 Year', renewal: 50000.00, renewalPeriod: '1 Year' },
+    { domain: '.ca', badge: 'New', register: 50000.00, newPeriod: '1 Year', transfer: 50000.00, transferPeriod: '1 Year', renewal: 50000.00, renewalPeriod: '1 Year' },
+    { domain: '.io', badge: '', register: 145000.00, newPeriod: '1 Year', transfer: 145000.00, transferPeriod: '1 Year', renewal: 145000.00, renewalPeriod: '1 Year' },
+    { domain: '.blog', badge: '', register: 60878.00, newPeriod: '1 Year', transfer: 60878.00, transferPeriod: '1 Year', renewal: 73777.00, renewalPeriod: '1 Year' },
+    { domain: '.icu', badge: '', register: 23000.00, newPeriod: '1 Year', transfer: 23000.00, transferPeriod: '1 Year', renewal: 23000.00, renewalPeriod: '1 Year' },
+    { domain: '.top', badge: '', register: 23666.00, newPeriod: '1 Year', transfer: 23666.00, transferPeriod: '1 Year', renewal: 25344.00, renewalPeriod: '1 Year' },
+    { domain: '.vip', badge: '', register: 40758.00, newPeriod: '1 Year', transfer: 40758.00, transferPeriod: '1 Year', renewal: 50412.00, renewalPeriod: '1 Year' },
+    { domain: '.us', badge: '', register: 30000.00, newPeriod: '1 Year', transfer: 30000.00, transferPeriod: '1 Year', renewal: 30000.00, renewalPeriod: '1 Year' },
+    { domain: '.ru', badge: '', register: 15363.00, newPeriod: '1 Year', transfer: 0.00, transferPeriod: '', renewal: 17960.00, renewalPeriod: '1 Year' },
+    { domain: '.nl', badge: '', register: 25613.00, newPeriod: '1 Year', transfer: 25613.00, transferPeriod: '1 Year', renewal: 30806.00, renewalPeriod: '1 Year' },
+    { domain: '.de', badge: '', register: 20988.00, newPeriod: '1 Year', transfer: 20988.00, transferPeriod: '1 Year', renewal: 25099.00, renewalPeriod: '1 Year' },
+    { domain: '.eu', badge: '', register: 24339.00, newPeriod: '1 Year', transfer: 24339.00, transferPeriod: '1 Year', renewal: 23017.00, renewalPeriod: '1 Year' },
+    { domain: '.cn', badge: '', register: 21070.00, newPeriod: '1 Year', transfer: 23070.00, transferPeriod: '1 Year', renewal: 24397.00, renewalPeriod: '1 Year' },
+  ];
+
+
 
 const api_key = "MY_SUPER_SECRET_KEY"
 const api_domain = "https://www.elexdonhost.com/api_elexdonhost"
@@ -608,11 +651,67 @@ useEffect(() => {
 
 
 
+const handleSendServiceNotification = async (serviceName, customerEmail) => {
+  // Show loading spinner while processing
+  Swal.fire({
+    title: 'Processing...',
+    text: 'Please wait while we record your order.',
+    allowOutsideClick: false,
+    didOpen: () => {
+      Swal.showLoading();
+    }
+  });
+
+  try {
+    const response = await fetch(`${api_domain}/send_service_email.php`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: customerEmail,
+        serviceName: serviceName
+      })
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Order Successful!',
+        text: `Your order for ${serviceName} has been received and activation is in progress. Please check your email inbox or spam folder for email confirmation`,
+        confirmButtonColor: '#4f46e5'
+      });
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Notice',
+        text: result.message || 'Something went wrong. Please try again.',
+        confirmButtonColor: '#4f46e5'
+      });
+    }
+  } catch (error) {
+    console.error('Network Error:', error);
+    Swal.fire({
+      icon: 'error',
+      title: 'Connection Error',
+      text: 'Unable to connect to the server. Please check your network connection.',
+      confirmButtonColor: '#4f46e5'
+    });
+  }
+};
+
+
+
+
 
   return (
     <Context.Provider value={{yes,domainPricings, dollarRate, api_key,api_domain,
     products,error,loading,
-    wordpressProducts, plans, vpsPlans, paystack_key, emailPackages, sslPackages, categories, posts}}>
+    wordpressProducts, plans, vpsPlans, paystack_key, emailPackages, sslPackages, categories, posts,
+    handleSendServiceNotification
+    }}>
       {children}
     </Context.Provider>
   )

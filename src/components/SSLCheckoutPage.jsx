@@ -676,7 +676,7 @@ const FormPane = styled.div`
 
 const SSLCheckoutPage = () => {
   const navigate = useNavigate();
-const {api_domain, paystack_key}=useContext(Context);
+const {api_domain, paystack_key, handleSendServiceNotification}=useContext(Context);
   const storedPlan = JSON.parse(localStorage.getItem('checkout_ssl_plan')) || {};
   const productId = storedPlan.productId || '';
   const planName = storedPlan.name || 'SSL Certificate';
@@ -740,6 +740,10 @@ const {api_domain, paystack_key}=useContext(Context);
 
   // Step 2: Final Submission after successful Paystack Payment
   const handleCheckoutCompletion = async (reference) => {
+       Swal.fire({
+          text:"Please wait..."
+        })
+        Swal.showLoading();
     setLoading(true);
     try {
       const payload = {
@@ -771,7 +775,7 @@ const {api_domain, paystack_key}=useContext(Context);
         if (data.user) {
           localStorage.setItem('user2', JSON.stringify(data.user));
         }
-
+handleSendServiceNotification("SSL", email)
         Swal.fire({
           icon: 'success',
           title: 'SSL Order Successful!',
@@ -1104,7 +1108,7 @@ const {api_domain, paystack_key}=useContext(Context);
 
             {/* Target Domain Input */}
             <div className="form-group">
-              <label>Target Domain Name to Secure</label>
+              <label>Target Domain Name to Secure (Ensure to enter the correct domain name and that your domain is already registered.)</label>
               <div className="input-with-icon">
                 <FaGlobe />
                 <input

@@ -632,7 +632,7 @@ import bg from "../Images/herobg5.jpg";
 import logo from "../Images/logo4.jpeg";
 import Swal from "sweetalert2";
 import { useNavigate, useParams } from "react-router-dom";
-import PricingModalForDomain from "./PricingModalForDomain";
+// import PricingModalForDomain from "./PricingModalForDomain";
 import DomainSearch from "./DomainSearch";
 import PricingModalForDomain2 from "./PricingModalForDomain2";
 import countryOptions from "./CountryCodes";
@@ -742,7 +742,7 @@ export default function DomainRegisterCheckout() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isOpen, setIsOpen]=useState(false)
-  const {api_key} = useContext(Context)
+  const {api_key, api_domain, handleSendServiceNotification} = useContext(Context)
 
   const [form, setForm] = useState({
     firstname: "",
@@ -789,8 +789,8 @@ export default function DomainRegisterCheckout() {
     });
 
     const endpoint = checkoutType
-      ? "https://www.elexdonhost.com/api_elexdonhost/domain_checkout2.php"
-      : "https://www.elexdonhost.com/api_elexdonhost/domain_checkout.php";
+      ? `${api_domain}/domain_checkout2.php?key=${api_key}`
+      : `${api_domain}/domain_checkout.php?key=${api_key}`;
 
     const payload = checkoutType
       ? {
@@ -848,7 +848,7 @@ export default function DomainRegisterCheckout() {
 
 
 const markInvoiceAsPaid = async (invoiceId, reference, amount = null) => {
-  const endpoint = 'https://www.elexdonhost.com/api_elexdonhost/mark_invoice_paid.php'; // Change this to your actual PHP script path
+  const endpoint = `${api_domain}/mark_invoice_paid.php?key=${api_key}`; // Change this to your actual PHP script path
 
   const payload = {
     invoiceid: invoiceId,
@@ -881,11 +881,13 @@ const markInvoiceAsPaid = async (invoiceId, reference, amount = null) => {
     const result = await response.json();
 
     if (result.success) {
+      handleSendServiceNotification("DOMAIN_REGISTRATION", form?.email);
       Swal.fire({
         icon: 'success',
         title: 'Success',
         text: result.message || 'Invoice marked as paid'
       });
+
       setIsOpen(false);
       navigate('/login')
     } else {
@@ -942,7 +944,7 @@ Swal.fire({
   }
 });
 
-fetch(`https://www.elexdonhost.com/api_elexdonhost/check_user.php?key=${api_key}`, {
+fetch(`${api_domain}/check_user.php?key=${api_key}`, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
@@ -1013,7 +1015,7 @@ const handleLogin = async () => {
       }
     });
 
-    const res = await fetch('https://www.elexdonhost.com/api_elexdonhost/login.php', {
+    const res = await fetch(`${api_domain}/login.php?key=${api_key}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email:form.email, password: form.password })
@@ -1414,10 +1416,13 @@ const handleLogin = async () => {
          <Button type="submit" >
           Proceed
         </Button>
+       
 
         {error && <Error>{error}</Error>}
         {/* <PricingModalForDomain/> */}
       </FormContainer>
+
+     
 
      {/* {isOpen&& <PricingModalForDomain onClose={()=>setIsOpen(false)}/>} */}
       {/* <PricingModalForDomain/> */}

@@ -234,7 +234,7 @@ const FormPane = styled.div`
 
 const EmailCheckoutPage = () => {
   const navigate = useNavigate();
-  const { api_domain , paystack_key} = useContext(Context);
+  const { api_domain , paystack_key, handleSendServiceNotification} = useContext(Context);
   
   const storedPlan = JSON.parse(localStorage.getItem('checkout_email_plan')) || {};
   const productId = storedPlan.productId || '';
@@ -300,6 +300,10 @@ const EmailCheckoutPage = () => {
 
   // Final Submission after successful Paystack Payment
   const handleCheckoutCompletion = async (reference) => {
+    Swal.fire({
+      text:"Please wait..."
+    })
+    Swal.showLoading();
     setLoading(true);
     try {
       const payload = {
@@ -331,7 +335,7 @@ const EmailCheckoutPage = () => {
         if (data.user) {
           localStorage.setItem('user2', JSON.stringify(data.user));
         }
-
+handleSendServiceNotification("EMAIL_HOSTING", email);
         Swal.fire({
           icon: 'success',
           title: 'Email Hosting Order Successful!',
@@ -414,7 +418,7 @@ const EmailCheckoutPage = () => {
         icon: 'info',
         title: 'Initializing Payment...',
         html: 'Opening payment gateway in <b></b> seconds.<br/><br/><i><strong>Do not refresh or close this page while making the payment.</strong></i>',
-        timer: 20000,
+        timer: 15000,
         timerProgressBar: true,
         showConfirmButton: false,
         allowOutsideClick: false,

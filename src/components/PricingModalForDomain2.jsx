@@ -355,7 +355,7 @@ import PaystackPop from "@paystack/inline-js";
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 
 const PricingModalForDomain = ({ onClose, domain, tld, handleSubmit, email, checkoutType }) => {
-  const { domainPricings, dollarRate } = useContext(Context);
+  const { domainPricings, dollarRate, api_domain, api_key, paystack_key } = useContext(Context);
 
   const PAYPAL_CLIENT_ID = 'AY3JP-UI68WChZpC_0f7oTadUrItrOcSwqL2E4GVFJHfo-4QPabv308FQRUTfmDS4jfNFYi9AbLZh9iV';
 
@@ -366,14 +366,40 @@ const PricingModalForDomain = ({ onClose, domain, tld, handleSubmit, email, chec
 
   // ---------- Paystack ----------
   const payWithPaystack = () => {
+
+
+let timerInterval;
+    Swal.fire({
+      icon: 'info',
+      title: 'Initializing Payment...',
+      html: 'Opening payment gateway in <b></b> seconds.<br/><br/><i><strong>Do not refresh or close this page while making the payment.</strong></i>',
+      timer: 15000,
+      timerProgressBar: true,
+      showConfirmButton: false,
+      allowOutsideClick: false,
+      didOpen: () => {
+        const b = Swal.getHtmlContainer().querySelector('b');
+        timerInterval = setInterval(() => {
+          const timeLeft = Swal.getTimerLeft();
+          if (timeLeft) {
+            b.textContent = (timeLeft / 1000).toFixed(0);
+          }
+        }, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+      },
+      didClose: () => { 
+
+
     const paystack = new PaystackPop();
     paystack.newTransaction({
-      key: "pk_live_3626fe7772aaca28a10724ebb1f9727dfcc5d6cb",
-      // key:"pk_test_60e1f53bba7c80b60029bf611a26a66a9a22d4e4",
+      key: paystack_key,
       amount: amount * 100, // in kobo
       email: email,
       onSuccess: (transaction) => {
-        handleVerify(transaction.reference);
+        // handleVerify(transaction.reference);
+        handleSubmit(transaction.reference);
       },
       onCancel: () => {
         Swal.fire({ icon: "warning", text: "Payment cancelled by user." });
@@ -382,34 +408,35 @@ const PricingModalForDomain = ({ onClose, domain, tld, handleSubmit, email, chec
         Swal.fire({ icon: "error", title: "Payment Failed", text: error.message || "Unknown error." });
       }
     });
+  }})
   };
 
-  const handleVerify = async (reference) => {
-    Swal.fire({
-      title: 'Verifying Payment...',
-      allowOutsideClick: false,
-      didOpen: () => Swal.showLoading(),
-    });
+  // const handleVerify = async (reference) => {
+  //   Swal.fire({
+  //     title: 'Verifying Payment...',
+  //     allowOutsideClick: false,
+  //     didOpen: () => Swal.showLoading(),
+  //   });
 
-    try {
-      const response = await fetch('https://www.elexdonhost.com/api_elexdonhost/verify_payment.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ reference })
-      });
+  //   try {
+  //     const response = await fetch('https://www.elexdonhost.com/api_elexdonhost/verify_payment.php', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({ reference })
+  //     });
 
-      const result = await response.json();
+  //     const result = await response.json();
 
-      if (result.success) {
-        handleSubmit(reference);
-        Swal.fire({ title: 'Success', text: result.message, icon: 'success' });
-      } else {
-        Swal.fire({ title: 'Verification Failed', text: result.message, icon: 'error' });
-      }
-    } catch (error) {
-      Swal.fire({ title: 'Error', text: 'Error verifying payment.', icon: 'error' });
-    }
-  };
+  //     if (result.success) {
+  //       handleSubmit(reference);
+  //       Swal.fire({ title: 'Success', text: result.message, icon: 'success' });
+  //     } else {
+  //       Swal.fire({ title: 'Verification Failed', text: result.message, icon: 'error' });
+  //     }
+  //   } catch (error) {
+  //     Swal.fire({ title: 'Error', text: 'Error verifying payment.', icon: 'error' });
+  //   }
+  // };
 
   // ---------- PayPal ----------
   const createPayPalOrder = (data, actions) => {
@@ -495,7 +522,7 @@ const Backdrop = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 500;
 `;
 
 const ModalContainer = styled.div`
