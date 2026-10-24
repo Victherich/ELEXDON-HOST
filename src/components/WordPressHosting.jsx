@@ -870,7 +870,8 @@ const WordPressHosting = () => {
 
   // 1. Full Page Loader State
   if (loading && products.length === 0) {
-    return (
+    return;
+     (
       <FullPageLoader>
         <FaSpinner className="fa-spin" style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }} />
         <span>Loading WordPress Hosting Plans...</span>

@@ -449,7 +449,8 @@ const ElexdonMultipleHostPage = () => {
 
   // 1. Initial Full Page Loader
   if (loading && products.length === 0) {
-    return (
+    return;
+     (
       <FullPageLoader>
         <FaSpinner className="fa-spin" style={{ fontSize: '2.5rem', marginBottom: '1rem' }} />
         <span>Loading Elexdon Multiple Hosting Plans...</span>

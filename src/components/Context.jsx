@@ -78,8 +78,8 @@ const domainPricings = [
 
 const api_key = "MY_SUPER_SECRET_KEY"
 const api_domain = "https://www.elexdonhost.com/api_elexdonhost"
-// const paystack_key = "pk_live_3626fe7772aaca28a10724ebb1f9727dfcc5d6cb"
-const paystack_key="pk_test_60e1f53bba7c80b60029bf611a26a66a9a22d4e4"
+const paystack_key = "pk_live_3626fe7772aaca28a10724ebb1f9727dfcc5d6cb"
+// const paystack_key="pk_test_60e1f53bba7c80b60029bf611a26a66a9a22d4e4"
 
 
 
