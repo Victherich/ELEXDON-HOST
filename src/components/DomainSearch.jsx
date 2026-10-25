@@ -714,7 +714,7 @@ const DomainSearch = () => {
         </Form>
 
         <PricingBadge>
-          .com ₦11,500 │ .com.ng ₦4,500 │ .ng ₦11,500 │ .org ₦28,000 │ .net ₦30,000 │ .tech ₦11,800
+          .com ₦20,000 │ .com.ng ₦7,500 │ .ng ₦17,000 │ .org ₦28,000 │ .net ₦30,000 │ .tech ₦121,000
         </PricingBadge>
 
         {result && (

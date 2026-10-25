@@ -38,9 +38,9 @@ const [products, setProducts] = useState([]);
 
 
 const domainPricings = [
-    { domain: '.ng', badge: 'Sale', register: 11500.00, newPeriod: '1 Year', transfer: 11500.00, transferPeriod: '1 Year', renewal: 17500.00, renewalPeriod: '1 Year' },
-    { domain: '.com.ng', badge: 'Hot', register: 4500.00, newPeriod: '1 Year', transfer: 1200.00, transferPeriod: '1 Year', renewal: 9000.00, renewalPeriod: '1 Year' },
-    { domain: '.com', badge: 'Hot', register: 11500.00, newPeriod: '1 Year', transfer: 11500.00, transferPeriod: '1 Year', renewal: 20500.00, renewalPeriod: '1 Year' },
+    { domain: '.ng', badge: 'Sale', register: 17000.00, newPeriod: '1 Year', transfer: 17000.00, transferPeriod: '1 Year', renewal: 17000.00, renewalPeriod: '1 Year' },
+    { domain: '.com.ng', badge: 'Hot', register: 7500.00, newPeriod: '1 Year', transfer: 7500.00, transferPeriod: '1 Year', renewal: 7500.00, renewalPeriod: '1 Year' },
+    { domain: '.com', badge: 'Hot', register: 20000.00, newPeriod: '1 Year', transfer: 20000.00, transferPeriod: '1 Year', renewal: 20500.00, renewalPeriod: '1 Year' },
     { domain: '.online', badge: 'Hot', register: 12000.00, newPeriod: '1 Year', transfer: 75000.00, transferPeriod: '1 Year', renewal: 75000.00, renewalPeriod: '1 Year' },
     { domain: '.org', badge: 'Sale', register: 28000.00, newPeriod: '1 Year', transfer: 28000.00, transferPeriod: '1 Year', renewal: 28000.00, renewalPeriod: '1 Year' },
     { domain: '.org.ng', badge: 'Hot', register: 6000.00, newPeriod: '1 Year', transfer: 0.00, transferPeriod: '', renewal: 12000.00, renewalPeriod: '1 Year' },
@@ -49,7 +49,7 @@ const domainPricings = [
     { domain: '.store', badge: 'Sale', register: 13500.00, newPeriod: '1 Year', transfer: 118000.00, transferPeriod: '1 Year', renewal: 118000.00, renewalPeriod: '1 Year' },
     { domain: '.net', badge: 'Sale', register: 30000.00, newPeriod: '1 Year', transfer: 30000.00, transferPeriod: '1 Year', renewal: 35000.00, renewalPeriod: '1 Year' },
     { domain: '.uk', badge: '', register: 28000.00, newPeriod: '1 Year', transfer: 28000.00, transferPeriod: '1 Year', renewal: 28000.00, renewalPeriod: '1 Year' },
-    { domain: '.tech', badge: 'New', register: 11800.00, newPeriod: '1 Year', transfer: 120000.00, transferPeriod: '1 Year', renewal: 120000.00, renewalPeriod: '1 Year' },
+    { domain: '.tech', badge: 'New', register: 121000.00, newPeriod: '1 Year', transfer: 121000.00, transferPeriod: '1 Year', renewal: 121000.00, renewalPeriod: '1 Year' },
     { domain: '.gov.ng', badge: '', register: 20000.00, newPeriod: '1 Year', transfer: 20000.00, transferPeriod: '1 Year', renewal: 20000.00, renewalPeriod: '1 Year' },
     { domain: '.website', badge: '', register: 10000.00, newPeriod: '1 Year', transfer: 70000.00, transferPeriod: '1 Year', renewal: 70000.00, renewalPeriod: '1 Year' },
     { domain: '.edu.ng', badge: '', register: 20000.00, newPeriod: '1 Year', transfer: 15000.00, transferPeriod: '1 Year', renewal: 20000.00, renewalPeriod: '1 Year' },
